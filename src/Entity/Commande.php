@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CommandeRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -31,6 +33,18 @@ class Commande
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $dateCommande = null;
+
+    #[ORM\ManyToOne(inversedBy: 'commandes')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $User = null;
+
+    #[ORM\OneToMany(mappedBy: 'Commande', targetEntity: ProduitCommande::class)]
+    private Collection $produitCommandes;
+
+    public function __construct()
+    {
+        $this->produitCommandes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -105,6 +119,48 @@ class Commande
     public function setDateCommande(\DateTimeInterface $dateCommande): static
     {
         $this->dateCommande = $dateCommande;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->User;
+    }
+
+    public function setUser(?User $User): static
+    {
+        $this->User = $User;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ProduitCommande>
+     */
+    public function getProduitCommandes(): Collection
+    {
+        return $this->produitCommandes;
+    }
+
+    public function addProduitCommande(ProduitCommande $produitCommande): static
+    {
+        if (!$this->produitCommandes->contains($produitCommande)) {
+            $this->produitCommandes->add($produitCommande);
+            $produitCommande->setCommande($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProduitCommande(ProduitCommande $produitCommande): static
+    {
+        if ($this->produitCommandes->removeElement($produitCommande)) {
+            // set the owning side to null (unless already changed)
+            if ($produitCommande->getCommande() === $this) {
+                $produitCommande->setCommande(null);
+            }
+        }
 
         return $this;
     }

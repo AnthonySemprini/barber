@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProduitRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -25,6 +27,17 @@ class Produit
 
     #[ORM\Column(length: 255)]
     private ?string $image = null;
+
+    #[ORM\OneToMany(mappedBy: 'Produit', targetEntity: ProduitCommande::class)]
+    private Collection $produitCommandes;
+
+    #[ORM\ManyToOne(inversedBy: 'produits')]
+    private ?Categorie $Categorie = null;
+
+    public function __construct()
+    {
+        $this->produitCommandes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -75,6 +88,48 @@ class Produit
     public function setImage(string $image): static
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ProduitCommande>
+     */
+    public function getProduitCommandes(): Collection
+    {
+        return $this->produitCommandes;
+    }
+
+    public function addProduitCommande(ProduitCommande $produitCommande): static
+    {
+        if (!$this->produitCommandes->contains($produitCommande)) {
+            $this->produitCommandes->add($produitCommande);
+            $produitCommande->setProduit($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProduitCommande(ProduitCommande $produitCommande): static
+    {
+        if ($this->produitCommandes->removeElement($produitCommande)) {
+            // set the owning side to null (unless already changed)
+            if ($produitCommande->getProduit() === $this) {
+                $produitCommande->setProduit(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getCategorie(): ?Categorie
+    {
+        return $this->Categorie;
+    }
+
+    public function setCategorie(?Categorie $Categorie): static
+    {
+        $this->Categorie = $Categorie;
 
         return $this;
     }
