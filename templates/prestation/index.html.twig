@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tarif{% endblock %}
+
+{% block body %}
+<h1>Liste des préstations</h1>
+<div class="cardPresta">
+    {% for prestation in prestations %}
+        <a href="#">{{prestation.nom}}</a>
+        <p>Prix : {{prestation.prix}}€</p>
+        <p>Durée : {{prestation.duree|date('H:i')}}</p>
+        <input type="submit" value="Réserver">
+        <br><br>
+    {% endfor %}
+</div>
+{% endblock %}
