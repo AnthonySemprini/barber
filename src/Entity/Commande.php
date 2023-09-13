@@ -34,12 +34,13 @@ class Commande
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $dateCommande = null;
 
-    #[ORM\ManyToOne(inversedBy: 'commandes')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?User $User = null;
+   
 
     #[ORM\OneToMany(mappedBy: 'Commande', targetEntity: ProduitCommande::class)]
     private Collection $produitCommandes;
+
+    #[ORM\ManyToOne(inversedBy: 'commandes')]
+    private ?User $User = null;
 
     public function __construct()
     {
@@ -123,17 +124,7 @@ class Commande
         return $this;
     }
 
-    public function getUser(): ?User
-    {
-        return $this->User;
-    }
-
-    public function setUser(?User $User): static
-    {
-        $this->User = $User;
-
-        return $this;
-    }
+   
 
     /**
      * @return Collection<int, ProduitCommande>
@@ -161,6 +152,18 @@ class Commande
                 $produitCommande->setCommande(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->User;
+    }
+
+    public function setUser(?User $User): static
+    {
+        $this->User = $User;
 
         return $this;
     }

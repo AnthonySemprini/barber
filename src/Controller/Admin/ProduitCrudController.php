@@ -3,9 +3,11 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Produit;
+use App\Entity\Categorie;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
@@ -25,6 +27,7 @@ class ProduitCrudController extends AbstractCrudController
             MoneyField::new('prix')->setCurrency('EUR'),
             TextEditorField::new('description'),
             TextField::new('image'),
+            ChoiceField::new('categorie')->allowMultipleChoices()
         ];
     }
     
