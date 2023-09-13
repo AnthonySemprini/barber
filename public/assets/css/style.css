@@ -9,3 +9,18 @@ a{
     color: black;
     text-decoration: none;
 }
+
+            /********** SHOP **********/
+
+.card{
+    display: flex;
+    flex-direction:column;
+    flex-wrap: wrap;
+    gap: 30px;
+    width: 300px;
+    height: 300px;
+}
+img{
+    width: 150px;
+    height: 150px;
+}
