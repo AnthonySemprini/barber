@@ -13,6 +13,19 @@
     </head>
     <body>
         {% include "_partials/_nav.html.twig" %}
+
+        {% if app.user %}
+            <a href="{{ path('app_logout')}}">Se déconnecter</a>
+            <a href="#">Mon profil</a>
+        {% else %}
+            <a href="{{ path('app_login')}}">Se connecter</a>
+            <a href="{{ path('app_register')}}">S'enrengistrer</a>
+        {% endif %}
+        
+        {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{path('admin')}}">Panneau d'administration</a>
+        {% endif %}
+
         {% block body %}{% endblock %}
         {% include "_partials/_footer.html.twig" %}
     </body>
