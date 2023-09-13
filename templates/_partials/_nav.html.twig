@@ -1,11 +1,22 @@
 
     <div class="navbar">
         <ul>
-            <li><a href="{{path('app_home')}}">Home</a></li>
-            <li><a href="#">Lien2</a></li>
+            <li><a href="{{path('app_home')}}">Acceuil</a></li>
+            <li><a href="{{path('app_produit')}}">Shop</a></li>
             <li><a href="#">Lien3</a></li>
             <li><a href="#">Lien5</a></li>
             <li><a href="#">Lien5</a></li>
         </ul>
     </div>
+    {% if app.user %}
+    <a href="{{ path('app_logout')}}">Se déconnecter</a>
+    <a href="{{ path('app_profil')}}">Mon profil</a>
+{% else %}
+    <a href="{{ path('app_login')}}">Se connecter</a>
+    <a href="{{ path('app_register')}}">S'enrengistrer</a>
+{% endif %}
+
+{% if is_granted('ROLE_ADMIN') %}
+    <a href="{{path('admin')}}">Panneau d'administration</a>
+{% endif %}
             

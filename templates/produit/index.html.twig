@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Shop{% endblock %}
+
+{% block body %}
+<h1>Produits</h1>
+<div class="produit">
+    {% for produit in produits %}
+    <a href="{{path('app_detail_produit', {'id': produit.id})}}"><img src="{{produit.image}}" alt="img du produit"></a>
+        <p>{{produit}} {{produit.prix}}€</p>
+    {% endfor %}
+</div>
+  
+{% endblock %}
