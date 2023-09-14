@@ -6,13 +6,17 @@ use App\Entity\Produit;
 use App\Entity\Categorie;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 class ProduitCrudController extends AbstractCrudController
 {
+    public const PRODUCTS_BASE_PATH = 'assets/img';
+    public const PRODUCTS_UPLOAD_DIR = 'public/assets/img';
+
     public static function getEntityFqcn(): string
     {
         return Produit::class;
@@ -26,8 +30,11 @@ class ProduitCrudController extends AbstractCrudController
             TextField::new('nom'),
             MoneyField::new('prix')->setCurrency('EUR'),
             TextEditorField::new('description'),
-            TextField::new('image'),
-            ChoiceField::new('categorie')->allowMultipleChoices()
+            ImageField::new('image')
+                ->setBasePath(self::PRODUCTS_BASE_PATH)
+                ->setUploadDir(self::PRODUCTS_UPLOAD_DIR)
+                ->setSortable(false),
+            AssociationField::new('Categorie')
         ];
     }
     
