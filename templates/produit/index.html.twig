@@ -8,7 +8,7 @@
     {% for produit in pagination %}
         <div class="card">
             <a href="{{path('app_detail_produit', {'id': produit.id})}}"><img src="assets/img/{{produit.image}}" alt="img du produit"></a>
-            <p>{{produit}} {{produit.prix}}€</p>
+            <p>{{produit}} {{produit.prix/100}}€</p>
         </div>
     {% endfor %}
 </div>

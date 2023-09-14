@@ -6,8 +6,8 @@
 <h1>Detail</h1>
 <div class="produit">
         <img src="assets/img/{{produit.image}}" alt="img produit"> 
-        <p>{{produit}} {{produit.prix}}€</p>
-        <p>{{produit.description}}</p>
+        <p>{{produit}} {{produit.prix/100}}€</p>
+        <p>{{produit.description|raw}}</p>
         <p>{{produit.categorie.nom}}</p>
 </div>
 {# <div class="addPanier">
