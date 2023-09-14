@@ -3,18 +3,25 @@
 namespace App\Controller;
 
 use App\Repository\PrestationRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class PrestationController extends AbstractController
 {
     #[Route('/prestation', name: 'app_prestation')]
-    public function index(PrestationRepository $prestationRepository): Response
+    public function index(PrestationRepository $prestationRepository, Request $request, PaginatorInterface $paginator): Response
     {
+        $pagination = $paginator->paginate(
+            $prestationRepository->paginationQuery(),
+            $request->query->get('page', 1),
+            5
+        );
+
             return $this->render('prestation/index.html.twig', [
-                'prestations' => $prestationRepository->findBy([],
-                ['nom' => 'ASC'])
+                'pagination' => $pagination
             ]);
     }
 }

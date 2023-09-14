@@ -5,7 +5,7 @@
 {% block body %}
 <h1>Liste des préstations</h1>
 <div class="cardPresta">
-    {% for prestation in prestations %}
+    {% for prestation in pagination %}
         <a href="#">{{prestation.nom}}</a>
         <p>Prix : {{prestation.prix}}€</p>
         <p>Durée : {{prestation.duree|date('H:i')}}</p>
@@ -13,4 +13,5 @@
         <br><br>
     {% endfor %}
 </div>
+{{ knp_pagination_render(pagination)}}
 {% endblock %}

@@ -5,11 +5,13 @@
 {% block body %}
 <h1>Produits</h1>
 <div class="produits">
-    {% for produit in produits %}
+    {% for produit in pagination %}
         <div class="card">
             <a href="{{path('app_detail_produit', {'id': produit.id})}}"><img src="assets/img/{{produit.image}}" alt="img du produit"></a>
             <p>{{produit}} {{produit.prix}}€</p>
         </div>
     {% endfor %}
 </div>
+
+    {{ knp_pagination_render(pagination)}}
 {% endblock %}

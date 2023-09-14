@@ -14,10 +14,7 @@ a{
 
 .produits{
     display: flex;
-    
     flex-wrap: wrap;
-    
-    height: 900px;
     gap: 30px;
 }
 .card{
