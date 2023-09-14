@@ -12,13 +12,19 @@ a{
 
             /********** SHOP **********/
 
+.produits{
+    display: flex;
+    
+    flex-wrap: wrap;
+    
+    height: 900px;
+    gap: 30px;
+}
 .card{
     display: flex;
     flex-direction:column;
-    flex-wrap: wrap;
-    gap: 30px;
-    width: 300px;
-    height: 300px;
+    width: 150px;
+    height: 250px;
 }
 img{
     width: 150px;
