@@ -24,7 +24,7 @@ class ReservationCrudController extends AbstractCrudController
             TextField::new('nom'),
             TextField::new('prenom'),
             TextField::new('numTel'),
-            DateTimeField::new('rdv'),
+            DateTimeField::new('rdv')->setFormat("EEEE dd MMMM yyyy' à 'HH'h'mm "),
             AssociationField::new('prestation'),
             AssociationField::new('user')
         ];
