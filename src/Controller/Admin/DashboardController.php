@@ -6,6 +6,7 @@ use App\Entity\Produit;
 use App\Entity\Categorie;
 use App\Entity\Prestation;
 use App\Entity\Reservation;
+use App\Entity\User;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
@@ -39,6 +40,14 @@ class DashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
+        yield MenuItem::section('Client');
+        
+        yield MenuItem::section('Users');
+        
+        yield MenuItem::subMenu('Actions', 'fas fa-bars')->setSubItems([
+            MenuItem::linkToCrud('Ajouter user', 'fas fa-plus', User::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Voir user', 'fas fa-eye', User::class)
+        ]);
         yield MenuItem::section('E-commerce');
         
         yield MenuItem::section('Produits');
