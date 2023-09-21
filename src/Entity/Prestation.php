@@ -19,7 +19,7 @@ class Prestation
     #[ORM\Column(length: 50)]
     private ?string $nom = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 5, scale: 2)]
+    #[ORM\Column(type: Types::DECIMAL, precision: 7)]
     private ?string $prix = null;
 
     #[ORM\Column(type: Types::TIME_MUTABLE)]
