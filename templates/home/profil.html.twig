@@ -7,6 +7,7 @@
 <H1>Profil</H1>
 <p>Pseudo : {{app.user.pseudo}}</p>
 <p>Email : {{app.user.email}}</p>
-<a href="{{ path('app_user_delete', {'id': app.user.id }) }}" class="btn-delete" onclick="return confirm('Voulez-vous vraiment supprimer votre compte?');" >delete</a>
+<a href="{{ path('app_user_delete', {'id': app.user.id }) }}" onclick="return confirm('Voulez-vous vraiment supprimer votre profil?');" >Supprimer votre profil</a>
+
 
 {% endblock %}
