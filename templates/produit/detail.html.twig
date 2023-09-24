@@ -1,17 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{produit.nom}}{% endblock %}
+{% block title %}
+	{{produit.nom}}
+{% endblock %}
 
 {% block body %}
-<h1>Detail</h1>
-<div class="produit">
-        <img src="assets/img/{{produit.image}}" alt="img produit"> 
-        <p>{{produit}} {{produit.prix/100}}€</p>
-        <p>{{produit.description|raw}}</p>
-        <p>{{produit.categorie.nom}}</p>
-</div>
-{# <div class="addPanier">
-    <p>Quantité : <input id="qtt" type="number" value="1"></p>
-    <p>{{produit.prix * 3 }}€</p>
-</div> #}
+	<h1>Detail</h1>
+	<div class="produit">
+		<img src="assets/img/{{produit.image}}" alt="img produit">
+		<p>{{produit}}
+			{{produit.prix/100}}€</p>
+		<p>{{produit.description|raw}}</p>
+		<p>{{produit.categorie.nom}}</p>
+	</div>
+	{# <div class="addPanier">
+	    <p>Quantité : <input id="qtt" type="number" value="1"></p>
+	    <p>{{produit.prix * 3 }}€</p>
+	</div> #}
 {% endblock %}
