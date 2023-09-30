@@ -5,5 +5,10 @@
 {% block body %}
 
 <H1>The barber Shop</H1>
-{# <h2>Bienvenue {{app.user.pseudo}}</h2> #}
+{% if app.user %}
+<h2>Bienvenue {{app.user.pseudo}}</h2>
+{% else %}
+    <p>Aucun utilisateur n'est connect</p>
+    {% endif %}
+
 {% endblock %}
