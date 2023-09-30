@@ -8,6 +8,7 @@
 <p>Pseudo : {{app.user.pseudo}}</p>
 <p>Email : {{app.user.email}}</p>
 <a href="{{ path('app_user_delete', {'id': app.user.id }) }}" onclick="return confirm('Voulez-vous vraiment supprimer votre profil?');" >Supprimer votre profil</a>
+<a href="{{ path ('app_user_edit', {'id': app.user.id }) }}">Modifier votre profil</a>
 
 
 {% endblock %}
