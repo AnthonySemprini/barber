@@ -77,5 +77,11 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('Créer reservation', 'fas fa-plus', Reservation::class)->setAction(Crud::PAGE_NEW),
             MenuItem::linkToCrud('Voir reservation', 'fas fa-eye', Reservation::class)
         ]);
+
+        yield MenuItem::section('Calendrier');
+        yield MenuItem::subMenu('Action', 'fas fa-bars')->setSubItems([
+            MenuItem::linkToCrud('Voir calendrier', 'fas fa-clendar', Reservation::class)
+        ]);
+
     }
 }

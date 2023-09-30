@@ -27,3 +27,9 @@ img{
     width: 150px;
     height: 150px;
 }
+            /********** Calendrier **********/
+
+            #calendrier{
+                width: 80%;
+                margin:auto;
+            }
