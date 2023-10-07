@@ -16,16 +16,23 @@ class PanierController extends AbstractController
         $panier = $session->get('panier', []);
 
         $panierWithData = [];
-        foreach($panier as $id => $quantite){
+        foreach ($panier as $id => $quantite) {
             $panierWithData[] = [
                 'produit' => $produitRepository->find($id),
-                'Quantite' => $quantite
+                'quantite' => $quantite
             ];
         }
         //dd($panierWithData);
 
+        $total = 0;
+
+        foreach ($panierWithData as $article) {
+            $totalArticle = $article['produit']->getPrix() * $article['quantite'];
+            $total += $totalArticle;
+        }
         return $this->render('panier/index.html.twig', [
-            'articles' => $panierWithData
+            'articles' => $panierWithData,
+            'total' => $total
         ]);
     }
     #[Route('/panier/add/{id}', name:'app_panier_add')]

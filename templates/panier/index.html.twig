@@ -3,8 +3,37 @@
 {% block title %}Hello PanierController!{% endblock %}
 
 {% block body %}
-{% if artilces | lenght > 0% %}
-    
+{% if articles | length > 0 %}
+    <table>
+        <tr>
+            <th>Produit</th>
+            <th>Prix</th>
+            <th>Quantité</th>
+            <th>Description</th>
+            <th>Image</th>
+            <th>Total</th>
+            <th>Supp</th>
+        </tr>
+        <tbody>
+            {% for article in articles %}
+            <tr>
+                <td>{{article.produit.nom}}</td>
+                <td>{{article.produit.prix}}</td>
+                <td>{{article.quantite}}</td>
+                <td>{{article.produit.description}}</td>
+                <td>{{article.produit.image}}</td>
+                <td>{{article.produit.prix * article.quantite}}</td>
+                <td><a href="#" class="btn"><i class="fas fa-trash"></i></a></td>
+            </tr>
+               {% endfor %}
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="3">Total : </td>
+            <td>{{ total }}</td>
+            <td></td>
+        </tfoot>
+    </table>
 {% else %}
     <p>Le pannier est vide</p>
 {% endif %}
