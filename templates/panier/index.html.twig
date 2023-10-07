@@ -6,28 +6,28 @@
 {% if articles | length > 0 %}
     <table class="panier">
         <tr>
-            <th>Produit</th>
-            <th>Prix</th>
-            <th>Description</th>
-            <th>Image</th>
-            <th>Quantité</th>
-            <th>Sous-total</th>
-            <th>Supp</th>
+            <th class="panier">Produit</th>
+            <th class="panier">Prix</th>
+            <th class="panier">Description</th>
+            <th class="panier">Image</th>
+            <th class="panier">Quantité</th>
+            <th class="panier">Sous-total</th>
+            <th class="panier">Supp</th>
         </tr>
-        <tbody>
+        <tbody >
             {% for article in articles %}
             <tr>
-                <td>{{article.produit.nom}}</td>
-                <td>{{article.produit.prix /100}}€</td>
-                <td>{{article.produit.description}}</td>
-                <td><img class="imgPanier" src="/assets/img/{{article.produit.image}}"></td>
-                <td>
+                <td class="panier">{{article.produit.nom}}</td>
+                <td class="panier">{{article.produit.prix /100}}€</td>
+                <td class="panier">{{article.produit.description}}</td>
+                <td class="panier"><img class="imgPanier" src="/assets/img/{{article.produit.image}}"></td>
+                <td class="panier">
                     <a href="{{path ('app_panier_upQtt',{'id' : article.produit.id }) }}"><i class="fas fa-plus"></i></a>
                         {{article.quantite}}
                     <a href="{{path ('app_panier_downQtt',{'id': article.produit.id}) }}"><i class="fas fa-minus"></i></a>
                 </td>
-                <td>{{article.produit.prix * article.quantite /100}}€</td>
-                <td><a href="{{path ('app_panier_remove', {'id': article.produit.id }) }}" class="btn"><i class="fas fa-trash"></i></a></td>
+                <td class="panier">{{article.produit.prix * article.quantite /100}}€</td>
+                <td class="panier"><a href="{{path ('app_panier_remove', {'id': article.produit.id }) }}" class="btn"><i class="fas fa-trash"></i></a></td>
             </tr>
                {% endfor %}
         </tbody>
@@ -39,9 +39,9 @@
             <td></td>
         </tfoot>
     </table>
-    <a href="#">Valider le panier</a>
+    <button class="panierV"><a class="textBtnP" href="#">Valider le panier</a></button>
 {% else %}
-    <p>Le pannier est vide</p>
+    <p >Le pannier est vide</p>
 {% endif %}
 
 {% endblock %}

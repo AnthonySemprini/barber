@@ -29,7 +29,10 @@ img{
 }
             /********** Panier **********/
 
-table.panier, td, tr, th{
+table.panier{
+    margin-top: 20px;
+}
+table.panier, td.panier, tr.panier, th.panier{
     border: 3px solid;
     border-collapse: collapse;
 }  
@@ -39,7 +42,20 @@ td{
 img.imgPanier{
     border-radius: 10px;
     margin: 10px;
-}    
+}
+button.panierV{
+    margin: 20px 0;
+    background-color: green;
+    width: 200px;
+    height: 45px;
+    border-radius: 10px;
+}   
+a.textBtnP{
+   color: white;
+   font-weight: bold;
+   font-size: 16px;
+
+}
             /********** Calendrier **********/
 
             #calendrier{
