@@ -6,6 +6,7 @@ use App\Entity\Reservation;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
 class ReservationType extends AbstractType
 {
@@ -15,7 +16,9 @@ class ReservationType extends AbstractType
             ->add('nom')
             ->add('prenom')
             ->add('numTel')
-            ->add('rdv')
+            ->add('rdv',DateTimeType::class, [
+                'date_widget' => 'single_text'
+            ])
             ->add('prestation')
             ->add('user')
         ;
