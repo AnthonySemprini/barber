@@ -14,10 +14,11 @@ class PrestationController extends AbstractController
     #[Route('/prestation', name: 'app_prestation')]
     public function index(PrestationRepository $prestationRepository, Request $request, PaginatorInterface $paginator): Response
     {
+        // Utilisation de knpPaginator pour paginer les resultat de la requete prestation
         $pagination = $paginator->paginate(
             $prestationRepository->paginationQuery(),
             $request->query->get('page', 1),
-            6
+            6 //Nombre d'elements par page
         );
 
             return $this->render('prestation/index.html.twig', [

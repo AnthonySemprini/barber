@@ -22,7 +22,7 @@ class UserCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id')->hideOnform(),
+            IdField::new('id')->hideOnform(), //masque l'ID
             TextField::new('pseudo'),
             TextField::new('password'),
             Field::new( 'password', 'New password' )->onlyWhenCreating()->setRequired( true )
