@@ -26,10 +26,13 @@ class ProduitController extends AbstractController
             'pagination' => $pagination
         ]);
     }
-
+    
     #[Route('/detail{id}', name: 'app_detail_produit')]
     public function detailProduit(Produit $produit): Response
     {
-        return $this->render('produit/detail.html.twig', compact('produit'));
+        return $this->render('produit/detail.html.twig',[
+            'produit' => $produit,
+        ]
+    );
     }
 }

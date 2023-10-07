@@ -27,6 +27,19 @@ img{
     width: 150px;
     height: 150px;
 }
+            /********** Panier **********/
+
+table.panier, td, tr, th{
+    border: 3px solid;
+    border-collapse: collapse;
+}  
+td{
+    text-align: center;
+}  
+img.imgPanier{
+    border-radius: 10px;
+    margin: 10px;
+}    
             /********** Calendrier **********/
 
             #calendrier{
