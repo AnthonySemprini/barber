@@ -12,14 +12,20 @@ a{
 
             /********** SHOP **********/
 
-.produits{
+.prodAll{
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
+    margin-bottom: 50px;
 }
-.card{
+.cardProd{
     display: flex;
     flex-direction:column;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: rgb(197, 198, 199);
+    -webkit-box-shadow: -6px 4px 13px 3px rgba(0,0,0,0.58); 
+    box-shadow: -6px 4px 13px 3px rgba(0,0,0,0.58);
     width: 150px;
     height: 250px;
 }
@@ -56,9 +62,26 @@ a.textBtnP{
    font-size: 16px;
 
 }
+            /********** Prestation **********/
+div.cardAll{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+div.cardPresta{
+    margin: 10px;
+    padding: 15px;
+    background-color: rgb(208, 205, 201);
+    -webkit-box-shadow: -6px 4px 13px 3px rgba(0,0,0,0.58); 
+    box-shadow: -6px 4px 13px 3px rgba(0,0,0,0.58);
+    border-radius: 10px;
+    width: 150px;
+    height: 150px;
+
+}
             /********** Calendrier **********/
 
-            #calendrier{
-                width: 80%;
-                margin:auto;
-            }
+#calendrier{
+    width: 80%;
+    margin:auto;
+}

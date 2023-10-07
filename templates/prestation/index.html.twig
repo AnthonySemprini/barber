@@ -4,13 +4,14 @@
 
 {% block body %}
 <h1>Liste des préstations</h1>
-<div class="cardPresta">
+<div class="cardAll">
     {% for prestation in pagination %}
+    <div class="cardPresta">
         <a href="#">{{prestation.nom}}</a>
-        <p>Prix : {{prestation.prix}}€</p>
+        <p>Prix : {{prestation.prix /100}}€</p>
         <p>Durée : {{prestation.duree|date('H:i')}}</p>
         <input type="submit" value="Réserver">
-        <br><br>
+    </div>
     {% endfor %}
 </div>
 {{ knp_pagination_render(pagination)}}
