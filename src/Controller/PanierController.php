@@ -6,6 +6,7 @@ use App\Repository\ProduitRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Service\PanierService;
 use Symfony\Component\Routing\Annotation\Route;
 
 class PanierController extends AbstractController
@@ -33,14 +34,17 @@ class PanierController extends AbstractController
             $totalArticle = $article['produit']->getPrix() * $article['quantite'];
             $total += $totalArticle;
         }
+        $totalArticle = array_sum($panier);
+
         //redirige vers le panier
         return $this->render('panier/index.html.twig', [
             'articles' => $panierWithData,
-            'total' => $total
+            'total' => $total,
+            'totalArticle' => $totalArticle,
         ]);
     }
     #[Route('/panier/add/{id}', name:'app_panier_add')]
-    public function add($id, SessionInterface $session ){
+    public function add($id, SessionInterface $session){
         
         $panier = $session->get('panier', []);
 
