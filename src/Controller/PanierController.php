@@ -3,10 +3,11 @@
 namespace App\Controller;
 
 use App\Repository\ProduitRepository;
+use App\Service\PanierService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
-use Symfony\Service\PanierService;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class PanierController extends AbstractController
@@ -48,12 +49,10 @@ class PanierController extends AbstractController
         
         $panierService->add($id);
 
-       
-
         //redirige vers le panier
         return $this->redirectToRoute('app_panier');
     }
-        //dd($session->get('panier'));
+        //dd($session->get('panier'));’
     
 
     #[Route('/panier/remove/{id}', name:'app_panier_remove')]

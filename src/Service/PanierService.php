@@ -4,6 +4,8 @@ namespace App\Service;
 
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
+
+
 class PanierService 
 {
     
@@ -14,7 +16,7 @@ class PanierService
         $this->session = $session;
     }
 
-    public function add(int $id){
+    public function add(int $id, PanierService $panierService){
 
         $panier = $this->session->get('panier', []);
 
@@ -29,4 +31,4 @@ class PanierService
 
     }
     
-}
+} 
