@@ -137,7 +137,7 @@ div.admin > a:hover{
 .blackfilter{
     height: 80vh;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.507);
+    background-color: rgba(0, 0, 0, 0.293);
     position: absolute;
     z-index: 1;
     top: 150px;
@@ -288,6 +288,50 @@ div.cardProd img:hover{
     -ms-transform: scale(1.1); /* IE 9 */
 -webkit-transform: scale(1.1); /* Safari 3-8 */
 
+}
+
+/* section five */
+
+.five{
+    height: 80vh;
+    width: 100%;
+   
+    background-size: cover; /* L'image prendra 100% de l'espace */
+    background-position: center; /* Centre la position de l'image */
+    background-repeat: no-repeat; /* Empêche l'image de se répéter en fonction de la taille d'écran */
+    background-image:url(/assets/img/barberShop.jpg);
+}
+section.five p,h2{
+    color: white;
+    position: relative;
+    z-index: 10;
+}
+.blurFilter{
+    height: 80vh;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.35);
+    position: absolute;
+    z-index: 1;
+    left: 0;
+
+}
+
+
+
+/* section six */
+
+.six{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.map{
+    height: 60vh;
+    width: 80vw;
+    border-radius: 10px;
+    -webkit-box-shadow: -6px 4px 13px 3px rgba(0,0,0,0.58); 
+    box-shadow: -6px 4px 13px 3px rgba(0,0,0,0.58);
+    margin: 30px 0;
 }
 /********** SHOP **********/
 
