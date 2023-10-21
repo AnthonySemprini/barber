@@ -8,6 +8,15 @@
     display: flex;
     flex-direction: column;
 }
+/********** General **********/
+h2{
+    text-align: center;
+    font-size: 25px;
+    margin: 50px 0 ;
+}
+h3{
+    margin: 20px 0;
+}
 
 /********** NavBar **********/
 .allNavBar{
@@ -97,6 +106,9 @@ div.admin > a:hover{
 }
 
 /********** HOMEPAGE **********/
+
+/* section one */
+
 .titleHome{
     color: white;
     text-align: center;
@@ -139,6 +151,143 @@ div.admin > a:hover{
     background-position: center; /* Centre la position de l'image */
     background-repeat: no-repeat; /* Empêche l'image de se répéter en fonction de la taille d'écran */
     background-image:url(/assets/img/haircut.jpg);
+}
+
+/* section two */
+.two{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cardStar{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 30px 0;
+    gap: 50px;
+}
+div.cardPresta a{
+    text-decoration: none;
+    color: black;
+    padding: 5%;
+}
+div.cardPresta p{
+    padding: 5%;
+}
+div.cardPresta{
+    height: 50vh;
+    width: 25vw;
+    
+}
+div.cardPresta img{
+    height: 15vh;
+    width: 15vw;
+    border-radius: 10%;
+    -webkit-box-shadow: -6px 4px 13px 3px rgba(0,0,0,0.58); 
+    box-shadow: -6px 4px 13px 3px rgba(0,0,0,0.58);
+    transition: 0.5s;
+}
+div.cardPresta img:hover{
+    transform: scale(1.1);
+    -ms-transform: scale(1.1); /* IE 9 */
+-webkit-transform: scale(1.1); /* Safari 3-8 */
+
+}
+.buttonSmall {
+	box-shadow: -6px 6px 8px -1px #9fb4f2;
+	background-color:#7892c2;
+    width:20vw;
+	border-radius:10px;
+	color:#ffffff;
+	font-size:20px;
+	font-weight:bold;
+	padding:10px 8px;
+    margin-bottom: 50px;
+	text-decoration:none;
+    text-align: center;
+}
+.buttonSmall:hover {
+    color: #7892c2;
+	border: solid 3px #7892c2;
+    padding:10px 5px;
+	background-color:#ffffff;
+    transition: 0.3s;
+}
+.button {
+	box-shadow: -6px 6px 8px -1px #9fb4f2;
+	background-color:#7892c2;
+    width: 25vw;
+	border-radius:10px;
+	color:#ffffff;
+	font-size:20px;
+	font-weight:bold;
+	padding:26px 16px;
+    margin-bottom: 50px;
+	text-decoration:none;
+    text-align: center;
+}
+.button:hover {
+    color: #7892c2;
+	border: solid 6px #7892c2;
+    padding:20px 10px;
+	background-color:#ffffff;
+    transition: 0.3s;
+}
+/* section three */
+.three{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #e8e8e8;
+}
+div.icon img{
+    height: 3vh;
+    width: 3vw ;
+}
+p.qui{
+    padding:30px 100px ;
+
+}
+/* section four */
+
+.four{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+div.cardProd{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+div.cardProd a{
+    text-decoration: none;
+    color: black;
+    padding: 5%;
+}
+div.cardProd p{
+    padding: 5%;
+}
+div.cardProd{
+    height: 44vh;
+    width: 25vw;
+    
+}
+div.cardProd img{
+    height: 15vh;
+    width: 15vw;
+    border-radius: 10%;
+    -webkit-box-shadow: -6px 4px 13px 3px rgba(0,0,0,0.58); 
+    box-shadow: -6px 4px 13px 3px rgba(0,0,0,0.58);
+    transition: 0.5s;
+}
+div.cardProd img:hover{
+    transform: scale(1.1);
+    -ms-transform: scale(1.1); /* IE 9 */
+-webkit-transform: scale(1.1); /* Safari 3-8 */
+
 }
 /********** SHOP **********/
 
@@ -196,15 +345,15 @@ div.cardAll{
     flex-wrap: wrap;
 }
 div.cardPresta{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin: 10px;
     padding: 15px;
     background-color: rgb(208, 205, 201);
     -webkit-box-shadow: -6px 4px 13px 3px rgba(0,0,0,0.58); 
     box-shadow: -6px 4px 13px 3px rgba(0,0,0,0.58);
     border-radius: 10px;
-    width: 150px;
-    height: 150px;
-    
 }
 /********** Calendrier **********/
 
