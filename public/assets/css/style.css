@@ -109,6 +109,15 @@ div.admin > a:hover{
 
 /* section one */
 
+.one{
+    height: 80vh;
+    width: 100%;
+    background-size: cover; /* L'image prendra 100% de l'espace */
+    background-position: center; /* Centre la position de l'image */
+    background-repeat: no-repeat; /* Empêche l'image de se répéter en fonction de la taille d'écran */
+    background-image:url(/assets/img/haircut.jpg);
+}
+
 .titleHome{
     color: white;
     text-align: center;
@@ -144,20 +153,13 @@ div.admin > a:hover{
     left: 0;
 
 }
-.one{
-    height: 80vh;
-    width: 100%;
-    background-size: cover; /* L'image prendra 100% de l'espace */
-    background-position: center; /* Centre la position de l'image */
-    background-repeat: no-repeat; /* Empêche l'image de se répéter en fonction de la taille d'écran */
-    background-image:url(/assets/img/haircut.jpg);
-}
 
 /* section two */
 .two{
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 100vh;
 }
 
 .cardStar{
@@ -240,6 +242,7 @@ div.cardPresta img:hover{
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 80vh;
     background-color: #e8e8e8;
 }
 div.icon img{
@@ -271,7 +274,7 @@ div.cardProd p{
     padding: 5%;
 }
 div.cardProd{
-    height: 44vh;
+    height: 50vh;
     width: 25vw;
     
 }
@@ -295,13 +298,16 @@ div.cardProd img:hover{
 .five{
     height: 80vh;
     width: 100%;
-   
+    position: relative;
+    background-attachment: fixed; /* Fixe l'image pendant le scroll */
     background-size: cover; /* L'image prendra 100% de l'espace */
     background-position: center; /* Centre la position de l'image */
     background-repeat: no-repeat; /* Empêche l'image de se répéter en fonction de la taille d'écran */
     background-image:url(/assets/img/barberShop.jpg);
+  
+   
 }
-section.five p,h2{
+section.five p,section.five h2{
     color: white;
     position: relative;
     z-index: 10;
