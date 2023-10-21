@@ -4,11 +4,20 @@
 
 {% block body %}
 
-<H1>The barber Shop</H1>
-{% if app.user %}
-<h2>Bienvenue {{app.user.pseudo}}</h2>
-{% else %}
-    <p>Aucun utilisateur n'est connecté</p>
-    {% endif %}
-
+<section class="one">
+    <div class="blackfilter"></div>
+    <h1 class="titleHome">The Barber Shop</h1>
+    {% if app.user %}
+    <h2 class="welcome" >Bienvenue {{app.user.pseudo}}</h2>
+    {% else %}
+        <p>Aucun utilisateur n'est connecté</p>
+        {% endif %}
+    <p class="textHome">Plongez dans l'univers de la beauté masculine, où chaque coupe est une œuvre d'art. Notre équipe de maîtres barbiers et coiffeurs est dédiée à vous offrir un style qui parle de vous. Laissez-nous sublimer votre image et révéler la meilleure version de vous-même.</p>
+</section>
+<section class="two">
+    <h2>Les prestations star</h2>
+    
+</section>
+<section></section>
+<section></section>
 {% endblock %}

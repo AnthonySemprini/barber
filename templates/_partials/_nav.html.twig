@@ -1,22 +1,77 @@
-
+<div class="allNavBar">
     <div class="navbar">
-        <ul>
-            <li><a href="{{path('app_home')}}">Acceuil</a></li>
-            <li><a href="{{path('app_produit')}}">Shop</a></li>
-            <li><a href="{{path('app_reservation')}}">Prise de RDV</a></li>
-            <li><a href="{{path('app_prestation')}}">Tarif</a></li>
-        </ul>
-    </div>
-    {% if app.user %}
-    <a href="{{ path('app_logout')}}">Se déconnecter</a>
-    <a href="{{ path('app_profil')}}">Mon profil</a>
-    <a href="{{path('app_panier')}}">Panier</a>
+            <img src="/assets/img/logo.jpg">
+            <a href="{{path('app_home')}}">Acceuil</a>
+            <a href="{{path('app_produit')}}">Shop</a>
+            <a href="{{path('app_reservation')}}">Prise de RDV</a>
+            <a href="{{path('app_prestation')}}">Tarif</a>
+        
+{% if app.user %}
+
+        <div id="myLog" class="log">
+            <a id="closeBtn" href="#" class="close">&times;</a>
+            <ul>
+                <li><a href="{{ path('app_logout')}}">Se déconnecter</a></li>
+                <li><a href="{{ path('app_profil')}}">Mon profil</a></li>
+                <li><a class="panier" href="{{path('app_panier')}}">Panier </a></li>
+            </ul>
+        </div>
+        <a href="#" id="openBtn">
+            <span class="fa-solid fa-user">
+                <span></span>
+                <span></span>
+                <span></span>
+            </span>
+            <p>{{app.user.pseudo}}</p>
+        </a>
 {% else %}
-    <a href="{{ path('app_login')}}">Se connecter</a>
-    <a href="{{ path('app_register')}}">S'enrengistrer</a>
+
+        <div id="myLog" class="log">
+            <a id="closeBtn" href="#" class="close">&times;</a>
+            <ul>
+                <li><a href="{{ path('app_login')}}">Se connecter</a></li>
+                <li><a href="{{ path('app_register')}}">S'inscrire</a></li>
+            </ul>
+        </div>
+        <a href="#" id="openBtn">
+            <span class="fa-solid fa-user-plus">
+                <span></span>
+                <span></span>
+                <span></span>
+            </span>
+        </a>
+    </div>
+
 {% endif %}
+</div>
+
 
 {% if is_granted('ROLE_ADMIN') %}
-    <a href="{{path('admin')}}">Panneau d'administration</a>
+    <div class="admin">
+        <a href="{{path('admin')}}">Panneau d'administration</a>
+    </div>
 {% endif %}
-            
+
+
+
+
+
+
+<script>
+    var log = document.getElementById("myLog");
+    var openBtn = document.getElementById("openBtn");
+    var closeBtn = document.getElementById("closeBtn");
+
+    openBtn.onclick = openNav;
+    closeBtn.onclick = closeNav;
+
+    /* Set the width of the side navigation to 250px */
+    function openNav() {
+    log.classList.add("active");
+    }
+
+    /* Set the width of the side navigation to 0 */
+    function closeNav() {
+    log.classList.remove("active");
+    }
+</script>

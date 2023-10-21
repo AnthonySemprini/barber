@@ -45,9 +45,18 @@ class PanierController extends AbstractController
         ]);
     }
     #[Route('/panier/add/{id}', name:'app_panier_add')]
-    public function add($id, PanierService $panierService){
+    public function add($id, SessionInterface $session){
         
-        $panierService->add($id);
+        $panier = $session->get('panier', []);
+
+        //verifie si le produit et deja en panier si oui 1 sinon ajoute le produit au panier
+        if(!empty($panier[$id])) {
+            $panier[$id]++;
+        }else{
+            $panier[$id] = 1;
+        }
+
+        $session->set('panier', $panier);
 
         //redirige vers le panier
         return $this->redirectToRoute('app_panier');
