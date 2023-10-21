@@ -4,3 +4,15 @@ GlooMaps : https://www.gloomaps.com/q6WqD9sT6N
   protected $session;
 
    bin config config/packages config/routes config/bundles.php config/preload.php config/routes.yaml config/services.yaml migrations migrations/.gitignore migrations/Version20230913075955.php public public/assets public/bundles public/index.php src src/Controller src/Controller/Admin src/Controller/.gitignore src/Controller/CommandeController.php src/Controller/FooterController.php src/Controller/HomeController.php src/Controller/PanierController.php src/Controller/PrestationController.php src/Controller/ProduitController.php src/Controller/RegistrationController.php src/Controller/ReservationController.php src/Controller/SecurityController.php src/Controller/UserController.php src/Entity src/EventSubscriber src/Form src/Repository src/Repository/.gitignore src/Repository/CategorieRepository.php src/Repository/CommandeRepository.php src/Repository/PrestationRepository.php src/Repository/ProduitCommandeRepository.php src/Repository/ProduitRepository.php src/Repository/ReservationRepository.php src/Repository/UserRepository.php src/Security src/Service src/Service/PanierService.php src/Kernel.php templates templates/_partials templates/_partials/_footer.html.twig templates/_partials/_nav.html.twig templates/commande templates/footer templates/home templates/panier templates/panier/index.html.twig templates/prestation templates/prestation/index.html.twig templates/produit templates/produit/detail.html.twig templates/produit/index.html.twig templates/registration templates/reservation templates/security templates/user templates/base.html.twig tests tests/bootstrap.php translations var vendor .env .env.test .gitignore composer.json composer.lock docker-compose.override.yml docker-compose.yml NotePeso phpunit.xml.dist symfony.lock
+
+
+      $panier = $session->get('panier', []);
+
+        //verifie si le produit et deja en panier si oui 1 sinon ajoute le produit au panier
+        if(!empty($panier[$id])) {
+            $panier[$id]++;
+        }else{
+            $panier[$id] = 1;
+        }
+
+        $session->set('panier', $panier);
