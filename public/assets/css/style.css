@@ -1,3 +1,4 @@
+/********** General **********/
 *{
     margin: 0;
     padding: 0;
@@ -8,21 +9,55 @@
     display: flex;
     flex-direction: column;
 }
-/********** General **********/
-h2{
-    text-align: center;
-    font-size: 25px;
-    margin: 50px 0 ;
+
+html {font-size: 100%;} /*16px*/
+
+body {
+ 
+  font-family: 'Abril Fatface', sans-serif;
+  font-weight: 400;
+  color: #000000;
 }
-h3{
+
+p {
+    font-family: 'Poppins', sans-serif;
+    font-family: pop;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Abril Fatface', sans-serif;
+  font-weight: 400;
+}
+
+h1 {
+  font-size: 3.052rem;
+  padding-top: 3rem;
+}
+
+h2 {font-size: 2.441rem;
+    text-align: center;
+    margin: 0 0 50px 0 ;
+    padding-top: 30px;
+}
+h3 {font-size: 1.953rem;
     margin: 20px 0 0 0;
 }
+
+h4 {font-size: 1.563rem;
+    margin-bottom: 2rem;
+    color: #3a4774;    
+}
+
+h5 {font-size: 1.25rem;}
+
+.text_small {font-size: 0.8rem;}
+
 li{
     list-style-type: none;
 }
 a{
     text-decoration: none;
-    color: black;
+    color: #fcfcfc;
 }
 /********** NavBar **********/
 .allNavBar{
@@ -32,12 +67,14 @@ a{
 .navbar{
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
-    background-color: rgb(197, 197, 197);
+    background-color: #9c9a9e;
 }
-div.navbar > img{
-    padding: 10px 0;
+div.navbar img{
+    height: auto;
+    max-width: 10vw;
+    padding: 1rem ;
 }
 /* mini burger user */
 #openBtn{
@@ -49,11 +86,12 @@ div.navbar > img{
     height: 100%;
     width: 250px;
     position: fixed;
-    z-index: 1;
     top: 0;
     right: -250px;
-    background-color: #e8e8e8;
+    background-color: #9c9a9e;
+    border-left: 6px solid #3a4774;
     padding-top: 60px;
+    z-index: 20;
     transition: left 0.5s ease;
 }
 .log ul{
@@ -63,12 +101,13 @@ div.navbar > img{
 .log a{
     padding: 8px 8px 8px 32px;
     font-size: 25px;
-    color: #818181;
+    color: #fcfcfc;
     display: block;
     transition: 0.3s;
 }
 .log a:hover{
-    color: #111;
+    text-decoration: underline #3a4774;
+    color: #943746
 }
 .log.active {
     right: 0;
@@ -83,23 +122,43 @@ font-size: 36px;
     display: block;
     width: 35px;
     height: 5px;
-    background-color: black;
+    background-color: #9c9a9e;
     margin: 6px 0;
 }
 .admin{
 padding-top: 30px;
 }
 div.navbar > a,
-div.log >a,
-div.admin > a{
+div.log >a{
     font-size: 22px;
     font-weight: 600;
 }
+div.admin > a{
+    font-size: 22px;
+    font-weight: 600;
+    color: #3a4774;
+
+}
 div.navbar > a:hover,
 div.admin > a:hover{
-    text-decoration: underline red;
+    color: #3a4774;
+    text-decoration: underline #943746;
 }
-
+div.profil{
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
+div.profil p, div.profil h2{
+    padding: 10px;
+}
+div.profil a{
+    padding: 10px;
+    color: #3a4774;
+}
+div.profil a:hover{
+    text-decoration: underline #943746;
+}
 /********** HOMEPAGE **********/
 
 /* section one */
@@ -117,15 +176,13 @@ div.admin > a:hover{
     color: white;
     text-align: center;
     padding-top: 50px;
-    font-size: 50px;
     position: relative;
     z-index: 10;
 }
 .welcome{
     color: white;
     text-align: center;
-    margin-top: 50px;
-    font-size: 25px;
+    margin-top: 2rem;
     position: relative;
     z-index: 10;
 }
@@ -152,9 +209,12 @@ div.admin > a:hover{
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100vh;
+    height: 110vh;
 }
-
+h2.star{
+    color: #3a4774;
+    text-decoration: underline #943746;
+}
 .cardStar{
     display: flex;
     flex-direction: row;
@@ -166,17 +226,23 @@ div.admin > a:hover{
 div.cardPresta a, div.cardPresta p{
     padding: 5%;
 }
-div.cardPresta h3{
-    margin-bottom: 30px;
-}
 div.cardPresta{
-    height: 50vh;
-    width: 25vw;
-    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    max-width: 27vw;
+    margin: 10px;
+    padding: 15px;
+    background-color:#9c9a9e;
+    -webkit-box-shadow: -6px 4px 13px 3px rgba(127, 106, 106, 0.58); 
+    box-shadow: -6px 4px 13px 3px rgba(0,0,0,0.58);
+    border-radius: 10px;
 }
+
 div.cardPresta img{
-    height: 15vh;
-    width: 15vw;
+    height: 20vh;
+    width: 20vw;
     border-radius: 10%;
     -webkit-box-shadow: -6px 4px 13px 3px rgba(0,0,0,0.58); 
     box-shadow: -6px 4px 13px 3px rgba(0,0,0,0.58);
@@ -189,10 +255,11 @@ div.cardPresta img:hover{
 
 }
 .buttonSmall {
-	box-shadow: -6px 6px 8px -1px #9fb4f2;
-	background-color:#7892c2;
+	box-shadow: -6px 6px 8px -1px #3a4774;
+	background-color:#3a4774;
     width:20vw;
 	border-radius:10px;
+    border: solid 2px #943746;
 	color:#ffffff;
 	font-size:20px;
 	font-weight:bold;
@@ -201,27 +268,27 @@ div.cardPresta img:hover{
     text-align: center;
 }
 .buttonSmall:hover {
-    color: #7892c2;
-	border: solid 3px #7892c2;
+    color: #3a4774;
+	border: solid 3px #943746;
     padding:10px 5px;
 	background-color:#ffffff;
     transition: 0.3s;
 }
 .button {
 	box-shadow: -6px 6px 8px -1px #9fb4f2;
-	background-color:#7892c2;
+	background-color:#3a4774;
     width: 25vw;
 	border-radius:10px;
 	color:#ffffff;
 	font-size:20px;
 	font-weight:bold;
 	padding:26px 16px;
-    margin-bottom: 50px;
+    margin: 4rem 0 30px 0;
     text-align: center;
 }
 .button:hover {
-    color: #7892c2;
-	border: solid 6px #7892c2;
+    color: #3a4774;
+	border: solid 6px #3a4774;
     padding:20px 10px;
 	background-color:#ffffff;
     transition: 0.3s;
@@ -231,16 +298,17 @@ div.cardPresta img:hover{
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 80vh;
-    background-color: #e8e8e8;
+    height: 70vh;
+    padding: 3rem;
+    background-color: #9c9a9e;
 }
 div.icon img{
+    color: #3a4774;
     height: 5vh;
     width: 5vw ;
 }
 p.qui{
-    padding:30px 100px ;
-
+    color: #3a4774;
 }
 /* section four */
 
@@ -253,15 +321,15 @@ div.cardProd{
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-div.cardProd a, div.cardProd p{
-    padding: 5%;
-}
-div.cardProd{
+    border-radius: 10px;
     height: 50vh;
     width: 25vw;
-    
+    background-color: rgb(197, 198, 199);
+    -webkit-box-shadow: -6px 4px 13px 3px rgba(0,0,0,0.58); 
+    box-shadow: -6px 4px 13px 3px rgba(0,0,0,0.58);
+    padding: 1rem;
 }
+
 div.cardProd img{
     height: 15vh;
     width: 15vw;
@@ -273,8 +341,15 @@ div.cardProd img{
 div.cardProd img:hover{
     transform: scale(1.1);
     -ms-transform: scale(1.1); /* IE 9 */
--webkit-transform: scale(1.1); /* Safari 3-8 */
-
+    -webkit-transform: scale(1.1); /* Safari 3-8 */
+}
+    
+div.cardProd a, div.cardProd p{
+    padding: 5%;
+    color: #3a4774;
+}
+div.cardProd a:hover{
+    text-decoration: underline #943746;
 }
 
 /* section five */
@@ -289,11 +364,9 @@ div.cardProd img:hover{
     background-repeat: no-repeat; /* Empêche l'image de se répéter en fonction de la taille d'écran */
     background-image:url(/assets/img/barberShop.jpg);
 }
-section.five h2{
-    padding-top: 30px;
-}
+
 section.five p,section.five h2{
-    color: white;
+    color: #fcfcfc;
     position: relative;
     z-index: 10;
 }
@@ -345,6 +418,9 @@ section.five p,section.five h2{
     border-radius: 20px;
     gap: 40px;
     margin-bottom: 30px;
+}
+div.contact a{
+    color: #000000;
 }
 .tel, .mail, .adresse{
     display: flex;
@@ -453,20 +529,9 @@ ul.socialMedia li{
     gap: 30px;
     margin-bottom: 50px;
 }
-.cardProd{
-    display: flex;
-    flex-direction:column;
-    padding: 15px;
-    border-radius: 10px;
-    background-color: rgb(197, 198, 199);
-    -webkit-box-shadow: -6px 4px 13px 3px rgba(0,0,0,0.58); 
-    box-shadow: -6px 4px 13px 3px rgba(0,0,0,0.58);
-    width: 180px;
-    height: 250px;
-}
-img{
-    width: 150px;
-    height: 150px;
+div.shop img{
+    max-width: 100%;
+    height: auto;
 }
 /********** Panier **********/
 
@@ -500,17 +565,7 @@ div.cardAll{
     flex-direction: row;
     flex-wrap: wrap;
 }
-div.cardPresta{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 10px;
-    padding: 15px;
-    background-color: rgb(208, 205, 201);
-    -webkit-box-shadow: -6px 4px 13px 3px rgba(0,0,0,0.58); 
-    box-shadow: -6px 4px 13px 3px rgba(0,0,0,0.58);
-    border-radius: 10px;
-}
+
 /********** Calendrier **********/
 
 #calendrier{
@@ -520,23 +575,32 @@ div.cardPresta{
 /********** Footer **********/
 
 .footer{
-    background-color: rgb(197, 197, 197);
+    background-color:#9c9a9e;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    align-items: center;
+    height: 35vh;
 }
 .linkFooter{
-        padding-top: 30px;
         display: flex;
         flex-direction: column;
      
 }
-.logoFooter{
-    padding: 10px 0;
+
+div.logoFooter img{
+    height: auto;
+    max-width: 10vw;
     
 }
+.contactFooter h3, .linkFooter h3{
+    color: #3a4774;
+    text-decoration: underline #943746;
+}
+.contactFooter li{
+    color: #fcfcfc;
+}
 .contactFooter{
-    padding-top: 30px;
     display: flex;
     flex-direction: column;
 
