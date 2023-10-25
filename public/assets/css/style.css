@@ -63,13 +63,19 @@ a{
 .allNavBar{
     display: flex;
     flex-direction: column;
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 99999;
 }
 .navbar{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    background-color: #9c9a9e;
+    background-color: #fcfcfc;
+    border-bottom: 6px solid #943746;
 }
 div.navbar img{
     height: auto;
@@ -132,17 +138,19 @@ div.navbar > a,
 div.log >a{
     font-size: 22px;
     font-weight: 600;
+    color: #3a4774;
+    text-decoration: underline #943746;
 }
 div.admin > a{
     font-size: 22px;
     font-weight: 600;
     color: #3a4774;
-
+    
 }
 div.navbar > a:hover,
 div.admin > a:hover{
-    color: #3a4774;
-    text-decoration: underline #943746;
+    text-decoration: underline #3a4774;
+    color: #943746;
 }
 div.profil{
     display: flex;
@@ -171,7 +179,13 @@ div.profil a:hover{
     background-repeat: no-repeat; /* Empêche l'image de se répéter en fonction de la taille d'écran */
     background-image:url(/assets/img/haircut.jpg);
 }
-
+div.banniere img{
+    max-width: 100%;
+    height: auto;
+    margin-top: 122px;
+    padding-bottom: 0;
+    background-color: #3b3a3d;
+}
 .titleHome{
     color: white;
     text-align: center;
