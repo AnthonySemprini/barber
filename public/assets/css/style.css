@@ -63,7 +63,7 @@ a{
 .allNavBar{
     display: flex;
     flex-direction: column;
-    position: fixed; 
+    position: sticky; 
     top: 0;
     left: 0;
     width: 100%;
@@ -180,12 +180,13 @@ div.profil a:hover{
     background-image:url(/assets/img/haircut.jpg);
 }
 div.banniere img{
+    margin-bottom: -5px;
     max-width: 100%;
     height: auto;
-    margin-top: 122px;
-    padding-bottom: 0;
     background-color: #3b3a3d;
 }
+    
+
 .titleHome{
     color: white;
     text-align: center;

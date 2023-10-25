@@ -14,6 +14,12 @@
                 <li><a href="{{ path('app_logout')}}">Se déconnecter</a></li>
                 <li><a href="{{ path('app_profil')}}">Mon profil</a></li>
                 <li><a class="panier" href="{{path('app_panier')}}">Panier </a></li>
+            {% if is_granted('ROLE_ADMIN') %}
+                <div class="admin">
+                    <a href="{{path('admin')}}">Panneau d'administration</a>
+                </div>
+            {% endif %}
+                        </ul>
             </ul>
         </div>
         <a href="#" id="openBtn">
@@ -31,7 +37,6 @@
             <ul>
                 <li><a href="{{ path('app_login')}}">Se connecter</a></li>
                 <li><a href="{{ path('app_register')}}">S'inscrire</a></li>
-            </ul>
         </div>
         <a href="#" id="openBtn">
             <span class="fa-solid fa-user-plus">
@@ -46,11 +51,6 @@
 </div>
 
 
-{% if is_granted('ROLE_ADMIN') %}
-    <div class="admin">
-        <a href="{{path('admin')}}">Panneau d'administration</a>
-    </div>
-{% endif %}
 </div>
 
 <script>
