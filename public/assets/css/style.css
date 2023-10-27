@@ -1,4 +1,8 @@
 /********** General **********/
+@font-face{
+    font-family:'brookshire';
+    src: url(/assets/fonts/EFCO-BrookshireRegular.ttf)
+}
 *{
     margin: 0;
     padding: 0;
@@ -14,7 +18,7 @@ html {font-size: 100%;} /*16px*/
 
 body {
  
-  font-family: 'Abril Fatface', sans-serif;
+  font-family: ''Abril Fatface', sans-serif';
   font-weight: 400;
   color: #000000;
 }
@@ -25,19 +29,18 @@ p {
 }
 
 h1, h2, h3, h4, h5 {
-  font-family: 'Abril Fatface', sans-serif;
+  font-family: 'brookshire';
   font-weight: 400;
 }
 
 h1 {
-  font-size: 3.052rem;
-  padding-top: 3rem;
+  font-size: 5rem;
+  padding: 3rem;
 }
 
 h2 {font-size: 2.441rem;
     text-align: center;
-    margin: 0 0 50px 0 ;
-    padding-top: 30px;
+    padding: 2rem;
 }
 h3 {font-size: 1.953rem;
     margin: 20px 0 0 0;
@@ -188,21 +191,21 @@ div.banniere img{
     
 
 .titleHome{
-    color: white;
+    color: #fcfcfc;
     text-align: center;
     padding-top: 50px;
     position: relative;
     z-index: 10;
 }
 .welcome{
-    color: white;
+    color: #fcfcfc;
     text-align: center;
     margin-top: 2rem;
     position: relative;
     z-index: 10;
 }
 .textHome{
-    color: white;
+    color: #fcfcfc;
     text-align: center;
     margin: 50px 100px;
     font-size: 20px;
@@ -225,6 +228,7 @@ div.banniere img{
     flex-direction: column;
     align-items: center;
     height: 110vh;
+    background-color: #fcfcfc;
 }
 h2.star{
     color: #3a4774;
@@ -253,11 +257,12 @@ div.cardPresta{
     -webkit-box-shadow: -6px 4px 13px 3px rgba(127, 106, 106, 0.58); 
     box-shadow: -6px 4px 13px 3px rgba(0,0,0,0.58);
     border-radius: 10px;
+    border: 5px solid #943746;
 }
 
 div.cardPresta img{
-    height: 20vh;
-    width: 20vw;
+    height: 19vh;
+    width: 19vw;
     border-radius: 10%;
     -webkit-box-shadow: -6px 4px 13px 3px rgba(0,0,0,0.58); 
     box-shadow: -6px 4px 13px 3px rgba(0,0,0,0.58);
@@ -274,7 +279,7 @@ div.cardPresta img:hover{
 	background-color:#3a4774;
     width:20vw;
 	border-radius:10px;
-    border: solid 2px #943746;
+    border: solid 3px #943746;
 	color:#ffffff;
 	font-size:20px;
 	font-weight:bold;
@@ -314,25 +319,32 @@ div.cardPresta img:hover{
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    height: 70vh;
-    padding: 3rem;
+    height: 80vh;
+    padding: 1rem 5rem;
     background-color: #9c9a9e;
 }
 div.icon-qui img{
-    width: 10vw;
-    height: 10vh;
+    width: 7vw;
+    height: 7vh;
 }
 div.icon-qui{
     display: flex;
     flex-direction:row;
-    background-color: #3a4774;
-    padding: 1%;
+    border: 5px solid #943746;
+    background-color: #fcfcfc;
+    padding: 1.5%;
     border-radius: 20px;
     -webkit-box-shadow: -6px 4px 13px 3px rgba(0,0,0,0.58); 
     box-shadow: -6px 4px 13px 3px rgba(0,0,0,0.58);
 }
 p.qui{
     color: #3a4774;
+    background-color: #fcfcfc;
+    border-radius: 1rem;
+    border: 5px solid #943746;
+    padding: 2%;
+    -webkit-box-shadow: -6px 4px 13px 3px rgba(0,0,0,0.58); 
+    box-shadow: -6px 4px 13px 3px rgba(0,0,0,0.58);
 }
 /* section four */
 
@@ -340,6 +352,7 @@ p.qui{
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: #fcfcfc;
 }
 
 
@@ -348,8 +361,9 @@ div.cardProd{
     flex-direction: column;
     align-items: center;
     border-radius: 10px;
-    height: 50vh;
-    width: 25vw;
+    border: 5px solid #943746;
+    height: auto;
+    max-width: 27vw;
     background-color: rgb(197, 198, 199);
     -webkit-box-shadow: -6px 4px 13px 3px rgba(0,0,0,0.58); 
     box-shadow: -6px 4px 13px 3px rgba(0,0,0,0.58);
@@ -357,8 +371,8 @@ div.cardProd{
 }
 
 div.cardProd img{
-    height: 15vh;
-    width: 15vw;
+    height: 19vh;
+    width: 19vw;
     border-radius: 10%;
     -webkit-box-shadow: -6px 4px 13px 3px rgba(0,0,0,0.58); 
     box-shadow: -6px 4px 13px 3px rgba(0,0,0,0.58);
@@ -437,7 +451,7 @@ section.five p,section.five h2{
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: white;
+    background-color: #fcfcfc;
     -webkit-box-shadow: -6px 4px 13px 3px rgba(0,0,0,0.58); 
     box-shadow: -6px 4px 13px 3px rgba(0,0,0,0.58);
     padding: 0 15px 15px 15px;
@@ -474,7 +488,7 @@ ul.socialMedia li{
     align-items: center;
     transition: 0.5s;
     background: rgba(0, 0, 0, 0);
-    color: white;
+    color: #fcfcfc;
     font-size: 2.5em;
 }
 .fa-linkedin{
@@ -581,7 +595,7 @@ button.panierV{
     border-radius: 10px;
 }   
 a.textBtnP{
-    color: white;
+    color: #fcfcfc;
     font-weight: bold;
     font-size: 16px;
 }
@@ -611,23 +625,30 @@ div.cardAll{
 .linkFooter{
         display: flex;
         flex-direction: column;
-     
+        line-height: 1.5rem;
 }
-
-div.logoFooter img{
+.linkFooter a:hover{
+    text-decoration: underline 3px #943746;
+}
+.logoFooter{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+div.iconFooter img{
     height: auto;
-    max-width: 10vw;
-    
+    max-width: 5vw;
 }
 .contactFooter h3, .linkFooter h3{
+    margin-bottom: 1.5rem;
     color: #3a4774;
     text-decoration: underline #943746;
 }
 .contactFooter li{
     color: #fcfcfc;
+    line-height: 1.5rem;
 }
 .contactFooter{
     display: flex;
     flex-direction: column;
-
 }
