@@ -5,7 +5,7 @@
 
 {% block body %}
 	<div class="banniere">
-		<img src="/assets/img/pannier.png" alt="banniére">
+		<img src="/assets/img/panier.png" alt="banniére">
 	</div>
 	{% if articles | length > 0 %}
 		<table class="panier">
@@ -48,7 +48,7 @@
 					{% endfor %}
 			{% else %}
 				<tr>
-					<td colspan="9">Votre pannier est vide</td>
+					<td colspan="9">Votre panier est vide</td>
 				</tr>
 		{% endif %}
 	</tbody>
@@ -65,5 +65,5 @@
 	</tfoot>
 </table>
 <button class="panierV">
-	<a class="textBtnP" href="{{path ('app_commande_new')}}">Valider le panier</a>
+	<a class="textBtnP" href="{{path('app_commande_add')}}">Valider le panier</a>
 </button>{% endblock %}

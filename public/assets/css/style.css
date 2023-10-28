@@ -603,7 +603,8 @@ a.suppr{
 }
 a.vider{
     background-color: #943746;
-    padding: 10px;
+    padding: 5px;
+    margin: 5px;
     border-radius: 5px;
     color: #fcfcfc;
 }

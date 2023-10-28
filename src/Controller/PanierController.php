@@ -15,7 +15,7 @@ class PanierController extends AbstractController
     #[Route('/panier', name: 'app_panier')]
     public function index(SessionInterface $session, ProduitRepository $produitRepository): Response
     {
-        //Recupére le pannier de la session
+        //Recupére le panier de la session
         $panier = $session->get('panier', []);
 
         $panierWithData = [];
@@ -66,7 +66,7 @@ class PanierController extends AbstractController
     #[Route('/panier/remove/{id}', name:'app_panier_remove')]
     public function remove($id, SessionInterface $session) {
 
-        //Recupére le pannier de la session
+        //Recupére le panier de la session
         $panier = $session->get('panier', []);
 
         //verifie si le produit et en panier si oui le supprimer
@@ -81,10 +81,10 @@ class PanierController extends AbstractController
     #[Route('/panier/upQtt/{id}', name:'app_panier_upQtt')]
     public function upQtt($id, SessionInterface $session) {
         
-        //Recupére le pannier de la session
+        //Recupére le panier de la session
         $panier = $session->get('panier', []);
         
-        //si produit est en pannier augmente de 1
+        //si produit est en panier augmente de 1
         if(!empty($panier[$id])) {
             $panier[$id]++;
         }
@@ -97,7 +97,7 @@ class PanierController extends AbstractController
     #[Route('/panier/downQtt/{id}', name:'app_panier_downQtt')]
     public function downQtt($id, SessionInterface $session) {
         
-        //Recupére le pannier de la session
+        //Recupére le panier de la session
         $panier = $session->get('panier', []);
         
         //si produit et egal a 1 le supprimer sinon le diminuer de 1
