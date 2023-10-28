@@ -36,7 +36,7 @@ class Commande
 
    
 
-    #[ORM\OneToMany(mappedBy: 'Commande', targetEntity: ProduitCommande::class)]
+    #[ORM\OneToMany(mappedBy: 'Commande', targetEntity: ProduitCommande::class, cascade: ['persist'])]
     private Collection $produitCommandes;
 
     #[ORM\ManyToOne(inversedBy: 'commandes')]
