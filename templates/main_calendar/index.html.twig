@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+  {% extends 'base.html.twig' %}
 
 {% block title %}RDV{% endblock %}
 
@@ -26,6 +26,7 @@
                 center: 'title',
                 end: 'dayGridMonth, timeGridWeek',
             },
+  events: {{ data|raw }}
       
 })
         calendar.render()

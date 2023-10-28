@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Calendar;
 
 use App\Entity\Reservation;
 use App\Form\ReservationType;
@@ -50,6 +50,7 @@ class ReservationController extends AbstractController
     #[Route('/{id}', name: 'app_reservation_show', methods: ['GET'])]
     public function show(Reservation $reservation): Response
     {
+        
         return $this->render('reservation/show.html.twig', [
             'reservation' => $reservation,
         ]);
