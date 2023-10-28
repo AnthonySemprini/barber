@@ -20,7 +20,7 @@ class PanierController extends AbstractController
 
         $panierWithData = [];
         foreach ($panier as $id => $quantite) {
-            //Obtienir pour chaque élément du panier les details du produit
+            //Obtenir pour chaque élément du panier les details du produit
             $panierWithData[] = [
                 'produit' => $produitRepository->find($id),
                 'quantite' => $quantite
@@ -77,38 +77,47 @@ class PanierController extends AbstractController
 
         return $this->redirectToRoute('app_panier');
     }
-
+    
     #[Route('/panier/upQtt/{id}', name:'app_panier_upQtt')]
     public function upQtt($id, SessionInterface $session) {
-       
+        
         //Recupére le pannier de la session
         $panier = $session->get('panier', []);
-
+        
         //si produit est en pannier augmente de 1
         if(!empty($panier[$id])) {
             $panier[$id]++;
         }
         $session->set('panier', $panier);
-
+        
         //redirige vers le panier
         return $this->redirectToRoute('app_panier');
     }
-
+    
     #[Route('/panier/downQtt/{id}', name:'app_panier_downQtt')]
     public function downQtt($id, SessionInterface $session) {
         
         //Recupére le pannier de la session
         $panier = $session->get('panier', []);
-
-         //si produit et egal a 1 le supprimer sinon le diminuer de 1
+        
+        //si produit et egal a 1 le supprimer sinon le diminuer de 1
         if(($panier[$id])== 1) {
             unset($panier[$id]);
         }else{
             $panier[$id]--;
         }
         $session->set('panier', $panier);
-
+        
         //redirige vers le panier
+        return $this->redirectToRoute('app_panier');
+    }
+    
+    #[Route('/panier/empty', name:'app_panier_removeAll')]
+    public function removeAll(SessionInterface $session) 
+    {
+        $session->remove('panier');
+    
+    
         return $this->redirectToRoute('app_panier');
     }
 }

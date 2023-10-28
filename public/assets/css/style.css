@@ -60,7 +60,7 @@ li{
 }
 a{
     text-decoration: none;
-    color: #fcfcfc;
+   
 }
 /********** NavBar **********/
 .allNavBar{
@@ -576,16 +576,42 @@ div.shop img{
 /********** Panier **********/
 
 table.panier{
-    margin-top: 20px;
+    margin: 20px;
 }
 table.panier, td.panier, tr.panier, th.panier{
     border: 3px solid;
     border-collapse: collapse;
-}  
-
+    text-align: center;
+}
+a.plus{
+    background-color: #3a4774;
+    padding: 10%;
+    border-radius: 5px;
+    color: #fcfcfc;
+}
+a.moins{
+    background-color: #943746;
+    padding: 10%;
+    border-radius: 5px;
+    color: #fcfcfc;
+}
+a.suppr{
+    background-color: #943746;
+    padding: 10%;
+    border-radius: 5px;
+    color: #fcfcfc;
+}
+a.vider{
+    background-color: #943746;
+    padding: 10px;
+    border-radius: 5px;
+    color: #fcfcfc;
+}
 img.imgPanier{
     border-radius: 10px;
     margin: 10px;
+    width: 10vw;
+    height: 10vh;
 }
 button.panierV{
     margin: 20px 0;
