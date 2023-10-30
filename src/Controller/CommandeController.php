@@ -20,6 +20,11 @@ class CommandeController extends AbstractController
 
         $panier = $session->get('panier', []);
 
+        //dd($panier);
+
+        $entityManager->persist($panier);
+        $entityManager->flush();
+
         if($panier === []){
             //Le panier est vide, on retourne sur la homepage
             return $this->redirectToRoute('app_home');
