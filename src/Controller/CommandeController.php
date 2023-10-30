@@ -22,9 +22,6 @@ class CommandeController extends AbstractController
 
         //dd($panier);
 
-        $entityManager->persist($panier);
-        $entityManager->flush();
-
         if($panier === []){
             //Le panier est vide, on retourne sur la homepage
             return $this->redirectToRoute('app_home');
