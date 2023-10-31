@@ -12,8 +12,15 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
-    public function findPrestaStar(PrestationRepository $prestationRepository, EntityManagerInterface $em):Response
+    public function findPrestaStar(ProduitRepository $produitRepository, PrestationRepository $prestationRepository, EntityManagerInterface $em):Response
     {
+        $dql = "SELECT pr FROM App\Entity\Produit pr ORDER BY pr.id ASC";
+        $query = $em->createQuery($dql)
+            ->setMaxResults(3);
+   
+        $produits = $query->getResult();
+
+        
         $dql = "SELECT p FROM App\Entity\Prestation p WHERE p.Star = 1";
         $query = $em->createQuery($dql)->setMaxResults(3);
         $prestations = $query->getResult();
@@ -23,20 +30,12 @@ class HomeController extends AbstractController
             return $this->render('home/index.html.twig', [
                 'controller_name' => 'HomeController',
                 'prestations' => $prestations,
+                'produits' => $produits,
 
             ]);
     }
 
-    #[Route('/', name: 'app_home_prod')]
-    public function index(ProduitRepository $produitRepository): Response
-    {
-        $produits = $produitRepository->findAll();
-        //redirige homePage
-        return $this->render('home/index.html.twig', [
-            'produits' => $produits,
-    
-        ]);
-    }
+ 
     #[Route('/profil', name: 'app_profil')]
     public function profil(): Response
     {
