@@ -14,11 +14,11 @@ class ReservationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nom')
-            ->add('prenom')
-            ->add('numTel')
+            ->add('nom',TextType::class)
+            ->add('prenom',TextType::class)
+            ->add('numTel',NumberType::class)
             ->add('rdv',DateTimeType::class, [
-                'date_widget' => 'single_text'
+                'widget' => 'single_text'
             ])
             ->add('texteColor', ColorType::class)
             ->add('prestation')

@@ -34,6 +34,9 @@ class Produit
     #[ORM\ManyToOne(inversedBy: 'produits')]
     private ?Categorie $Categorie = null;
 
+    #[ORM\Column]
+    private ?bool $Star = null;
+
     public function __construct()
     {
         $this->produitCommandes = new ArrayCollection();
@@ -137,5 +140,17 @@ class Produit
     public function __toString()
     {
         return $this->nom;
+    }
+
+    public function isStar(): ?bool
+    {
+        return $this->Star;
+    }
+
+    public function setStar(bool $Star): static
+    {
+        $this->Star = $Star;
+
+        return $this;
     }
 }

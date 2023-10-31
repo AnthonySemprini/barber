@@ -5,6 +5,20 @@
 {% block body %}
 
     <h1>Hello {{ controller_name }}!</h1>
+       {{ form_errors(commandeForm) }}
+
+    {{ form_start(commandeForm) }}
+        {{ form_row(commandeForm.nom) }}
+        {{ form_row(commandeForm.prenom) }}
+        {{ form_row(commandeForm.adresse) }}
+        {{ form_row(commandeForm.codePostal) }}
+        {{ form_row(commandeForm.ville) }}
+        {{ form_row(commandeForm.dateCommande) }}
+        {{ form_row(commandeForm.User)}}
+  
+
+        <button type="submit" class="btn">Valider</button>
+    {{ form_end(commandeForm) }}
 
 
 {% endblock %}

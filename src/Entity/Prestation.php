@@ -28,6 +28,9 @@ class Prestation
     #[ORM\OneToMany(mappedBy: 'prestation', targetEntity: reservation::class)]
     private Collection $reservation;
 
+    #[ORM\Column]
+    private ?bool $Star = null;
+
     public function __construct()
     {
         $this->reservation = new ArrayCollection();
@@ -107,5 +110,17 @@ class Prestation
     public function __toString()
     {
         return $this->nom;
+    }
+
+    public function isStar(): ?bool
+    {
+        return $this->Star;
+    }
+
+    public function setStar(bool $Star): static
+    {
+        $this->Star = $Star;
+
+        return $this;
     }
 }

@@ -18,30 +18,22 @@
 </section>
 <section class="two">
     <h2 class="star">Les prestations star</h2>
-        <div class="cardStar">
-            <div class="cardPresta">
-                <h4>Rasage à l'ancienne</h4>
-                <img src="/assets/img/rasage.jpg" alt="rasage">
-                <p>Prix : 22.50€</p>
-                <p>Durée : 30 minutes</p>
-                <input type="submit" class="buttonSmall" value="Réserver">
-            </div>
-            <div class="cardPresta">
-                <h4>Rituel du barbier</h4>
-                <img src="/assets/img/rituel.jpg" alt="soin barbier">
-                <p>Prix : 45.50€</p>
-                <p>Durée : 90 minutes</p>
-                <input type="submit" class="buttonSmall" value="Réserver">
-            </div>
-            <div class="cardPresta">
-                <h4>Coupe + Barbe</h4>
-                <img src="/assets/img/coupeBarbe.jpg" alt="taille barbe">
-                <p>Prix : 35€</p>
-                <p>Durée : 60 minutes</p>
-                <input type="submit" class="buttonSmall" value="Réserver">
-            </div>
-        </div>
-        <a href="#" class="button" >Voir les autres prestation</a>
+       
+          
+    <div class="cardStar">
+    {% for prestation in prestations %}
+    {% if prestation.star == 1 %}
+    <div class="cardPresta">
+        <a href="#">{{prestation.nom}}</a>
+        <p>Prix : {{prestation.prix /100}}€</p>
+        <p>Durée : {{prestation.duree|date('H:i')}}</p>
+        <input type="submit" value="Réserver">
+    </div>
+      {% endif %}       
+    {% endfor %}
+    
+    </div>
+        <a href="" class="button" >Voir les autres prestation</a>
 </section>
 <section class="three">
     <div class="icon-qui">
@@ -54,28 +46,22 @@
 </section>
 <section class="four">
    <h2 class="star">Les nouveautés</h2>
+            
+    
+    
         <div class="cardStar">
-            <div class="cardProd">
-                <h4>Lame de rasoir</h4>
-                <img src="/assets/img/lame.jpg" alt="rasage">
-                <p>Prix : 7.50€</p>
-                <a href="#">Description</a>
-                <input type="submit" class="buttonSmall" value="Acheter">
-            </div>
-            <div class="cardProd">
-                <h4>Kit expert</h4>
-                <img src="/assets/img/kitExpert.jpg" alt="soin barbier">
-                <p>Prix : 99.99€</p>
-                <a href="#">Description</a>
-                <input type="submit" class="buttonSmall" value="Acheter">
-            </div>
-            <div class="cardProd">
-                <h4>Coup-choux</h4>
-                <img src="/assets/img/coupeChoux.jpg" alt="taille barbe">
-                <p>Prix : 75.99€</p>
-                <a href="#">Description</a>
-                <input type="submit" class="buttonSmall" value="Acheter">
-            </div>
+
+    {% for produit in produits %}
+    {% if produit.star == 1 %}
+    <div class="prodAll">
+        <div class="cardProd">
+            <a href="{{path('app_detail_produit', {'id': produit.id})}}"><img src="assets/img/{{produit.image}}" alt="img du produit"></a>
+            <p>{{produit}} {{produit.prix/100}}€</p>
+            <a href="{{path('app_panier_add', {'id': produit.id})}}">Add</a>
+        </div>
+    </div>
+    {% endif %}       
+    {% endfor %}
         </div>
         <a href="#" class="button" >Voir les autres prestation</a> 
 </section>
