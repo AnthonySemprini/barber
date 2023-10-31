@@ -34,9 +34,12 @@ class Produit
     #[ORM\ManyToOne(inversedBy: 'produits')]
     private ?Categorie $Categorie = null;
 
-    #[ORM\Column]
-    private ?bool $Star = null;
+    #[ORM\Column(type: Types::DATETIME_MUTABLE,nullable: true, options:['default'=>'CURRENT_TIMESTAMP'])]
+    private ?\DateTimeInterface $dateCreation = null;
 
+
+   
+    
     public function __construct()
     {
         $this->produitCommandes = new ArrayCollection();
@@ -142,15 +145,18 @@ class Produit
         return $this->nom;
     }
 
-    public function isStar(): ?bool
+    public function getDateCreation(): ?\DateTimeImmutable
     {
-        return $this->Star;
+        return $this->dateCreation;
     }
 
-    public function setStar(bool $Star): static
+    public function setDateCreation(?\DateTimeImmutable $dateCreation): static
     {
-        $this->Star = $Star;
+        $this->dateCreation = $dateCreation;
 
         return $this;
     }
+
+
+
 }

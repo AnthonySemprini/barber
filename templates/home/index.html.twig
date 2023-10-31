@@ -22,14 +22,12 @@
           
     <div class="cardStar">
     {% for prestation in prestations %}
-    {% if prestation.star == 1 %}
     <div class="cardPresta">
         <a href="#">{{prestation.nom}}</a>
         <p>Prix : {{prestation.prix /100}}€</p>
         <p>Durée : {{prestation.duree|date('H:i')}}</p>
         <input type="submit" value="Réserver">
-    </div>
-      {% endif %}       
+    </div>      
     {% endfor %}
     
     </div>
@@ -49,10 +47,10 @@
             
     
     
-        <div class="cardStar">
+        {# <div class="cardStar">
 
     {% for produit in produits %}
-    {% if produit.star == 1 %}
+    
     <div class="prodAll">
         <div class="cardProd">
             <a href="{{path('app_detail_produit', {'id': produit.id})}}"><img src="assets/img/{{produit.image}}" alt="img du produit"></a>
@@ -60,9 +58,9 @@
             <a href="{{path('app_panier_add', {'id': produit.id})}}">Add</a>
         </div>
     </div>
-    {% endif %}       
+          
     {% endfor %}
-        </div>
+        </div> #}
         <a href="#" class="button" >Voir les autres prestation</a> 
 </section>
 <section class="five">

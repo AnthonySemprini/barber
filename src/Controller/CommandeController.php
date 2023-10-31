@@ -22,15 +22,15 @@ class CommandeController extends AbstractController
 
         $panier = $session->get('panier', []);
 
-        //dd($panier);
-        $commande = new Commande();
+        // //dd($panier);
+        // $commande = new Commande();
         
-        dd($commande);
-        $form = $this->createForm(CommandeFormType::class, $commande);
-        $form ->handleRequest($request);
+        // //dd($commande);
+        // $form = $this->createForm(CommandeFormType::class, $commande);
+        // $form ->handleRequest($request);
 
-        $entityManager->persist($commande);
-        $entityManager->flush();
+        // $entityManager->persist($commande);
+        // $entityManager->flush();
 
         if($panier === []){
             //Le panier est vide, on retourne sur la homepage
