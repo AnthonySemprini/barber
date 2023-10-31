@@ -24,11 +24,11 @@
 				{% for article in articles %}
 					<tr>
 						<td class="panier">{{article.produit.nom}}</td>
-						<td class="panier">{{article.produit.prix /100}}€</td>
+						<td class="panier">{{article.produit.prix }}€</td>
 						<td class="panier">{{article.produit.description | raw}}</td>
 						<td class="panier"><img class="imgPanier" src="/assets/img/{{article.produit.image}}"></td>
 						<td class="panier">{{article.quantite}}</td>
-						<td class="panier ssTotal">{{article.produit.prix * article.quantite /100}}€</td>
+						<td class="panier ssTotal">{{article.produit.prix * article.quantite }}€</td>
 						<td class="panier action">
 							<a class="plus" href="{{path ('app_panier_upQtt',{'id' : article.produit.id }) }}">
 								<i class="fas fa-plus"></i>
@@ -59,7 +59,7 @@
 				{{totalArticle}}</td>
 			<td class="total" colspan="1"></td>
 			<td colspan="2">Total :
-				{{ total /100}}€</td>
+				{{ total }}€</td>
 			<td class="total" colspan="1"><a class="vider" href="{{path('app_panier_removeAll')}}">Vider</a></td>
 		</tr>
 	</tfoot>

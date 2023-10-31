@@ -14,7 +14,7 @@ class HomeController extends AbstractController
     #[Route('/', name: 'app_home')]
     public function findPrestaStar(ProduitRepository $produitRepository, PrestationRepository $prestationRepository, EntityManagerInterface $em):Response
     {
-        $dql = "SELECT pr FROM App\Entity\Produit pr ORDER BY pr.id ASC";
+        $dql = "SELECT pr FROM App\Entity\Produit pr ORDER BY pr.id DESC";
         $query = $em->createQuery($dql)
             ->setMaxResults(3);
    

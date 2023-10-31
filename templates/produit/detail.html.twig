@@ -13,7 +13,7 @@
 		<p>{{produit.categorie.nom}}</p>
 		<img src="assets/img/{{produit.image}}" alt="img produit">
 		<p>{{produit}}
-			{{produit.prix/100}}€</p>
+			{{produit.prix}}€</p>
 			 <td><a href="{{path('app_panier_add', {'id': produit.id})}}">Add</a></td>
 		<p>{{produit.description|raw}}</p>
 	</div>

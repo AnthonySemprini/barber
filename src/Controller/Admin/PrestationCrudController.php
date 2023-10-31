@@ -8,7 +8,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 
 class PrestationCrudController extends AbstractCrudController
 {
@@ -21,9 +22,15 @@ class PrestationCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
+            IdField::new('id')->hideOnForm(),
             TextField::new('nom'),
-            MoneyField::new('prix')->setCurrency('EUR'),
+            NumberField::new('prix')
+                ->setLabel('prix')
+                ->setFormType(NumberType::class)
+                ->setFormTypeOptions([
+                    'html5' => true, // Activer le support HTML5
+                    'attr' => ['step' => 0.01], // Définir le nombre de décimales
+            ]),
             TimeField::new('duree')->setFormat("HH'h'mm'min'")
         ];
     }

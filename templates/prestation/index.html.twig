@@ -11,7 +11,7 @@
     {% for prestation in pagination %}
     <div class="cardPresta">
         <a href="#">{{prestation.nom}}</a>
-        <p>Prix : {{prestation.prix /100}}€</p>
+        <p>Prix : {{prestation.prix }}€</p>
         <p>Durée : {{prestation.duree|date('H:i')}}</p>
         <input type="submit" value="Réserver">
     </div>
