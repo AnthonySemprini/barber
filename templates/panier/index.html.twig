@@ -24,7 +24,7 @@
 						<td class="panier">{{article.produit.nom}}</td>
 						<td class="panier">{{article.produit.prix }}€</td>
 						<td class="panier">{{article.produit.description | raw}}</td>
-						<td class="panier"><img class="imgPanier" src="/assets/img/{{article.produit.image}}"></td>
+						<td class="panier"><img class="imgPanier" src="/assets/img/{{article.produit.image}}" alt="image produit"></td>
 						<td class="panier">{{article.quantite}}</td>
 						<td class="panier ssTotal">{{article.produit.prix * article.quantite }}€</td>
 						<td class="panier action">
@@ -63,5 +63,5 @@
 	</tfoot>
 </table>
 <button class="panierV">
-	<a class="textBtnP" href="{{path('app_commande_add')}}">Valider le panier</a>
+	<a class="textBtnP" href="{{path('app_commande_infoClient')}}">Valider le panier</a>
 </button>{% endblock %}

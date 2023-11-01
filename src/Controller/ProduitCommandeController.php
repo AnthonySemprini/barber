@@ -15,4 +15,10 @@ class ProduitCommandeController extends AbstractController
             'controller_name' => 'ProduitCommandeController',
         ]);
     }
+        public function addProduit(Produit $produit)
+    {
+        $this->produits[] = $produit;
+
+        return $this;
+    }
 }

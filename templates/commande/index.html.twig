@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CommandeController!{% endblock %}
+{% block title %}Information client{% endblock %}
 
 {% block body %}
 
-    <h1>Hello {{ controller_name }}!</h1>
-       {# {{ form_errors(commandeForm) }}
+    <h1>Information client</h1>
+       {{ form_errors(commandeForm) }}
 
     {{ form_start(commandeForm) }}
         {{ form_row(commandeForm.nom) }}
@@ -19,6 +19,6 @@
 
         <button type="submit" class="btn">Valider</button>
     {{ form_end(commandeForm) }}
- #}
+
 
 {% endblock %}
