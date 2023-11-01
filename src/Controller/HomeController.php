@@ -7,25 +7,21 @@ use App\Repository\PrestationRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
-    public function findPrestaStar(ProduitRepository $produitRepository, PrestationRepository $prestationRepository, EntityManagerInterface $em):Response
+    public function index(ProduitRepository $produitRepository, PrestationRepository $prestationRepository):Response
     {
-        $dql = "SELECT pr FROM App\Entity\Produit pr ORDER BY pr.id DESC";
-        $query = $em->createQuery($dql)
-            ->setMaxResults(3);
-   
-        $produits = $query->getResult();
+    
+        $prestations = $prestationRepository->findWithStar();
 
         
-        $dql = "SELECT p FROM App\Entity\Prestation p WHERE p.Star = 1";
-        $query = $em->createQuery($dql)->setMaxResults(3);
-        $prestations = $query->getResult();
-
-            $prestations = $query->getResult();
+        $produits = $produitRepository->findLastThreeProd();
+        
+        //dd($prestations);
 
             return $this->render('home/index.html.twig', [
                 'controller_name' => 'HomeController',

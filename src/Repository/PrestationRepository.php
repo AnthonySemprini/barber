@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Prestation;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\EntityManagerInterface;
 
 /**
  * @extends ServiceEntityRepository<Prestation>
@@ -25,10 +26,18 @@ class PrestationRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('p')
             ->orderBy('p.id', 'ASC')
-            ->getQuery()
-            ;
+            ->getQuery();
         }
-
+        
+        public function findWithStar()
+        {
+            return $this->createQueryBuilder('pr')
+            ->andWhere('pr.Star = 1')
+            ->setMaxResults(3)
+            ->getQuery()
+            ->getResult();
+            
+        }
 //    public function findOneBySomeField($value): ?Prestation
 //    {
 //        return $this->createQueryBuilder('p')

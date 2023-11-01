@@ -35,11 +35,11 @@ html {
 } 
 
 
-p {
+p, h5 {
     font-family:var(--Para-font);
 }
 
-h1, h2, h3, h4, h5 {
+h1, h2, h3, h4{
     font-family:var(--Title-font);
     font-weight: 400;
 }
@@ -261,8 +261,17 @@ h2.star{
     margin: 30px 0;
     gap: 50px;
 }
-div.cardPresta a, div.cardPresta p{
-    padding: 5%;
+div.cardPresta a{
+    color: var(--white-color);
+    font-size: 1.563rem;
+    font-weight: 700;
+}
+div.cardPresta a:hover{
+    text-decoration: underline var(--red-color);
+}
+div.cardPresta p{
+    padding: 1%;
+    color: var(--black-color);
 }
 div.cardPresta{
     display: flex;
@@ -270,7 +279,6 @@ div.cardPresta{
     align-items: center;
     height: auto;
     max-width: 27vw;
-    margin: 10px;
     padding: 15px;
     background-color:var(--gray-color);
     -webkit-box-shadow: -6px 4px 13px 3px rgba(127, 106, 106, 0.58); 
@@ -299,17 +307,15 @@ div.cardPresta img:hover{
     width:20vw;
 	border-radius:10px;
     border: solid 3px var(--red-color);
-	color:#ffffff;
 	font-size:20px;
 	font-weight:bold;
-	padding:10px 8px;
-    margin-bottom: 50px;
+	padding:10px;
+    margin: 20px 0;
     text-align: center;
 }
 .buttonSmall:hover {
     color: var(--blue-color);
 	border: solid 3px var(--red-color);
-    padding:10px 5px;
 	background-color:var(--white-color);
     transition: 0.3s;
 }
@@ -343,27 +349,18 @@ div.cardPresta img:hover{
     background-color: var(--gray-color);
 }
 div.icon-qui img{
-    width: 7vw;
-    height: 7vh;
+    width: 10vw;
+    height: 10vh;
 }
 div.icon-qui{
     display: flex;
     flex-direction:row;
-    border: 5px solid var(--red-color);
-    background-color: var(--white-color);
     padding: 1.5%;
     border-radius: 20px;
-    -webkit-box-shadow: -6px 4px 13px 3px rgba(0,0,0,0.58); 
-    box-shadow: -6px 4px 13px 3px rgba(0,0,0,0.58);
 }
 p.qui{
     color: var(--blue-color);
-    background-color: var(--white-color);
-    border-radius: 1rem;
-    border: 5px solid var(--red-color);
     padding: 2%;
-    -webkit-box-shadow: -6px 4px 13px 3px rgba(0,0,0,0.58); 
-    box-shadow: -6px 4px 13px 3px rgba(0,0,0,0.58);
 }
 /* section four */
 
@@ -403,9 +400,13 @@ div.cardProd img:hover{
     -webkit-transform: scale(1.1); /* Safari 3-8 */
 }
     
-div.cardProd a, div.cardProd p{
+div.cardProd a{
     padding: 5%;
-    color: var(--blue-color);
+    color: var(--white-color);
+}
+div.cardProd p{
+    padding: 5%;
+    color: var(--black-color);
 }
 div.cardProd a:hover{
     text-decoration: underline var(--red-color);
@@ -432,6 +433,7 @@ section.five p,section.five h2{
 /* section six */
 
 .six{
+
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -592,6 +594,7 @@ div.shop img{
     max-width: 100%;
     height: auto;
 }
+
 /********** Panier **********/
 
 table.panier{
@@ -650,8 +653,23 @@ div.cardAll{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: space-around;
+    min-width: 100%;
+    height: 80vh;
 }
-
+div.pagination{
+    padding: 2%;
+}
+div.pagination a, div.pagination span{
+    color: var(--blue-color);
+    font-size: 1.563rem;
+    font-weight: 700;
+}
+div.pagination a:hover, div.pagination span:hover{
+    color: var(--red-color);
+    text-decoration: underline 3px var(--blue-color);
+}
 /********** Calendrier **********/
 
 #calendrier{

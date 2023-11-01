@@ -3,9 +3,7 @@
 {% block title %}Tarif{% endblock %}
 
 {% block body %}
-<div class="banniere">
-<img  src="/assets/img/presta.png" alt="banniére">
-</div>
+
 <h1>Liste des préstations</h1>
 <div class="cardAll">
     {% for prestation in pagination %}
@@ -13,7 +11,7 @@
         <a href="#">{{prestation.nom}}</a>
         <p>Prix : {{prestation.prix }}€</p>
         <p>Durée : {{prestation.duree|date('H:i')}}</p>
-        <input type="submit" value="Réserver">
+        <a href="#" class="buttonSmall">Réserver</a>
     </div>
     {% endfor %}
 </div>

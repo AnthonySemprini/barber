@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Categorie;
 use App\Entity\Produit;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -31,6 +32,17 @@ class ProduitRepository extends ServiceEntityRepository
            ;
        }
     
+    
+        public function findLastThreeProd()
+        {
+            return $this->createQueryBuilder('p')
+                ->orderBy('p.id', 'DESC')
+                ->setMaxResults(3)
+                ->getQuery()
+                ->getResult();
+        }    
+    
+
     //    public function findOneBySomeField($value): ?Produit
     //    {
     //        return $this->createQueryBuilder('p')

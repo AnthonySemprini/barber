@@ -3,11 +3,8 @@
 {% block title %}Home{% endblock %}
 
 {% block body %}
-<div class="banniere">
-<img  src="/assets/img/profil.png" alt="banniére">
-</div>
 <div class="profil">
-    <H2>Profil</H2>
+    <h1>Profil</h1>
     <p>Pseudo : {{app.user.pseudo}}</p>
     <p>Email : {{app.user.email}}</p>
     <a href="{{ path ('app_user_edit', {'id': app.user.id }) }}">Modifier votre profil</a>
