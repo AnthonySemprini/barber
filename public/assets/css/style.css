@@ -246,7 +246,7 @@ div.banniere img{
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 110vh;
+    height: 80vh;
     background-color: var(--white-color);
 }
 h2.star{
