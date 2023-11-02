@@ -41,12 +41,12 @@ class ProduitCommande
 
     public function getProduit(): ?Produit
     {
-        return $this->Produit;
+        return $this->produit;
     }
 
-    public function setProduit(?Produit $Produit): static
+    public function setProduit(?Produit $produit): static
     {
-        $this->Produit = $Produit;
+        $this->produit = $produit;
 
         return $this;
     }

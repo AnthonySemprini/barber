@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Commande;
 use App\Entity\ProduitCommande;
+use App\Entity\Produit;
 use App\Form\CommandeFormType;
 use App\Repository\ProduitRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -30,32 +31,32 @@ class CommandeController extends AbstractController
 
         $panier = $session->get('panier', []);
 
-        //dd($session);
+        
+        //dd($panier);
+        $produitQtt = [];
+        
+        foreach($panier as $prod => $qtt){
+            $produit = $produitRepository->find($prod);
+            // dd($produit);
+            $produitCommande = new ProduitCommande();
+            $produitCommande->setProduit($produit);
+            $produitCommande->setQuantite($qtt);
+            $entityManager->persist($produitCommande);
+            dd($produitCommande);
+            $entityManager->flush();
+            
+        }
+        
+
         $user = $this->getUser();
         $now = new \DateTime();
-        //dd($user);
         $commande = new Commande();
         $commande->setUser($user);
         $commande->setDateCommande($now);
         
          
-    //     $produitCommande = new ProduitCommande();
-    
-        
-    //     $produitsCommande = array_map(function ($item) {
-    //         $produitCommande = new ProduitCommande();
-    //         $produitCommande->setProduit($produitRepository->find($item['id']));
-    //         $produitCommande->setQuantite($item['quantite']);
 
-    //         return $produitCommande;
-    //     }, $panier);
-
-    // $panierCommande->addProduits($produitsCommande);
-    //     // Persistez l'entité PanierCommande en base de données
-    //     $entityManager->persist($panierCommande);
-
-    //     // Flush les modifications
-    //     $entityManager->flush();
+   
 
 
 
