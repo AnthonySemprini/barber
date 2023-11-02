@@ -15,25 +15,26 @@ class MainCalendarController extends AbstractController
     {
       $events = $reservationRepository->findAll();
         // dd($events);
-        
+        $calendar = new FullCalendar();   
 
         foreach($events as $event){
-            $rdvs[] = [
-                'id' => $event->getId(),
-                'nom' => $event->getNom(),
-                'prenom' => $event->getPrenom(),
-                'numTel' => $event->getNumTel(),
-                'rdv' => $event->getRdv()->format('Y-m-d H:i:s'),
-                'prestation' => $event->getPrestation(),
-                'textColor' => $event->getTexteColor(),
-                'user' => $event->getUser()
-            ];
+            $calendar->addEvent(
+                new FullCalendarEvent(
+                $event->getId(),
+                $event->getNom(),
+                $event->getPrenom(),
+                $event->getNumTel(),
+                $event->getRdv()->format('Y-m-d H:i:s'),
+                $event->getPrestation(),
+                $event->getTexteColor(),
+                $event->getUser()
+                )
+            );
         }
-        $data = Json_encode($rdvs);
+  // Render the calendar
+  echo $calendar->render();
 
-        //redirige vers la page reservation
-        return $this->render('reservation/index.html.twig', [
-            'data' => $data,
-        ]);
+  // Return the response
+  return new Response();
 }
 }

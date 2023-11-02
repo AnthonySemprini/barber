@@ -31,7 +31,12 @@ class CommandeController extends AbstractController
         $panier = $session->get('panier', []);
 
         //dd($session);
+        $user = $this->getUser();
+        $now = new \DateTime();
+        //dd($user);
         $commande = new Commande();
+        $commande->setUser($user);
+        $commande->setDateCommande($now);
         
          
     //     $produitCommande = new ProduitCommande();

@@ -19,8 +19,6 @@ class CommandeFormType extends AbstractType
             ->add('adresse',TextType::class)
             ->add('codePostal',NumberType::class)
             ->add('ville',TextType::class)
-            ->add('dateCommande')
-            ->add('User')
         ;
     }
 
