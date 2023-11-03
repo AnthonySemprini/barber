@@ -17,10 +17,10 @@ class ProduitCommande
     private ?int $quantite = null;
 
     #[ORM\ManyToOne(inversedBy: 'produitCommandes')]
-    private ?Produit $Produit = null;
+    private ?Produit $produit = null;
 
     #[ORM\ManyToOne(inversedBy: 'produitCommandes', cascade: ["persist"])]
-    private ?Commande $Commande = null;
+    private ?Commande $commande = null;
 
     public function getId(): ?int
     {
@@ -53,12 +53,12 @@ class ProduitCommande
 
     public function getCommande(): ?Commande
     {
-        return $this->Commande;
+        return $this->commande;
     }
 
-    public function setCommande(?Commande $Commande): static
+    public function setCommande(?Commande $commande): static
     {
-        $this->Commande = $Commande;
+        $this->commande = $commande;
 
         return $this;
     }

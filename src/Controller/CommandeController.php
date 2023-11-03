@@ -47,13 +47,13 @@ class CommandeController extends AbstractController
             //dd($commande->getId());
         
         
-        foreach($panier as $prod => $qtt){
+            foreach($panier as $prod => $qtt){
             $produit = $produitRepository->find($prod);
             $produitCommande = new ProduitCommande();
             $produitCommande->setProduit($produit);
-            $produitCommande->setCommande($commande);
+            //dd($produitCommande);
             $produitCommande->setQuantite($qtt);
-            dd($produitCommande);
+            $produitCommande->setCommande($commande);
             //dd($produitCommande);
             
             $entityManager->persist($produitCommande);

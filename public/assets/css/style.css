@@ -14,7 +14,12 @@
 
 }
 
-/********** General **********/
+    /********** HoneyPot **********/
+
+.honeyPot{
+    display: none!important;
+}
+    /********** General **********/
 @font-face{
     font-family:'brookshire';
     src: url(/assets/fonts/EFCO-BrookshireRegular.ttf)
