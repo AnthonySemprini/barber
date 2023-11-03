@@ -15,10 +15,11 @@
 {% block javascripts %}
 <script>
     window.onload = () => {
+        
         let calendarElt = document.querySelector("#calendrier")
-
         let events = {{ data|raw }}
          // Convert the array of objects to an array of events
+ 
         events = events.map((rdv) => {
 
             return {
@@ -27,12 +28,21 @@
                 + rdv.numTel + " " 
                 + rdv.prestation + " " 
                 + rdv.user,
-                color: '#9c1a1a',
+                color: '#3a4774',
                 textColor: '#fcfcfc',
                 start: rdv.rdv,
                 
             };
         });
+
+            // Obtenez la date actuelle
+        var currentDate = new Date();
+
+        // Filtrez les événements passés
+        events = events.filter((event) => {
+            return new Date(event.start) >= currentDate;
+        });
+        
         let calendar = new FullCalendar.Calendar(calendarElt, {
             initialView: 'timeGridWeek',
             locale: 'fr',
@@ -42,9 +52,14 @@
                 center: 'title',
                 end: 'dayGridMonth, timeGridWeek',
             },
-
+            allDaySlot: false, //retire allday
+            slotMinTime: "08:00:00",//heure debut calendar
+            slotMaxTime: "18:00:00",//heure fin calendar
+            expandRows: true,
      events: events,
-}) 
+}); 
+ 
+
         calendar.render()
 
     }
