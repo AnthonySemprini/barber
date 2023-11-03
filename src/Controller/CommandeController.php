@@ -30,36 +30,13 @@ class CommandeController extends AbstractController
         $this->denyAccessUnlessGranted('ROLE_USER');
 
         $panier = $session->get('panier', []);
-
-        
-        //dd($panier);
-        $produitQtt = [];
-        
-        foreach($panier as $prod => $qtt){
-            $produit = $produitRepository->find($prod);
-            // dd($produit);
-            $produitCommande = new ProduitCommande();
-            $produitCommande->setProduit($produit);
-            $produitCommande->setQuantite($qtt);
-            $entityManager->persist($produitCommande);
-            dd($produitCommande);
-            $entityManager->flush();
-            
-        }
-        
-
+        // dd($panier);
         $user = $this->getUser();
         $now = new \DateTime();
         $commande = new Commande();
         $commande->setUser($user);
         $commande->setDateCommande($now);
         
-         
-
-   
-
-
-
         $form = $this->createForm(CommandeFormType::class, $commande);
         $form->handleRequest($request);
 
@@ -67,9 +44,32 @@ class CommandeController extends AbstractController
             $entityManager = $this->managerRegistry->getManager();
             $entityManager->persist($commande);
             $entityManager->flush();
-      
-            return $this->redirectToRoute('app_commande_paiement');
+            //dd($commande->getId());
+        
+        
+        foreach($panier as $prod => $qtt){
+            $produit = $produitRepository->find($prod);
+            $produitCommande = new ProduitCommande();
+            $produitCommande->setProduit($produit);
+            $produitCommande->setCommande($commande);
+            $produitCommande->setQuantite($qtt);
+            dd($produitCommande);
+            //dd($produitCommande);
+            
+            $entityManager->persist($produitCommande);
+            //dd($produitCommande);
+            $entityManager->flush();
         }
+        // $array = [];
+        // foreach($panier as $prod => $qtt)
+        // {
+        //     $array[] = $produitRepository->find($prod);
+        // }
+        // dd($array);
+        
+        return $this->redirectToRoute('app_commande_paiement');
+    }
+       
 
         if($panier === []){
             //Le panier est vide, on retourne sur la homepage

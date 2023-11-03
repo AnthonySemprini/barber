@@ -19,7 +19,7 @@ class ProduitCommande
     #[ORM\ManyToOne(inversedBy: 'produitCommandes')]
     private ?Produit $Produit = null;
 
-    #[ORM\ManyToOne(inversedBy: 'produitCommandes')]
+    #[ORM\ManyToOne(inversedBy: 'produitCommandes', cascade: ["persist"])]
     private ?Commande $Commande = null;
 
     public function getId(): ?int
