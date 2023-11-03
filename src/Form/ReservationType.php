@@ -22,7 +22,6 @@ class ReservationType extends AbstractType
             ->add('rdv',DateTimeType::class, [
                 'widget' => 'single_text'
             ])
-            ->add('texteColor', ColorType::class)
             ->add('prestation')
             ->add('user')
         ;

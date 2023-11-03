@@ -10,31 +10,29 @@ use Symfony\Component\Serializer\Encoder\JsonEncode;
 
 class MainCalendarController extends AbstractController
 {
-    #[Route('/main', name: 'app_main')]
-    public function index(ReservationRepository $reservationRepository): Response
-    {
-      $events = $reservationRepository->findAll();
-        // dd($events);
-        $calendar = new FullCalendar();   
+    
+  
+  
+  #[Route('/main', name: 'app_main')]
+  public function index(ReservationRepository $calendar): Response
+  {
+      $events = $calendar->findAll();
+      //dd($events);
+      foreach($events as $event){
+          $rdv[] = [
+              'id' => $event->getId(),
+              'nom' => $event->getNom(),
+              'prenom' => $event->getPrenom(),
+              'numTel' => $event->getNumTel(),
+              'rdv' => $event->getRdv()->format('Y-m-d H:i:s'),
+              'prestation' => $event->getPrestation(),
+              'user' => $event->getUser(),
+              
+          ];
+      }
 
-        foreach($events as $event){
-            $calendar->addEvent(
-                new FullCalendarEvent(
-                $event->getId(),
-                $event->getNom(),
-                $event->getPrenom(),
-                $event->getNumTel(),
-                $event->getRdv()->format('Y-m-d H:i:s'),
-                $event->getPrestation(),
-                $event->getTexteColor(),
-                $event->getUser()
-                )
-            );
-        }
-  // Render the calendar
-  echo $calendar->render();
-
-  // Return the response
-  return new Response();
-}
+      $data = json_encode($rdv);
+      return $this->render('reservation/index.html.twig', compact('data'));
+      
+  }
 }

@@ -33,11 +33,6 @@ class Reservation
     #[ORM\ManyToOne(inversedBy: 'Reservation')]
     private ?User $user = null;
 
-    #[ORM\Column(length: 10, nullable: true)]
-    private ?string $TexteColor = null;
-
-   
-
     public function getId(): ?int
     {
         return $this->id;
@@ -114,18 +109,5 @@ class Reservation
 
         return $this;
     }
-
-    public function getTexteColor(): ?string
-    {
-        return $this->TexteColor;
-    }
-
-    public function setTexteColor(?string $TexteColor): static
-    {
-        $this->TexteColor = $TexteColor;
-
-        return $this;
-    }
-
    
 }

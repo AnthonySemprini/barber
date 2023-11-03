@@ -3,8 +3,8 @@
 {% block title %}RDV{% endblock %}
 
 {% block body %}
-
 <div id="calendrier">
+{# {{dump(data)}} #}
 
 </div>
         <a href="{{ path('app_reservation_new') }}">Create new</a>
@@ -17,6 +17,22 @@
     window.onload = () => {
         let calendarElt = document.querySelector("#calendrier")
 
+        let events = {{ data|raw }}
+         // Convert the array of objects to an array of events
+        events = events.map((rdv) => {
+
+            return {
+                title: rdv.nom + " " 
+                + rdv.prenom + " " 
+                + rdv.numTel + " " 
+                + rdv.prestation + " " 
+                + rdv.user,
+                color: '#9c1a1a',
+                textColor: '#fcfcfc',
+                start: rdv.rdv,
+                
+            };
+        });
         let calendar = new FullCalendar.Calendar(calendarElt, {
             initialView: 'timeGridWeek',
             locale: 'fr',
@@ -26,8 +42,9 @@
                 center: 'title',
                 end: 'dayGridMonth, timeGridWeek',
             },
-      
-})
+
+     events: events,
+}) 
         calendar.render()
 
     }
