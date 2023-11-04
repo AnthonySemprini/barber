@@ -23,12 +23,8 @@
         events = events.map((rdv) => {
 
             return {
-                title: rdv.nom + " " 
-                + rdv.prenom + " " 
-                + rdv.numTel + " " 
-                + rdv.prestation + " " 
-                + rdv.user,
-                color: '#3a4774',
+                title: "Crenaux réservé",
+                color: 'gray',
                 textColor: '#fcfcfc',
                 start: rdv.rdv,
                 
@@ -42,7 +38,7 @@
         events = events.filter((event) => {
             return new Date(event.start) >= currentDate;
         });
-        
+
         let calendar = new FullCalendar.Calendar(calendarElt, {
             initialView: 'timeGridWeek',
             locale: 'fr',
@@ -55,8 +51,21 @@
             allDaySlot: false, //retire allday
             slotMinTime: "08:00:00",//heure debut calendar
             slotMaxTime: "18:00:00",//heure fin calendar
-            expandRows: true,
-     events: events,
+            expandRows: true,//Laisse juste les cases entre 8 et 18h
+            events: events,
+            firstDay: 1, // commence par lundi
+            dayCellDidMount: function (info) {
+                const cellDate = info.date;
+                const dayOfWeek = cellDate.getDay(); // Récupère le jour de la semaine (0 = dimanche, 1 = lundi, ..., 6 = samedi)
+
+                // Vérifiez si c'est un dimanche (0) ou un lundi (1)
+                if (dayOfWeek === 0 || dayOfWeek === 1) {
+                    // Changez la couleur de fond des cellules du dimanche et du lundi
+                     info.el.style.backgroundColor = ' #943746';
+                }else{
+                     info.el.style.backgroundColor = ' #fcfcfc';
+                     }
+    }
 }); 
  
 
