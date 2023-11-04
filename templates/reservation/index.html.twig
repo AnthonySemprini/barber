@@ -1,13 +1,17 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}RDV{% endblock %}
-
+{% block head %}
+  <meta name="description" content="Planifiez facilement vos rendez-vous avec notre calendrier en ligne convivial. Gérez votre emploi du temps, réservez des créneaux horaires et gardez une trace de vos événements importants. Simplifiez la gestion de votre emploi du temps avec notre calendrier intuitif." />
+{% endblock %}
 {% block body %}
+
+
 <div id="calendrier">
 {# {{dump(data)}} #}
 
 </div>
-        <a href="{{ path('app_reservation_new') }}">Create new</a>
+        <a href="{{ path('app_reservation_new') }}">Réserver</a>
 
 
 {% endblock %}
