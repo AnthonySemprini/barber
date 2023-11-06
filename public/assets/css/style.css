@@ -312,6 +312,7 @@ div.cardPresta img:hover{
 	box-shadow: -6px 6px 8px -1px var(--blue-color);
 	background-color:var(--blue-color);
     width:20vw;
+    color: var(--white-color);
 	border-radius:10px;
     border: solid 3px var(--red-color);
 	font-size:20px;
@@ -678,10 +679,15 @@ div.pagination a:hover, div.pagination span:hover{
     text-decoration: underline 3px var(--blue-color);
 }
 /********** Calendrier **********/
-
+.calendarPage{
+    height: 115vh;
+}
 #calendrier{
-    width: 80%;
+    width: 75%;
     margin:auto;
+}
+a.buttonSmall.resa{
+    margin: 0% 2%;
 }
 /********** Footer **********/
 
@@ -691,7 +697,7 @@ div.pagination a:hover, div.pagination span:hover{
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    height: 35vh;
+    height: 38vh;
 }
 .linkFooter{
         display: flex;
@@ -707,7 +713,7 @@ div.pagination a:hover, div.pagination span:hover{
 
 div.logoFooter img{    
         height: auto;
-        max-width: 25vw;
+        max-width: 20vw;
         padding: 1rem ;
 }
 .logoFooter{
@@ -717,7 +723,7 @@ div.logoFooter img{
 }
 div.iconFooter img{
     height: auto;
-    max-width: 8vw;
+    max-width: 7vw;
 }
 .contactFooter h3, .linkFooter h3{
     margin-bottom: 1.5rem;

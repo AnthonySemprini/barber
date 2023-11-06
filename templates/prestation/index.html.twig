@@ -13,7 +13,7 @@
         <a href="#">{{prestation.nom}}</a>
         <p>Prix : {{prestation.prix }}€</p>
         <p>Durée : {{prestation.duree|date('H:i')}}</p>
-        <a href="#" class="buttonSmall">Réserver</a>
+        <a href="{{path('app_main_calendar', {'id': prestation.id})}}" class="buttonSmall">Réserver</a>
     </div>
     {% endfor %}
 </div>

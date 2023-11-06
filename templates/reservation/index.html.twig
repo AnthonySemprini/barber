@@ -7,11 +7,13 @@
 {% block body %}
 
 
+<div class="calendarPage">
 <div id="calendrier">
 {# {{dump(data)}} #}
 
 </div>
-        <a href="{{ path('app_reservation_new') }}">Réserver</a>
+        <a href="{{ path('app_reservation_new') }}" class="buttonSmall resa">Réserver</a>
+</div>
 
 
 {% endblock %}

@@ -13,7 +13,7 @@ class MainCalendarController extends AbstractController
     
   
   
-  #[Route('/main', name: 'app_main')]
+  #[Route('/main', name: 'app_main_calendar')]
   public function index(ReservationRepository $calendar): Response
   {
       $events = $calendar->findAll();
