@@ -1,4 +1,20 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    {{ form_row(form.nom, {
+        label: 'Nom : '
+    } )}}
+    {{ form_row(form.prenom, {
+        label: 'Prenom : '
+    } )}}
+    {{ form_row(form.numTel, {
+        label : 'Numéro de telephone : '
+    }) }}
+    {{ form_row(form.rdv, {
+        label: 'Date et heure du RDV : '
+    } )}}
+    {{ form_row(form.prestation, {
+        label: 'Selectionner votre pretstation : '
+    } )}}
+   
+  
+    <button class="btn">{{ button_label|default('Réserver') }}</button>
 {{ form_end(form) }}

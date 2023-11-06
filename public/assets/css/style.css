@@ -678,17 +678,22 @@ div.pagination a:hover, div.pagination span:hover{
     color: var(--red-color);
     text-decoration: underline 3px var(--blue-color);
 }
-/********** Calendrier **********/
-.calendarPage{
-    height: 115vh;
+/********** Reservation **********/
+.reservationPage{
+   height: 100vh;
 }
-#calendrier{
-    width: 75%;
-    margin:auto;
+.date_wrapper{
+background-color: #943746;
+
+ 
 }
-a.buttonSmall.resa{
-    margin: 0% 2%;
+input.form-datepicker{
+    width: 400px;
+    height: 50px;
+    border:  1px solid black;
+    background: transparent;
 }
+
 /********** Footer **********/
 
 .footer{

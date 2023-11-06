@@ -32,7 +32,7 @@ class ReservationType extends AbstractType
                 ],
             ])
             ->add('prestation')
-            ->add('user')
+            
         ;
     }
 

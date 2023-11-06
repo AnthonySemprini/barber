@@ -12,7 +12,9 @@
 {# {{dump(data)}} #}
 
 </div>
-        <a href="{{ path('app_reservation_new') }}" class="buttonSmall resa">Réserver</a>
+    {% for prestation in prestations %}
+        <a href="{{ path('app_main_calendar_resa',{'id': prestation.id}) }}" class="buttonSmall resa">Réserver</a>
+    {% endfor %}
 </div>
 
 

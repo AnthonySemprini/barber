@@ -3,7 +3,26 @@
 {% block title %}New Reservation{% endblock %}
 
 {% block body %}
-    <h1>Créé votre réservation</h1>
-
+<div class="reservationPage">
+            <h1>Créé votre réservation</h1>
+    <div class="container">
+        <div class="row">
+            <div class="date_wrapper">
+                <input type="text" class="form-datepicker" id="datepicker" name="date">
+            </div>
+        </div>
+    </div>
     {{ include('reservation/_form.html.twig') }}
+</div>
+    <script>
+            $('input.form-datepicker').datepicker({
+                format: "dd/mm/yyyy",
+                language: "fr",
+                daysOfWeekDisabled: "0,1",
+                daysOfWeekHighlighted: "0,1",
+                autoclose: true,
+                todayHighlight: true
+            });
+        </script>
 {% endblock %}
+  

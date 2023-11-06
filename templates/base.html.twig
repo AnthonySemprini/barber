@@ -54,7 +54,11 @@
             (tarteaucitron.job = tarteaucitron.job || []).push('googlemapssearch');
        
         </script>
+       
+        <script src="https://kit.fontawesome.com/ef55713c5a.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js" integrity="sha256-8EcfIJRWyvnu/U0OsfCk05x1JGVmeC2a7sJQHrbWYSA=" crossorigin="anonymous"></script>
         <meta charset="UTF-8">
+
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <html lang="fr">
         {% block head %}
@@ -62,23 +66,24 @@
         <title>{% block title %}{% endblock %} / The barber shop</title>
         <link rel="icon" type="image" href="{{asset('assets/img/fav-b.ico') }}">
         <link rel="stylesheet" href="{{asset('assets/css/style.css') }}">
+        <link rel="stylesheet" href="{{asset('assets/css/bootstrap-datepicker.min.css') }}">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Poppins&display=swap" rel="stylesheet">
         {% block stylesheets %}
         {% endblock %}
-       
-        <script src="https://kit.fontawesome.com/ef55713c5a.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js" integrity="sha256-8EcfIJRWyvnu/U0OsfCk05x1JGVmeC2a7sJQHrbWYSA=" crossorigin="anonymous"></script>
         {% block javascripts %}
         {% endblock %}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="{{asset('assets/js/bootstrap-datepicker.min.js')}}"></script>
     </head>
     <body>
             {% include "_partials/_nav.html.twig" %}
             {% block body %}
+            
             {% endblock %}
             {% include "_partials/_footer.html.twig" %}
-             
+    
     </body>
 </html>
         
