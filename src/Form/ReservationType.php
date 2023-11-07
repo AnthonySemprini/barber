@@ -10,6 +10,7 @@ use App\Validator\Constraints\DateNotPassed;
 use App\Validator\Constraints\NotAllowedDays;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ColorType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -23,18 +24,9 @@ class ReservationType extends AbstractType
             ->add('nom',TextType::class)
             ->add('prenom',TextType::class)
             ->add('numTel',NumberType::class)
-            ->add('rdv',DateTimeType::class, [
-                'widget' => 'single_text',
-                "constraints" => [
-                    new DateNotPassed(),
-                    new OpenHours(),
-                    new NotAllowedDays(),
-                ],
-            ])
-            ->add('prestation')
-            
-        ;
+            ;
     }
+      
 
     public function configureOptions(OptionsResolver $resolver): void
     {
@@ -42,4 +34,5 @@ class ReservationType extends AbstractType
             'data_class' => Reservation::class,
         ]);
     }
+
 }
