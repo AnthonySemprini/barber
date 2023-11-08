@@ -32,84 +32,72 @@ class ReservationController extends AbstractController
     #[Route('/new', name: 'app_reservation_new', methods: ['GET', 'POST'])]
     public function new(EntityManagerInterface $entityManager, PrestationRepository $prestationRepository, SessionInterface $session, ReservationRepository $reservationRepository, Request $request): Response
     {
-    
         $selectedDate = $request->request->get('daySelect');
         // dd($selectedDate);
-    if ($selectedDate) {
-        // Convertissez la date sélectionnée au format 'Y-m-d' pour correspondre à la base de données
-        $isoDate = \DateTime::createFromFormat('d/m/Y', $selectedDate)->format('Y-m-d');
-
-        // Récupérez les réservations pour la date sélectionnée
-        $dql = "SELECT r
-            FROM App\Entity\Reservation r
-            WHERE SUBSTRING(r.rdv, 1, 10) = :isoDate";
-        $query = $entityManager->createQuery($dql);
-        $query->setParameter('isoDate', $isoDate);
-        $rdvs = $query->getResult();
-    } else {
-        $rdvs = []; // Aucune date sélectionnée, donc aucun rdv
-    }
-    //create array crenaux d'une journée
+        $availableSlots = [];
     
-    $startTime = strtotime('08:00');
-    $endTime = strtotime('18:00');
-    $interval = 30 * 60; // 30 minutes en secondes
+        if ($selectedDate) {
+            // Convertissez la date  au format 'Y-m-d' 
+            $isoDate = \DateTime::createFromFormat('d/m/Y', $selectedDate)->format('Y-m-d');
     
-    $slots = []; // Tableau pour stocker les créneaux d'une jouenée
-    $removedSlots = []; // Tableau pour stocker les créneaux supprimés
-    
-    // Crée un tableau avec tous les créneaux horaires de la journée
-    while ($startTime < $endTime) {
-        $slotStart = date('H:i', $startTime);
-        $startTime += $interval;
-        $slotEnd = date('H:i', $startTime);
-        $slots[] = ['start' => $slotStart, 'end' => $slotEnd];
-    }
-    
-    //         // Supprime les créneaux où des événements sont planifiés
-    // $events = [
-    //         ['start' => '09:00', 'end' => '11:30'],
-    //         ['start' => '11:30', 'end' => '12:30'],
-    //         ['start' => '11:00', 'end' => '11:30'],
-    //         ['start' => '15:30', 'end' => '16:00'],
-    //         ['start' => '17:30', 'end' => '18:00'],
-    //         // Ajoutez d'autres événements avec leurs heures de début et de fin
-    //     ];
-
-        
-        foreach ($rdvs as $event) {
-            // dd($rdvs);
-            $eventStart = $event->getRdv('H:i');
-            //  dd($eventStart);
-            $eventEnd = $event->getRdv();
-            $eventEnd->modify('+30 minutes');
-            // dd($eventEnd);
-            
-            
-            $slots = array_filter($slots, function ($slot) use ($eventStart, $eventEnd, &$removedSlots) {
-                $slotStart = strtotime($slot['start']);
-                $slotEnd = strtotime($slot['end']);
-                $isOverlapping = ($slotStart >= $eventEnd->getTimestamp() || $slotEnd <= $eventStart->getTimestamp());
-                dd($isOverlapping);
-                
-                if ($isOverlapping == false) {
-                    $removedSlots[] = $slot;
-                    
-               
-                }
-                
-                return $isOverlapping;
-            });
-            // dd($slots);
-            
+            // Récupérez les réservations pour la date sélectionnée
+            $dql = "SELECT r
+                FROM App\Entity\Reservation r
+                WHERE SUBSTRING(r.rdv, 1, 10) = :isoDate";
+            $query = $entityManager->createQuery($dql);
+            $query->setParameter('isoDate', $isoDate);
+            $rdvs = $query->getResult();
+        } else {
+            $rdvs = []; 
         }
+   
+        // Créez un tableau pour stocker les créneaux d'une journée
+        $startTime = strtotime('08:00');
+        $endTime = strtotime('18:00');
+        $interval = 30 * 60; // 30 minutes en secondes
+    
 
-        return $this->render('reservation/new.html.twig', [
-            'selectedDate' => $selectedDate,
-            'rdvs' => $rdvs,
-            'slots' => $slots
-        ]);
+// Créez un tableau avec tous les créneaux horaires de la journée
+$slots = [];
+while ($startTime < $endTime) {
+    $slotStart = date('H:i', $startTime);
+    $slots[] = $slotStart; // on stocke seulement l'heure de début, l'heure de fin est calculée
+    $startTime += $interval;
+}
+
+
+$availableSlots = $slots;
+
+foreach ($rdvs as $event) {
+    // Convertissez le datetime de l'événement en une chaîne de créneau horaire pour la comparaison
+    $eventStartString = $event->getRdv()->format('H:i');
+    $eventEnd = clone $event->getRdv();
+    $eventEnd->modify('+30 minutes'); //   RDV dure 30 minutes
+    $eventEndString = $eventEnd->format('H:i');
+
+    // Filtrez $availableSlots pour enlever les créneaux occupés par cet événement
+    $availableSlots = array_filter($availableSlots, function ($slot) use ($eventStartString, $eventEndString) {
+        $slotEnd = \DateTime::createFromFormat('H:i', $slot)->modify('+30 minutes')->format('H:i');
+        return $slot != $eventStartString && $slotEnd != $eventEndString;
+    });
+}
+
+// Transformez $availableSlots en un tableau de plages horaires avec début et fin
+$finalSlots = [];
+foreach ($availableSlots as $slot) {
+    $slotEnd = \DateTime::createFromFormat('H:i', $slot)->modify('+30 minutes')->format('H:i');
+    $finalSlots[] = ['start' => $slot, 'end' => $slotEnd];
+}
+// dd($finalSlots);
+
+
+return $this->render('reservation/new.html.twig', [
+    'selectedDate' => $selectedDate,
+    'rdvs' => $rdvs,
+    'availableSlots' => $finalSlots
+]);
     }
+    
 
     
     

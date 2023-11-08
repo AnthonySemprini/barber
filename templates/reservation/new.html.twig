@@ -21,20 +21,30 @@
 				
 			</form>
 		</div>
-        {% if slots is not empty%}
-        <ul>
-		<div id="crenauxDispo">
-            {% for slot in slots %}
-			
-                  <li>
-                {{ slot.start }} - {{ slot.end }}
-            </li>
-        {% endfor %}
+		{% if availableSlots is not empty %}
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-12">
+                <div class="alert alert-success" role="alert">
+                    Sélectionnez un créneau disponible.
+                </div>
+                <div class="list-group" id="crenauxDispo">
+                    {% for slot in availableSlots %}
+                        <button type="button" class="list-group-item list-group-item-action">
+                            {{ slot.start }} - {{ slot.end }}
+                        </button>
+                    {% endfor %}
+                </div>
             </div>
-            </ul>
-        {% else %}
-            <p>Aucun rdv</p>
-        {% endif %}
+        </div>
+    </div>
+{% else %}
+    <div class="alert alert-warning" role="alert">
+        Aucun créneau disponible.
+    </div>
+{% endif %}
+
+	
 	</div>
 	
 
