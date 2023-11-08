@@ -68,13 +68,13 @@ class ReservationController extends AbstractController
     
     //         // Supprime les créneaux où des événements sont planifiés
     // $events = [
-        //     ['start' => '09:00', 'end' => '11:30'],
-        //     ['start' => '11:30', 'end' => '12:30'],
-        //     ['start' => '11:00', 'end' => '11:30'],
-        //     ['start' => '15:30', 'end' => '16:00'],
-        //     ['start' => '17:30', 'end' => '18:00'],
-        //     // Ajoutez d'autres événements avec leurs heures de début et de fin
-        // ];
+    //         ['start' => '09:00', 'end' => '11:30'],
+    //         ['start' => '11:30', 'end' => '12:30'],
+    //         ['start' => '11:00', 'end' => '11:30'],
+    //         ['start' => '15:30', 'end' => '16:00'],
+    //         ['start' => '17:30', 'end' => '18:00'],
+    //         // Ajoutez d'autres événements avec leurs heures de début et de fin
+    //     ];
 
         
         foreach ($rdvs as $event) {
@@ -89,16 +89,16 @@ class ReservationController extends AbstractController
             $slots = array_filter($slots, function ($slot) use ($eventStart, $eventEnd, &$removedSlots) {
                 $slotStart = strtotime($slot['start']);
                 $slotEnd = strtotime($slot['end']);
-                $isOverlapping = !($slotStart >= $eventEnd->getTimestamp() || $slotEnd <= $eventStart->getTimestamp());
-                // dd($isOverlapping);
+                $isOverlapping = ($slotStart >= $eventEnd->getTimestamp() || $slotEnd <= $eventStart->getTimestamp());
+                dd($isOverlapping);
                 
-                if (!$isOverlapping) {
+                if ($isOverlapping == false) {
                     $removedSlots[] = $slot;
                     
+               
                 }
-                dd($removedSlots);
                 
-                return !$isOverlapping;
+                return $isOverlapping;
             });
             // dd($slots);
             

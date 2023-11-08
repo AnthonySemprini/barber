@@ -688,12 +688,18 @@ div.pagination a:hover, div.pagination span:hover{
     background-color: var(--white-color);
    
 }
-
+.allDatepicker{
+    display: flex;
+    justify-content: space-around;
+    height: 20px;
+    width: 600px;
+}
 .dropdown-menu{
     display: flex;
     justify-content: center; 
 } 
 .datepicker{
+    display: flex;
     position: absolute;
     background-color: var(--white-color);
 }

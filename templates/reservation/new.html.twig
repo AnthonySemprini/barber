@@ -8,15 +8,17 @@
 	<div class="reservationPage">
 		<h1>Créé votre réservation</h1>
 			{{ include('reservation/_form.html.twig') }}
-		<div>
-			<form action="{{ path('app_reservation_new') }}" method="post">
-				<div class="datepicker input-group date">
+		<div >
+			<form action="{{ path('app_reservation_new') }}" method="post" class="allDatepicker">
+
 					<input type="text" class="form-control datepicker" name="daySelect">
+				
 					<span class="input-group-addon">
 						<i class="fa fa-calendar"></i>
 					</span>
-				</div>
+
 				<button type="submit">Envoyer</button>
+				
 			</form>
 		</div>
         {% if slots is not empty%}
@@ -35,7 +37,6 @@
         {% endif %}
 	</div>
 	
-
 
 	<script>
 		$('.datepicker').datepicker({
