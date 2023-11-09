@@ -1,14 +1,15 @@
-{# {{ form_start(form) }}
-    {{ form_row(form.nom, {
-        label: 'Nom : '
-    } )}}
-    {{ form_row(form.prenom, {
-        label: 'Prenom : '
-    } )}}
-    {{ form_row(form.numTel, {
-        label : 'Numéro de telephone : '
-    }) }}
-   
+{{ form_start(form) }}
+{{ form_label(form.nom, 'Votre nom') }}
+{{ form_widget(form.nom) }}
 
-   <button class="btn">{{ button_label|default('Réserver') }}</button>
-{{ form_end(form) }} #}
+{{ form_label(form.prenom, 'Votre prénom') }}
+{{ form_widget(form.prenom) }}
+
+{{ form_label(form.numTel, 'Numéro de téléphone') }}
+{{ form_widget(form.numTel) }}
+<!-- Le champ RDV peut être de type 'hidden' puisqu'il sera rempli par le script -->
+{{ form_widget(form.rdv, {'attr': {'type': 'hidden'}}) }}
+
+{{ form_widget(form.prestation) }}
+{{ form_row(form.submit) }}
+{{ form_end(form) }}

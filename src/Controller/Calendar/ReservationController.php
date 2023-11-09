@@ -8,6 +8,7 @@ use App\Form\ReservationType;
 use App\Repository\PrestationRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\ReservationRepository;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,7 +19,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 #[Route('/reservation')]
 class ReservationController extends AbstractController
 {
-    
+    private $security;
+
+    public function __construct(Security $security)
+    {
+        $this->security = $security;
+    }
+
     #[Route('/', name: 'app_reservation', methods: ['GET'])]
     public function index(ReservationRepository $reservationRepository): Response
     {
@@ -35,11 +42,20 @@ class ReservationController extends AbstractController
         $selectedDate = $request->request->get('daySelect');
         // dd($selectedDate);
         $availableSlots = [];
-    
+        $isoDate = null;
         if ($selectedDate) {
             // Convertissez la date  au format 'Y-m-d' 
-            $isoDate = \DateTime::createFromFormat('d/m/Y', $selectedDate)->format('Y-m-d');
-    
+            $dateTime = \DateTime::createFromFormat('d/m/Y', $selectedDate);
+
+            if (false !== $dateTime) {
+                // La date a été correctement analysée
+                $isoDate = $dateTime->format('Y-m-d');
+
+                // Récupérez les réservations pour la date sélectionnée
+            } else {
+            
+            }
+            if (null !== $isoDate) {
             // Récupérez les réservations pour la date sélectionnée
             $dql = "SELECT r
                 FROM App\Entity\Reservation r
@@ -89,19 +105,51 @@ foreach ($availableSlots as $slot) {
     $finalSlots[] = ['start' => $slot, 'end' => $slotEnd];
 }
 // dd($finalSlots);
+        $reservation = new Reservation();
 
+  // Récupérez l'utilisateur connecté
+        $user = $this->security->getUser();
+        
+        if (!$user) {
+            // Gérez le cas où aucun utilisateur n'est connecté si nécessaire
+            throw $this->createAccessDeniedException('Vous devez être connecté pour effectuer cette action.');
+            
+            return $this->redirectToRoute('app_login');
+        }
+        
+        // Associez l'utilisateur à la réservation
+        $reservation->setUser($user);
+        
+        // Créez et traitez le formulaire
+        $form = $this->createForm(ReservationType::class, $reservation);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Sauvegardez la réservation avec l'utilisateur associé
+            
+            $entityManager->persist($reservation);
+            $entityManager->flush();
+
+            // Redirigez ou affichez un message de succès comme nécessaire
+            return $this->redirectToRoute('app_reservation_success');
+        }
 
 return $this->render('reservation/new.html.twig', [
     'selectedDate' => $selectedDate,
     'rdvs' => $rdvs,
-    'availableSlots' => $finalSlots
-]);
-    }
+    'availableSlots' => $finalSlots,
+    'form' => $form->createView(),
+    ]);
+} 
     
+}
+    
+#[Route('/succes', name: 'app_reservation_success')]
+public function success(): Response
+{
+    return $this->render('reservation/success.html.twig');
+} 
 
-    
-    
- 
      
 
 

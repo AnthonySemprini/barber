@@ -1,32 +1,38 @@
 <?php
-
 namespace App\Form;
 
+use App\Entity\Prestation;
 use App\Entity\Reservation;
-
-use App\Validator\Constraints\OpenHours;
 use Symfony\Component\Form\AbstractType;
-use App\Validator\Constraints\DateNotPassed;
-use App\Validator\Constraints\NotAllowedDays;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
+
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\ColorType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
 class ReservationType extends AbstractType
 {
+    
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nom',TextType::class)
-            ->add('prenom',TextType::class)
-            ->add('numTel',NumberType::class)
+            ->add('nom', TextType::class)
+            ->add('prenom', TextType::class)
+            ->add('numTel', TextType::class) 
+            ->add('rdv', DateTimeType::class, [
+                'date_format' => 'yyyy-MM-dd HH:mm:ss',
+            ])
+            ->add('prestation', EntityType::class, [
+                'class' => Prestation::class,
+              
+            ])
+            ->add('submit', SubmitType::class, ['label' => 'Confirmer la réservation'])
             ;
     }
-      
 
     public function configureOptions(OptionsResolver $resolver): void
     {
@@ -34,5 +40,4 @@ class ReservationType extends AbstractType
             'data_class' => Reservation::class,
         ]);
     }
-
 }
