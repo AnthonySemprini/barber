@@ -22,14 +22,10 @@ class ReservationType extends AbstractType
         $builder
             ->add('nom', TextType::class)
             ->add('prenom', TextType::class)
-            ->add('numTel', TextType::class) 
-            ->add('rdv', DateTimeType::class, [
-                'date_format' => 'yyyy-MM-dd HH:mm:ss',
-            ])
-            ->add('prestation', EntityType::class, [
-                'class' => Prestation::class,
-              
-            ])
+            ->add('numTel', DateTimeType::class) 
+            ->add('rdv', HiddenType::class)
+
+          
             ->add('submit', SubmitType::class, ['label' => 'Confirmer la réservation'])
             ;
     }

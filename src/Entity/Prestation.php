@@ -25,7 +25,7 @@ class Prestation
     #[ORM\Column(type: Types::TIME_MUTABLE)]
     private ?\DateTimeInterface $duree = null;
 
-    #[ORM\OneToMany(mappedBy: 'prestation', targetEntity: reservation::class)]
+    #[ORM\OneToMany(mappedBy: 'prestation', targetEntity: Reservation::class)]
     private Collection $reservation;
 
     #[ORM\Column]

@@ -7,9 +7,8 @@
 
 	<div class="reservationPage">
 		<h1>Créé votre réservation</h1>
-			{{ include('reservation/_form.html.twig') }}
 		<div >
-			<form action="{{ path('app_reservation_new') }}" method="post" class="allDatepicker">
+			<form action="{{ path('app_reservation_new', {'id': prestationId}) }}" method="post" class="allDatepicker">
 
 					<input type="text" class="form-control datepicker" name="daySelect">
 				
@@ -40,6 +39,7 @@
 					</div>
             </div>
         </div>
+		{{ include('reservation/_form.html.twig') }}
     </div>
 {% else %}
     <div class="alert alert-warning" role="alert">
@@ -60,7 +60,7 @@
 				
 			});
 		});
-
+		
 		$('.datepicker').datepicker({
 format: "dd/mm/yyyy",
 language: "fr",
@@ -69,8 +69,11 @@ daysOfWeekHighlighted: "0,1",
 autoclose: true,
 orientation: "top auto",
 todayHighlight: true
+}).on('changeDate', function(e) {
+    // Lorsque la date change dans le datepicker, mettez à jour une variable globale
+    window.selectedDate = e.format('yyyy-mm-dd');
 });
-$('.datepicker').change(function () { // Récupérer la date sélectionnée
+$('.datepicker').change(function () { // Récup date sélectionnée
 var selectedDate = $(this).val();
 
 
@@ -84,13 +87,26 @@ $('.slot-button').on('click', function() {
     var endDate = $(this).data('end'); // récupère la valeur de l'attribut data-end
 
     //  format attendu par Symfony
-    var formattedDate = moment(startDate, "HH:mm").format("YYYY-MM-DD HH:mm:ss");
+	var formattedDate = moment(selectedDate + ' ' + startDate, "DD/MM/YYYY HH:mm").format("YYYY-MM-DD HH:mm:ss");
 
     // valeur du champ rdv
     $('input[name="reservation[rdv]"]').val(formattedDate);
 
     
-    $('#selectedSlot').text(formattedDate); // Mettez à jour un élément avec l'id `selectedSlot`
+    $('#selectedSlot').text(formattedDate); // Maj un élément avec l'id `selectedSlot`
+});
+
+$('.slot-button').on('click', function() {
+    var startTime = $(this).data('start'); // Récup heure de début du créneau
+
+    // Combine  date sélectionnée avec l'heure de début
+    var combinedDateTime = moment(window.selectedDate + ' ' + startTime, "YYYY-MM-DD HH:mm").format("YYYY-MM-DD HH:mm:ss");
+
+    // Maj  valeur de l'input correspondant à 'reservation[rdv]'
+    $('input[name="reservation[rdv]"]').val(combinedDateTime);
+
+    // Affiche créneau sélectionné
+    $('#selectedSlot').text(combinedDateTime); 
 });
 	
 	

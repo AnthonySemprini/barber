@@ -1,4 +1,5 @@
 {{ form_start(form) }}
+
 {{ form_label(form.nom, 'Votre nom') }}
 {{ form_widget(form.nom) }}
 
@@ -7,9 +8,9 @@
 
 {{ form_label(form.numTel, 'Numéro de téléphone') }}
 {{ form_widget(form.numTel) }}
-<!-- Le champ RDV peut être de type 'hidden' puisqu'il sera rempli par le script -->
-{{ form_widget(form.rdv, {'attr': {'type': 'hidden'}}) }}
 
-{{ form_widget(form.prestation) }}
-{{ form_row(form.submit) }}
+<input type="hidden" name="reservation[rdv]" value="">
+
+{{ form_rest(form) }} 
+
 {{ form_end(form) }}

@@ -36,26 +36,22 @@ class ReservationController extends AbstractController
     }
     
     
-    #[Route('/new', name: 'app_reservation_new', methods: ['GET', 'POST'])]
-    public function new(EntityManagerInterface $entityManager, PrestationRepository $prestationRepository, SessionInterface $session, ReservationRepository $reservationRepository, Request $request): Response
+    #[Route('/new/{id}', name: 'app_reservation_new', methods: ['GET', 'POST'])]
+    public function new($id, EntityManagerInterface $entityManager, PrestationRepository $prestationRepository, SessionInterface $session, ReservationRepository $reservationRepository, Request $request): Response
     {
-        $selectedDate = $request->request->get('daySelect');
-        // dd($selectedDate);
+        //! Partie qui recup la date selectionner et qui renvoi les crenaux dispo de la date en question
+
+        $selectedDate = $request->request->get('daySelect');//recup la date via entre dans datePicker
+     
         $availableSlots = [];
         $isoDate = null;
+
         if ($selectedDate) {
             // Convertissez la date  au format 'Y-m-d' 
             $dateTime = \DateTime::createFromFormat('d/m/Y', $selectedDate);
+            // dd($dateTime);
+            $isoDate = $dateTime->format('Y-m-d');
 
-            if (false !== $dateTime) {
-                // La date a été correctement analysée
-                $isoDate = $dateTime->format('Y-m-d');
-
-                // Récupérez les réservations pour la date sélectionnée
-            } else {
-            
-            }
-            if (null !== $isoDate) {
             // Récupérez les réservations pour la date sélectionnée
             $dql = "SELECT r
                 FROM App\Entity\Reservation r
@@ -67,71 +63,94 @@ class ReservationController extends AbstractController
             $rdvs = []; 
         }
    
+        
+        
         // Créez un tableau pour stocker les créneaux d'une journée
         $startTime = strtotime('08:00');
         $endTime = strtotime('18:00');
         $interval = 30 * 60; // 30 minutes en secondes
-    
+        $slots = [];
+        while ($startTime < $endTime) {
+            $slotStart = date('H:i', $startTime);
+            $slots[] = $slotStart; 
+            $startTime += $interval;
+        }
+        $availableSlots = $slots;
 
-// Créez un tableau avec tous les créneaux horaires de la journée
-$slots = [];
-while ($startTime < $endTime) {
-    $slotStart = date('H:i', $startTime);
-    $slots[] = $slotStart; // on stocke seulement l'heure de début, l'heure de fin est calculée
-    $startTime += $interval;
-}
+        foreach ($rdvs as $event) {
+            // Convertissez le datetime de l'événement en une chaîne de créneau horaire pour la comparaison
+            $eventStartString = $event->getRdv()->format('H:i');
+            $eventEnd = clone $event->getRdv();
+            $eventEnd->modify('+30 minutes'); //   RDV dure 30 minutes
+            $eventEndString = $eventEnd->format('H:i');
+
+            // Filtrez $availableSlots pour enlever les créneaux occupés par cet événement
+            $availableSlots = array_filter($availableSlots, function ($slot) use ($eventStartString, $eventEndString) {
+                $slotEnd = \DateTime::createFromFormat('H:i', $slot)->modify('+30 minutes')->format('H:i');
+                return $slot != $eventStartString && $slotEnd != $eventEndString;
+            });
+        }
+
+        // Transforme $availableSlots en un tableau de plages horaires avec début et fin
+        $finalSlots = [];
+        foreach ($availableSlots as $slot) {
+            $slotEnd = \DateTime::createFromFormat('H:i', $slot)->modify('+30 minutes')->format('H:i');
+            $finalSlots[] = ['start' => $slot, 'end' => $slotEnd];
+        }
+        //! Fin de la partie qui gere la recup de date et crenaux dispo
 
 
-$availableSlots = $slots;
 
-foreach ($rdvs as $event) {
-    // Convertissez le datetime de l'événement en une chaîne de créneau horaire pour la comparaison
-    $eventStartString = $event->getRdv()->format('H:i');
-    $eventEnd = clone $event->getRdv();
-    $eventEnd->modify('+30 minutes'); //   RDV dure 30 minutes
-    $eventEndString = $eventEnd->format('H:i');
+        //! Récupérez la prestation et user sans passe par le formulaire et envoie en bdd
 
-    // Filtrez $availableSlots pour enlever les créneaux occupés par cet événement
-    $availableSlots = array_filter($availableSlots, function ($slot) use ($eventStartString, $eventEndString) {
-        $slotEnd = \DateTime::createFromFormat('H:i', $slot)->modify('+30 minutes')->format('H:i');
-        return $slot != $eventStartString && $slotEnd != $eventEndString;
-    });
-}
-
-// Transformez $availableSlots en un tableau de plages horaires avec début et fin
-$finalSlots = [];
-foreach ($availableSlots as $slot) {
-    $slotEnd = \DateTime::createFromFormat('H:i', $slot)->modify('+30 minutes')->format('H:i');
-    $finalSlots[] = ['start' => $slot, 'end' => $slotEnd];
-}
-// dd($finalSlots);
+        $prestation = $prestationRepository->find($id);
+        if (!$prestation) {
+            // Gérer l'erreur si la prestation n'existe pas
+            throw $this->createNotFoundException('La prestation demandée n\'existe pas.');
+        }
+        // dd($finalSlots);
         $reservation = new Reservation();
-
-  // Récupérez l'utilisateur connecté
+        $reservation->setPrestation($prestation);
+        // Récupérez l'utilisateur connecté
         $user = $this->security->getUser();
         
         if (!$user) {
-            // Gérez le cas où aucun utilisateur n'est connecté si nécessaire
+            // aucun utilisateur n'est connecté 
             throw $this->createAccessDeniedException('Vous devez être connecté pour effectuer cette action.');
             
             return $this->redirectToRoute('app_login');
         }
-        
-        // Associez l'utilisateur à la réservation
+        // set l'utilisateur à la réservation
         $reservation->setUser($user);
-        
-        // Créez et traitez le formulaire
+        //! Fin
+
+        //! Partie qui recup la date pour l'envoi en bdd 
+
         $form = $this->createForm(ReservationType::class, $reservation);
+        $form->remove('prestation');
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // Sauvegardez la réservation avec l'utilisateur associé
-            
-            $entityManager->persist($reservation);
-            $entityManager->flush();
+            dd($request->request->all());
+            $rdv = $request->request->get('rdv');
 
-            // Redirigez ou affichez un message de succès comme nécessaire
-            return $this->redirectToRoute('app_reservation_success');
+            if ($rdv) {
+                try {
+                    // Convertissez 'rdv' en DateTime 
+                    $reservation->setRdv(new \DateTime($rdv));
+                } catch (\Exception $e) {
+                    //  conversion échoue envoi erreur
+                    return $this->json(['error' => 'Format de date invalide.'], Response::HTTP_BAD_REQUEST);
+                }
+                
+                $entityManager->persist($reservation);
+                $entityManager->flush();
+
+                return $this->redirectToRoute('app_reservation_success');
+
+            } else {
+                return $this->json(['error' => 'La valeur pour le rendez-vous est manquante.'], Response::HTTP_BAD_REQUEST);
+            }
         }
 
 return $this->render('reservation/new.html.twig', [
@@ -139,10 +158,10 @@ return $this->render('reservation/new.html.twig', [
     'rdvs' => $rdvs,
     'availableSlots' => $finalSlots,
     'form' => $form->createView(),
+    'prestationId' => $id,
     ]);
-} 
-    
-}
+}  
+
     
 #[Route('/succes', name: 'app_reservation_success')]
 public function success(): Response
