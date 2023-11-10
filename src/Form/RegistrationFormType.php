@@ -5,15 +5,16 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class RegistrationFormType extends AbstractType
 {
@@ -38,6 +39,20 @@ class RegistrationFormType extends AbstractType
     'required' => true,
     'first_options'  => ['label' => 'Password'],
     'second_options' => ['label' => 'Repeat Password'],
+    'constraints' => [
+        new NotBlank([
+            'message' => 'Veuillez saisir un mot de passe',
+        ]),
+        new Length([
+        'min' => 12,
+        'max' => 999,
+        'minMessage' => 'Votre mot de passe dois contnir au moins {{ limit }} carctéres',
+        ]),
+        new Regex([
+            'pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{12,}$/',
+            'message' => 'Votre mot de passe dois contenir au moins une majuscule, une minuscule, un nombre et un caractére spéciale.'
+        ])
+    ]
                     ])
         ;
     }
