@@ -1,5 +1,4 @@
 {{ form_start(form) }}
-
 {{ form_label(form.nom, 'Votre nom') }}
 {{ form_widget(form.nom) }}
 
@@ -9,8 +8,9 @@
 {{ form_label(form.numTel, 'Numéro de téléphone') }}
 {{ form_widget(form.numTel) }}
 
-<input type="hidden" name="reservation[rdv]" value="">
 
-{{ form_rest(form) }} 
 
+
+
+{{ form_row(form.submit) }}
 {{ form_end(form) }}

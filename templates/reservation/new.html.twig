@@ -30,6 +30,7 @@
                 <div class="list-group" id="crenauxDispo">
 					<div id="selectedSlot" class="selected-slot-display">
 						<p>Aucun créneau sélectionné</p>
+						
 					</div>
 					{% for slot in availableSlots %}
 						<button type="button" class="list-group-item list-group-item-action slot-button" data-start="{{ slot.start }}" data-end="{{ slot.end }}">
@@ -39,7 +40,7 @@
 					</div>
             </div>
         </div>
-		{{ include('reservation/_form.html.twig') }}
+		
     </div>
 {% else %}
     <div class="alert alert-warning" role="alert">
@@ -73,10 +74,10 @@ todayHighlight: true
     // Lorsque la date change dans le datepicker, mettez à jour une variable globale
     window.selectedDate = e.format('yyyy-mm-dd');
 });
-$('.datepicker').change(function () { // Récup date sélectionnée
+$('.datepicker').change(function () { // Récupérer la date sélectionnée
 var selectedDate = $(this).val();
 
-
+<a href="{{path('app_reservation_valid', {'id': prestationId}) }}">Valider</a>
 
 });
 
@@ -87,7 +88,7 @@ $('.slot-button').on('click', function() {
     var endDate = $(this).data('end'); // récupère la valeur de l'attribut data-end
 
     //  format attendu par Symfony
-	var formattedDate = moment(selectedDate + ' ' + startDate, "DD/MM/YYYY HH:mm").format("YYYY-MM-DD HH:mm:ss");
+    var formattedDate = moment(startDate, "HH:mm").format("YYYY-MM-DD HH:mm:ss");
 
     // valeur du champ rdv
     $('input[name="reservation[rdv]"]').val(formattedDate);
@@ -102,10 +103,10 @@ $('.slot-button').on('click', function() {
     // Combine  date sélectionnée avec l'heure de début
     var combinedDateTime = moment(window.selectedDate + ' ' + startTime, "YYYY-MM-DD HH:mm").format("YYYY-MM-DD HH:mm:ss");
 
-    // Maj  valeur de l'input correspondant à 'reservation[rdv]'
+    // Met à jour la valeur de l'input correspondant à 'reservation[rdv]'
     $('input[name="reservation[rdv]"]').val(combinedDateTime);
 
-    // Affiche créneau sélectionné
+    // Affiche le créneau sélectionné
     $('#selectedSlot').text(combinedDateTime); 
 });
 	

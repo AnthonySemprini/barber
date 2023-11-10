@@ -22,7 +22,7 @@ class ReservationType extends AbstractType
         $builder
             ->add('nom', TextType::class)
             ->add('prenom', TextType::class)
-            ->add('numTel', DateTimeType::class) 
+            ->add('numTel', TextType::class) 
             ->add('rdv', HiddenType::class)
 
           
