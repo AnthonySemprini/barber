@@ -23,8 +23,7 @@ class ReservationType extends AbstractType
             ->add('nom', TextType::class)
             ->add('prenom', TextType::class)
             ->add('numTel', TextType::class) 
-            ->add('rdv', HiddenType::class)
-
+            ->add('rdv', DateTimeType::class)
           
             ->add('submit', SubmitType::class, ['label' => 'Confirmer la réservation'])
             ;

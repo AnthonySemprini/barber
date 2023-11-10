@@ -98,7 +98,57 @@ class ReservationController extends AbstractController
             $finalSlots[] = ['start' => $slot, 'end' => $slotEnd];
         }
         //! Fin de la partie qui gere la recup de date et crenaux dispo
+              //! Récupérez la prestation et user sans passe par le formulaire et envoie en bdd
 
+              $prestation = $prestationRepository->find($id);
+              if (!$prestation) {
+                  // Gérer l'erreur si la prestation n'existe pas
+                  throw $this->createNotFoundException('La prestation demandée n\'existe pas.');
+              }
+              // dd($finalSlots);
+              $reservation = new Reservation();
+              $reservation->setPrestation($prestation);
+              // Récupérez l'utilisateur connecté
+              $user = $this->security->getUser();
+              
+              if (!$user) {
+                  // aucun utilisateur n'est connecté 
+                  throw $this->createAccessDeniedException('Vous devez être connecté pour effectuer cette action.');
+                  
+                  return $this->redirectToRoute('app_login');
+              }
+              // set l'utilisateur à la réservation
+              $reservation->setUser($user);
+              //! Fin
+  
+      $form = $this->createForm(ReservationType::class, $reservation);
+      $form->remove('prestation');
+      $form->handleRequest($request);
+      // dd($form);
+  
+      if ($form->isSubmitted() && $form->isValid()) {
+          // dd($request->request->all());
+          $rdv = $request->request->get('rdv');
+  // dd($rdv);
+          if ($rdv) {
+              try {
+                  // Convertissez 'rdv' en DateTime 
+                  $reservation->setRdv(new \DateTime($rdv));
+              } catch (\Exception $e) {
+                  //  conversion échoue envoi erreur
+                  return $this->json(['error' => 'Format de date invalide.'], Response::HTTP_BAD_REQUEST);
+              }
+              
+              $entityManager->persist($reservation);
+              $entityManager->flush();
+  
+              return $this->redirectToRoute('app_reservation_valid');
+  
+          }
+           else {
+              return $this->json(['error' => 'La valeur pour le rendez-vous est manquante.'], Response::HTTP_BAD_REQUEST);
+          }
+      }
 
        
 
@@ -106,71 +156,18 @@ return $this->render('reservation/new.html.twig', [
     'selectedDate' => $selectedDate,
     'rdvs' => $rdvs,
     'availableSlots' => $finalSlots,
+    'form' => $form->createView(),
     'prestationId' => $id,
     ]);
 }  
 
    
-#[Route('/valid/{id}', name: 'app_reservation_valid')]
-public function success($id, EntityManagerInterface $entityManager, PrestationRepository $prestationRepository, SessionInterface $session, ReservationRepository $reservationRepository, Request $request): Response
+#[Route('/valid', name: 'app_reservation_valid')]
+public function success(): Response
 {
-            //! Récupérez la prestation et user sans passe par le formulaire et envoie en bdd
+      
 
-            $prestation = $prestationRepository->find($id);
-            if (!$prestation) {
-                // Gérer l'erreur si la prestation n'existe pas
-                throw $this->createNotFoundException('La prestation demandée n\'existe pas.');
-            }
-            // dd($finalSlots);
-            $reservation = new Reservation();
-            $reservation->setPrestation($prestation);
-            // Récupérez l'utilisateur connecté
-            $user = $this->security->getUser();
-            
-            if (!$user) {
-                // aucun utilisateur n'est connecté 
-                throw $this->createAccessDeniedException('Vous devez être connecté pour effectuer cette action.');
-                
-                return $this->redirectToRoute('app_login');
-            }
-            // set l'utilisateur à la réservation
-            $reservation->setUser($user);
-            //! Fin
-
-    $form = $this->createForm(ReservationType::class, $reservation);
-    $form->remove('prestation');
-    $form->handleRequest($request);
-    // dd($form);
-
-    if ($form->isSubmitted() && $form->isValid()) {
-        // dd($request->request->all());
-        $rdv = $request->request->get('rdv');
-// dd($rdv);
-        if ($rdv) {
-            try {
-                // Convertissez 'rdv' en DateTime 
-                $reservation->setRdv(new \DateTime($rdv));
-            } catch (\Exception $e) {
-                //  conversion échoue envoi erreur
-                return $this->json(['error' => 'Format de date invalide.'], Response::HTTP_BAD_REQUEST);
-            }
-            
-            $entityManager->persist($reservation);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('app_reservation_success');
-
-        }
-         else {
-            return $this->json(['error' => 'La valeur pour le rendez-vous est manquante.'], Response::HTTP_BAD_REQUEST);
-        }
-    }
-
-    return $this->render('reservation/validResa.html.twig', [
-        'rdvs' => $rdvs,
-        'form' => $form->createView(),
-        
-        ]);
+    return $this->render('reservation/validResa.html.twig');
 } 
 
      
