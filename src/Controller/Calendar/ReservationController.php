@@ -124,12 +124,12 @@ class ReservationController extends AbstractController
       $form = $this->createForm(ReservationType::class, $reservation);
       $form->remove('prestation');
       $form->handleRequest($request);
-      // dd($form);
+    //   dd($form);
   
       if ($form->isSubmitted() && $form->isValid()) {
           // dd($request->request->all());
           $rdv = $request->request->get('rdv');
-  // dd($rdv);
+//   dd($rdv);
           if ($rdv) {
               try {
                   // Convertissez 'rdv' en DateTime 
@@ -141,7 +141,15 @@ class ReservationController extends AbstractController
               
               $entityManager->persist($reservation);
               $entityManager->flush();
-  
+            //   dd($reservation->getRdv());
+              
+              $request->attributes->set('reservationDetails', [
+                  'pseudo' => $reservation->getUser()->getPseudo(),
+                      'prestation' => $reservation->getPrestation()->getNom(),
+                    //   'rdv' => $reservation->getRdv()->format('Y-m-d H:i'), // Assurez-vous que cette ligne est exécutée
+                      'prix' => $reservation->getPrestation()->getPrix()
+                      // autres détails...
+                  ]);
               return $this->redirectToRoute('app_reservation_valid');
   
           }
@@ -150,9 +158,16 @@ class ReservationController extends AbstractController
           }
       }
 
-       
+    //   $session->set('reservationDetails', [
+    //     'pseudo' => $reservation->getUser()->getPseudo(),
+    // ]);
+    //   dd($session);
+    
 
+        
+  
 return $this->render('reservation/new.html.twig', [
+    
     'selectedDate' => $selectedDate,
     'rdvs' => $rdvs,
     'availableSlots' => $finalSlots,
@@ -162,16 +177,34 @@ return $this->render('reservation/new.html.twig', [
 }  
 
    
-#[Route('/valid', name: 'app_reservation_valid')]
-public function success(): Response
-{
-      
+    #[Route('/valid', name: 'app_reservation_valid')]
+    public function success(): Response
+    {
+        
 
-    return $this->render('reservation/validResa.html.twig');
-} 
+        return $this->render('reservation/validResa.html.twig');
+    } 
 
-     
+        
+    #[Route('/clean', name: 'app_reservation_clean', methods: ['GET'])]
+    public function cleanOldReservations(EntityManagerInterface $entityManager): Response
+    {
 
+    $today = new \DateTime();
+
+    // Créer la requête DQL pour sélectionner les réservations antérieures à aujourd'hui
+    $dql = "DELETE FROM App\Entity\Reservation r WHERE r.rdv < :today";
+    $query = $entityManager->createQuery($dql);
+    $query->setParameter('today', $today);
+
+    // Exécuter la requête
+    $numDeleted = $query->execute();
+
+    // Vous pouvez retourner une réponse indiquant le nombre de réservations supprimées
+    return new Response("Nombre de réservations supprimées : " . $numDeleted);
+
+
+    }
 
     #[Route('/{id}', name: 'app_reservation_show', methods: ['GET'])]
     public function show(Reservation $reservation): Response

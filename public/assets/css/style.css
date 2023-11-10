@@ -96,7 +96,7 @@ a{
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 99999;
+    z-index: 999999;
 }
 .navbar{
     display: flex;
@@ -242,7 +242,7 @@ div.banniere img{
 .blackfilter{
     height: 80vh;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.407);
+    background-color: rgba(0, 0, 0, 0.551);
     position: absolute;
     z-index: 1;
     left: 0;
@@ -269,10 +269,11 @@ h2.star{
     gap: 50px;
 }
 div.cardPresta a{
-    color: var(--white-color);
+    color: var(--blue-color);
     font-size: 1.563rem;
     font-weight: 700;
 }
+
 div.cardPresta a:hover{
     text-decoration: underline var(--red-color);
 }
@@ -287,7 +288,7 @@ div.cardPresta{
     height: auto;
     max-width: 27vw;
     padding: 15px;
-    background-color:var(--gray-color);
+    background-color:rgba(128, 128, 128, 0);
     -webkit-box-shadow: -6px 4px 13px 3px rgba(127, 106, 106, 0.58); 
     box-shadow: -6px 4px 13px 3px rgba(0,0,0,0.58);
     border-radius: 10px;
@@ -307,6 +308,12 @@ div.cardPresta img:hover{
     -ms-transform: scale(1.1); /* IE 9 */
 -webkit-transform: scale(1.1); /* Safari 3-8 */
 
+}
+div.cardPresta a.buttonSmall{
+    color: var(--white-color);
+}
+div.cardPresta a.buttonSmall:hover{
+    color: var(--blue-color);
 }
 .buttonSmall {
 	box-shadow: -6px 6px 8px -1px var(--blue-color);
@@ -703,6 +710,26 @@ div.pagination a:hover, div.pagination span:hover{
     position: absolute;
     background-color: var(--white-color);
 }
+.validPage{
+    background-size: cover; /* L'image prendra 100% de l'espace */
+    background-position: center; /* Centre la position de l'image */
+    background-repeat: no-repeat; /* Empêche l'image de se répéter en fonction de la taille d'écran */
+    background-image:url(/assets/img/outilsBarber.jpg);
+    height: 65vh;
+    z-index: 1;
+}
+.texteValid{
+    padding: 3rem;
+    color: var(--white-color);
+    z-index: 99999;
+    position: relative;
+}
+.h1Valid{
+    text-align: center;
+    color: var(--white-color);
+    z-index: 99999;
+    position: relative;
+}
 /********** Footer **********/
 
 .footer{
@@ -712,6 +739,8 @@ div.pagination a:hover, div.pagination span:hover{
     justify-content: space-around;
     align-items: center;
     height: 38vh;
+    position: relative;
+    z-index: 10;
 }
 .linkFooter{
         display: flex;
