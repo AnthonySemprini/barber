@@ -5,34 +5,36 @@
 {% block body %}
 
 <section class="one">
-<div>
     <div class="blackfilter"></div>
-    <h1 class="titleHome">The Barber Shop</h1>
-    {% if app.user %}
-    <h2 class="welcome" >Bienvenue {{app.user.pseudo}}</h2>
-    {% else %}
-    <div>
-        <h2 class="welcome">Bienvenue</h2>
-         <p class="textHome">Vous n'êtes pas connécté</p>
-    </div>
+    <div class="divOne">
+        <h1 class="titleHome">The Barber Shop</h1>
+        {% if app.user %}
+        <h2 class="welcome">Bienvenue {{app.user.pseudo}}</h2>
+        {% else %}
+        <div>
+            <h2 class="welcome">Bienvenue</h2>
+            <p class="textHome">Vous n'êtes pas connécté</p>
+        </div>
         {% endif %}
-    <p class="textHome">Plongez dans l'univers de la <strong>beauté masculine</strong>, où chaque coupe est une œuvre d'art. Notre équipe de maîtres <strong>barbiers et coiffeurs</strong> est dédiée à vous offrir un style qui parle de vous. Laissez-nous sublimer votre image et révéler la meilleure version de vous-même.</p>
-</div>
+        <p class="textHome">Plongez dans l'univers de la <strong>beauté masculine</strong>, où chaque coupe est une
+            œuvre d'art. Notre équipe de maîtres <strong>barbiers et coiffeurs</strong> est dédiée à vous offrir un
+            style qui parle de vous. Laissez-nous sublimer votre image et révéler la meilleure version de vous-même.</p>
+    </div>
 </section>
 
 <section class="two">
     <h2 class="star">Les prestations star</h2>
-     <div class="cardStar">
-    {% for prestation in prestations %}
-    <div class="cardPresta">
-        <a href="#" >{{prestation.nom}}</a>
-        <p>Prix : {{prestation.prix }}€</p>
-        <p>Durée : {{prestation.duree|date('H:i')}}</p>
-        <a href="#" class="buttonSmall" >Reserver</a>
-    </div>      
-    {% endfor %}
+    <div class="cardStar">
+        {% for prestation in prestations %}
+        <div class="cardPresta">
+            <a href="#">{{prestation.nom}}</a>
+            <p>Prix : {{prestation.prix }}€</p>
+            <p>Durée : {{prestation.duree|date('H:i')}}</p>
+            <a href="#" class="buttonSmall">Reserver</a>
+        </div>
+        {% endfor %}
     </div>
-        <a href="#" class="button" >Voir les autres prestation</a>
+    <a href="#" class="button">Voir les autres prestation</a>
 </section>
 
 <section class="three">
@@ -41,36 +43,60 @@
         <img src="assets/img/blue/col18.png" alt="lampe barbier">
         <img src="assets/img/blue/col13.png" alt="homme barbu">
     </div>
-    <h2 class="star" >Qui sommes nous ?</h2>
-    <p class="qui">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat voluptatum nesciunt laudantium. Fugiat quia magni a omnis odio saepe optio assumenda. Optio incidunt, magnam eius tempora culpa dignissimos numquam deleniti accusantium quia facilis et ipsum similique doloremque distinctio nostrum voluptatem non debitis unde sit perferendis! Molestias consequuntur veritatis adipis ci quod, nam hic deserunt aliquam quae minima voluptatibus mollitia quisquam animi pariatur placeat eligendi perspiciatis optio culpa modi voluptatem. Accusamus et iure aspernatur dicta, tempora excepturi illum quis velit itaque aliquam, repellat totam ratione! Quae id molestias eligendi consequatur magnam? In molestiae quidem iste laudantium assumenda enim sapiente nostrum odit distinctio. Qui voluptas fuga vero ipsam consectetur explicabo, expedita aut optio magnam ducimus fugiat perspiciatis, illum quae tenetur quia placeat, dicta unde nulla minus? Eum, provident officiis repudiandae, reprehenderit, velit ratione quibusdam nam voluptatum nobis nemo nisi. Et doloremque animi repellendus accusantium soluta officia necessitatibus corrupti, deleniti magni. Quidem corrupti explicabo animi et nemo </p>
+    <h2 class="star">Qui sommes nous ?</h2>
+    <p class="qui">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat voluptatum nesciunt laudantium.
+        Fugiat quia magni a omnis odio saepe optio assumenda. Optio incidunt, magnam eius tempora culpa dignissimos
+        numquam deleniti accusantium quia facilis et ipsum similique doloremque distinctio nostrum voluptatem non
+        debitis unde sit perferendis! Molestias consequuntur veritatis adipis ci quod, nam hic deserunt aliquam quae
+        minima voluptatibus mollitia quisquam animi pariatur placeat eligendi perspiciatis optio culpa modi voluptatem.
+        Accusamus et iure aspernatur dicta, tempora excepturi illum quis velit itaque aliquam, repellat totam ratione!
+        Quae id molestias eligendi consequatur magnam? In molestiae quidem iste laudantium assumenda enim sapiente
+        nostrum odit distinctio. Qui voluptas fuga vero ipsam consectetur explicabo, expedita aut optio magnam ducimus
+        fugiat perspiciatis, illum quae tenetur quia placeat, dicta unde nulla minus? Eum, provident officiis
+        repudiandae, reprehenderit, velit ratione quibusdam nam voluptatum nobis nemo nisi. Et doloremque animi
+        repellendus accusantium soluta officia necessitatibus corrupti, deleniti magni. Quidem corrupti explicabo animi
+        et nemo </p>
 </section>
 
 <section class="four">
-   <h2 class="star">Les nouveautés</h2>
+    <h2 class="star">Les nouveautés</h2>
     <div class="cardStar">
-    {% for produit in produits %}
-    <div class="prodAll">
-        <div class="cardProd">
-            <a href="{{path('app_detail_produit', {'id': produit.id})}}"><img src="assets/img/{{produit.image}}" alt="img du produit"></a>
-            <p>{{produit}} {{produit.prix}}€</p>
-            <a href="{{path('app_panier_add', {'id': produit.id})}}" class="buttonSmall">Ajouter</a>
+        {% for produit in produits %}
+        <div class="prodAll">
+            <div class="cardProd">
+                <a href="{{path('app_detail_produit', {'id': produit.id})}}"><img src="assets/img/{{produit.image}}"
+                        alt="img du produit"></a>
+                <p>{{produit}} {{produit.prix}}€</p>
+                <a href="{{path('app_panier_add', {'id': produit.id})}}" class="buttonSmall">Ajouter</a>
+            </div>
         </div>
+        {% endfor %}
     </div>
-    {% endfor %}
-        </div>
-        <a href="#" class="button" >Voir les autres prestation</a> 
+    <a href="#" class="button">Voir les autres prestation</a>
 </section>
 
 <section class="five">
     <div class="blackfilter"></div>
     <h2>Notre <strong>salon de coiffeur barbier</strong></h2>
-    <p class="textHome">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat voluptatum nesciunt laudantium. Fugiat quia magni a omnis odio saepe optio assumenda. Optio incidunt, magnam eius tempora culpa dignissimos numquam deleniti accusantium quia facilis et ipsum similique doloremque distinctio nostrum voluptatem non debitis unde sit perferendis! Molestias consequuntur veritatis adipisci quod, nam hic deserunt aliquam quae minima voluptatibus mollitia quisquam animi pariatur placeat eligendi perspiciatis optio culpa modi voluptatem. Accusamus et iure aspernatur dicta, tempora excepturi illum quis velit itaque aliquam, repellat totam ratione! Quae id molestias eligendi consequatur magnam? In molestiae quidem iste laudantium assumenda enim sapiente nostrum odit distinctio. Qui voluptas fuga vero ipsam consectetur explicabo, expedita aut optio magnam ducimus fugiat perspiciatis, illum quae tenetur quia placeat, dicta unde nulla minus? Eum, provident officiis repudiandae, reprehenderit, velit ratione quibusdam nam voluptatum nobis nemo nisi. Et doloremque animi repellendus accusantium soluta officia necessitatibus corrupti, deleniti magni. Quidem corrupti explicabo animi et nemo</p>
+    <p class="textHome">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat voluptatum nesciunt laudantium.
+        Fugiat quia magni a omnis odio saepe optio assumenda. Optio incidunt, magnam eius tempora culpa dignissimos
+        numquam deleniti accusantium quia facilis et ipsum similique doloremque distinctio nostrum voluptatem non
+        debitis unde sit perferendis! Molestias consequuntur veritatis adipisci quod, nam hic deserunt aliquam quae
+        minima voluptatibus mollitia quisquam animi pariatur placeat eligendi perspiciatis optio culpa modi voluptatem.
+        Accusamus et iure aspernatur dicta, tempora excepturi illum quis velit itaque aliquam, repellat totam ratione!
+        Quae id molestias eligendi consequatur magnam? In molestiae quidem iste laudantium assumenda enim sapiente
+        nostrum odit distinctio. Qui voluptas fuga vero ipsam consectetur explicabo, expedita aut optio magnam ducimus
+        fugiat perspiciatis, illum quae tenetur quia placeat, dicta unde nulla minus? Eum, provident officiis
+        repudiandae, reprehenderit, velit ratione quibusdam nam voluptatum nobis nemo nisi. Et doloremque animi
+        repellendus accusantium soluta officia necessitatibus corrupti, deleniti magni. Quidem corrupti explicabo animi
+        et nemo</p>
 </section>
 
 <section class="six">
     <h2 class="star">Nous trouver</h2>
 
- <div class="googlemapssearch map" data-search="place_id:ChIJCV_HWCzIlkcRocW--RwRZsk" data-api-key="AIzaSyCbjfSlC62hIMv6VluxtSxHsgpOB7_mLPY" width="100%" height="100%" ></div>
+    <div class="googlemapssearch map" data-search="place_id:ChIJCV_HWCzIlkcRocW--RwRZsk"
+        data-api-key="AIzaSyCbjfSlC62hIMv6VluxtSxHsgpOB7_mLPY" width="100%" height="100%"></div>
 </section>
 
 <section class="seven">
