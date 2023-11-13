@@ -1,21 +1,25 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Tarif{% endblock %}
-{% block head %}
-  <meta name="description" content="Découvrez nos prestations de pointe en taille de barbe et coiffure. Nos experts en coiffure vous offrent des services de coupe et de stylisme de barbe de qualité supérieure, adaptés à vos besoins. Obtenez la coiffure parfaite et la barbe élégante dont vous rêvez. Réservez votre rendez-vous dès aujourd'hui pour une expérience de coiffure exceptionnelle." />
-{% endblock %}
-{% block body %}
 
-<h1>Liste des préstations</h1>
-<div class="cardAll">
+{% block head %}
+<meta name="description"
+  content="Découvrez nos prestations de pointe en taille de barbe et coiffure. Nos experts en coiffure vous offrent des services de coupe et de stylisme de barbe de qualité supérieure, adaptés à vos besoins. Obtenez la coiffure parfaite et la barbe élégante dont vous rêvez. Réservez votre rendez-vous dès aujourd'hui pour une expérience de coiffure exceptionnelle." />
+{% endblock %}
+
+{% block body %}
+<div class="divPresta">
+  <h1>Liste des préstations</h1>
+  <div class="cardAll">
     {% for prestation in pagination %}
     <div class="cardPresta">
-        <a href="#">{{prestation.nom}}</a>
-        <p>Prix : {{prestation.prix }}€</p>
-        <p>Durée : {{prestation.duree|date('H:i')}}</p>
-        <a href="{{path('app_reservation_new', {'id': prestation.id})}}" class="buttonSmall">Réserver</a>
+      <a href="#">{{prestation.nom}}</a>
+      <p>Prix : {{prestation.prix }}€</p>
+      <p>Durée : {{prestation.duree|date('H:i')}}</p>
+      <a href="{{path('app_reservation_new', {'id': prestation.id})}}" class="buttonSmall">Réserver</a>
     </div>
     {% endfor %}
+  </div>
+  {{ knp_pagination_render(pagination)}}
 </div>
-{{ knp_pagination_render(pagination)}}
 {% endblock %}

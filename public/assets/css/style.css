@@ -91,11 +91,11 @@ a{
 .allNavBar{
     display: flex;
     flex-direction: column;
-    position: sticky; 
+    position: fixed; 
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 999999;
+    z-index: 999;
 }
 .navbar{
     display: flex;
@@ -202,10 +202,12 @@ div.profil a:hover{
 .one{
     height: 80vh;
     width: 100%;
+ 
     background-size: cover; /* L'image prendra 100% de l'espace */
     background-position: center; /* Centre la position de l'image */
     background-repeat: no-repeat; /* Empêche l'image de se répéter en fonction de la taille d'écran */
     background-image:url(/assets/img/haircut.jpg);
+    z-index: 1;
 }
 .divOne{
     display: flex;
@@ -617,7 +619,13 @@ div.socialMedia li{
     color: black;
 }
 /********** SHOP **********/
-
+.shop{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    gap: 2rem;
+}
 .prodAll{
     display: flex;
     flex-wrap: wrap;
@@ -684,6 +692,15 @@ a.textBtnP{
     font-size: 16px;
 }
 /********** Prestation **********/
+div.divPresta{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+    padding: 2rem;
+    gap: 2rem;
+}
 div.cardAll{
     display: flex;
     flex-direction: row;
@@ -691,8 +708,8 @@ div.cardAll{
     justify-content: space-around;
     align-content: space-around;
     gap: 2rem;
-    min-width: 100%;
-    height: 80vh;
+    width: 100%;
+    height: auto;
 }
 div.pagination{
     padding: 2%;
@@ -755,17 +772,22 @@ div.pagination a:hover, div.pagination span:hover{
 /********** Footer **********/
 
 .footer{
+    bottom: 0;
     background-color:var(--gray-color);
+    display: fixed;
+    width: 100%;
+    height: auto;
+    position: relative;
+    z-index: 10;
+}
+div.divFooter{
     display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: space-around;
     flex-wrap: wrap;
-    width: 100%;
-    height: auto;
+    flex-direction: row;
     gap: 2rem;
-    position: relative;
-    z-index: 10;
+    padding: 2rem;
 }
 .linkFooter{
         display: flex;
@@ -774,6 +796,7 @@ div.pagination a:hover, div.pagination span:hover{
     }
 .linkFooter a{
     color: var(--white-color);
+    text-align: center;
 }
 .linkFooter a:hover{
     text-decoration: underline 3px var(--red-color);
@@ -796,10 +819,12 @@ div.iconFooter img{
     margin-bottom: 1.5rem;
     color: var(--blue-color);
     text-decoration: underline var(--red-color);
+    text-align: center;
 }
 .contactFooter li{
     color: var(--white-color);
     line-height: 1.5rem;
+    text-align: center;
 }
 .contactFooter{
     display: flex;
