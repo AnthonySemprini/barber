@@ -1,56 +1,60 @@
 <header>
-    <div class="allNavBurger">
-        <div class="navbarBurger">
-            <img src="/assets/img/logoV4.png" alt="logo">
-            <a href="{{path('app_home')}}">Acceuil</a>
-            <a href="{{path('app_produit')}}">Shop</a>
-            {# <a href="{{path('app_main_calendar')}}">Prise de RDV</a> #}
-            <a href="{{path('app_prestation')}}">Prise de RDV</a>
-
-            {% if app.user %}
-
-            <div id="myLog" class="log">
-                <a id="closeBtn" href="#" class="close">&times;</a>
-                <ul>
-                    <li><a href="{{ path('app_logout')}}">Se déconnecter</a></li>
-                    <li><a href="{{ path('app_profil')}}">Mon profil</a></li>
-                    <li><a class="panier" href="{{path('app_panier')}}">Panier </a></li>
-                    {% if is_granted('ROLE_ADMIN') %}
-                    <div class="admin">
-                        <a href="{{path('admin')}}">Panneau d'administration</a>
-                    </div>
-                    {% endif %}
-                </ul>
-                </ul>
-            </div>
-            <a href="#" id="openBtn">
-                <span class="fa-solid fa-user">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </span>
-                <p>{{app.user.pseudo}}</p>
-            </a>
-            {% else %}
-
-            <div id="myLog" class="log">
-                <a id="closeBtn" href="#" class="close">&times;</a>
-                <ul>
-                    <li><a href="{{ path('app_login')}}">Se connecter</a></li>
-                    <li><a href="{{ path('app_register')}}">S'inscrire</a></li>
-            </div>
-            <a href="#" id="openBtnBurger">
-                <span class="fa-solid fa-user-plus">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </span>
-            </a>
+    <div class="allBurgerNav">
+        <div class="menu" id="removeBtn">
+            <i class="fa-solid fa-bars"></i>
+            <p>Menu</p>
         </div>
+        <div class="burgerNav">
+            <div class="styleBurger">
+                <span><a href="{{path('app_home')}}">Acceuil</a></span>
+                <span><a href="{{path('app_produit')}}">Shop</a></span>
+                <span><a href="{{path('app_prestation')}}">Tarif & RDV</a></span>
 
-        {% endif %}
+                {% if app.user %}
+
+                <div id="myLogB" class="logB">
+                    <a id="closeBtnB" href="#" class="closeB">&times;</a>
+                    <ul>
+                        <li><a href="{{ path('app_logout')}}">Se déconnecter</a></li>
+                        <li><a href="{{ path('app_profil')}}">Mon profil</a></li>
+                        <li><a class="panier" href="{{path('app_panier')}}">Panier </a></li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                        <div class="admin">
+                            <a href="{{path('admin')}}">Panneau d'administration</a>
+                        </div>
+                        {% endif %}
+                    </ul>
+                    </ul>
+                </div>
+                <a href="#" id="openBtnB">
+                    <span class="fa-solid fa-user">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                    <p>{{app.user.pseudo}}</p>
+                </a>
+                {% else %}
+
+                <div id="myLogB" class="logB">
+                    <a id="closeBtnB" href="#" class="closeB">&times;</a>
+                    <ul>
+                        <li><a href="{{ path('app_login')}}">Se connecter</a></li>
+                        <li><a href="{{ path('app_register')}}">S'inscrire</a></li>
+                </div>
+                <a href="#" id="openBtnB">
+                    <span class="fa-solid fa-user-plus">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                </a>
+            </div>
+
+            {% endif %}
+        </div>
     </div>
-
+    </div>
 
 
     <div class="allNavBar">
@@ -125,4 +129,30 @@
     function closeNav() {
         log.classList.remove("active");
     }
+    var logB = document.getElementById("myLogB");
+    var openBtnB = document.getElementById("openBtnB");
+    var closeBtnB = document.getElementById("closeBtnB");
+
+    openBtnB.onclick = openNavB;
+    closeBtnB.onclick = closeNavB;
+
+    /* Set the width of the side navigation to 250px */
+    function openNavB() {
+        logB.classList.add("active");
+    }
+
+    /* Set the width of the side navigation to 0 */
+    function closeNavB() {
+        logB.classList.remove("active");
+    }
+    var hamburger = document.querySelector('.allBurgerNav');
+    var navbarLinks = document.querySelector('.burgerNav');
+
+    hamburger.onclick = function () {
+        navbarLinks.classList.toggle('active');
+    }
+    //document.getElementById('removeBtn').onclick = function() {
+    //    this.style.display = 'none';
+    //}; 
+    
 </script>

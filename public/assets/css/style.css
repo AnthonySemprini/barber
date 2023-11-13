@@ -82,12 +82,14 @@ li{
 }
 a{
     text-decoration: none;
-   
 }
 
 
 /********** NavBar **********/
 
+.allBurgerNav{
+    display: none;
+}
 .allNavBar{
     display: flex;
     flex-direction: column;
@@ -151,13 +153,6 @@ position: absolute;
 top: 0;
 right: 25px;
 font-size: 36px;
-}
-.burger-icon span {
-    display: block;
-    width: 35px;
-    height: 5px;
-    background-color: var(--gray-color);
-    margin: 6px 0;
 }
 .admin{
 padding-top: 30px;
