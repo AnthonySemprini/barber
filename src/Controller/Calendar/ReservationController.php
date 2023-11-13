@@ -37,7 +37,7 @@ class ReservationController extends AbstractController
     
     
     #[Route('/new/{id}', name: 'app_reservation_new', methods: ['GET', 'POST'])]
-    public function new($id, EntityManagerInterface $entityManager, PrestationRepository $prestationRepository, SessionInterface $session, ReservationRepository $reservationRepository, Request $request): Response
+    public function newResrvation($id, EntityManagerInterface $entityManager, PrestationRepository $prestationRepository, SessionInterface $session, ReservationRepository $reservationRepository, Request $request): Response
     {
         //! Partie qui recup la date selectionner et qui renvoi les crenaux dispo de la date en question
 
@@ -64,11 +64,11 @@ class ReservationController extends AbstractController
         }
    
         
-        
         // Créez un tableau pour stocker les créneaux d'une journée
+        
         $startTime = strtotime('08:00');
         $endTime = strtotime('18:00');
-        $interval = 30 * 60; // 30 minutes en secondes
+        $interval = 30 * 60;
         $slots = [];
         while ($startTime < $endTime) {
             $slotStart = date('H:i', $startTime);
@@ -120,48 +120,43 @@ class ReservationController extends AbstractController
               // set l'utilisateur à la réservation
               $reservation->setUser($user);
               //! Fin
+              // Convertissez 'rdv' en DateTime 
+              //  conversion échoue envoi erreur
   
       $form = $this->createForm(ReservationType::class, $reservation);
       $form->remove('prestation');
       $form->handleRequest($request);
-    //   dd($form);
+    
   
       if ($form->isSubmitted() && $form->isValid()) {
-          // dd($request->request->all());
           $rdv = $request->request->get('rdv');
-//   dd($rdv);
           if ($rdv) {
               try {
-                  // Convertissez 'rdv' en DateTime 
                   $reservation->setRdv(new \DateTime($rdv));
               } catch (\Exception $e) {
-                  //  conversion échoue envoi erreur
                   return $this->json(['error' => 'Format de date invalide.'], Response::HTTP_BAD_REQUEST);
-              }
-              
-              $entityManager->persist($reservation);
-              $entityManager->flush();
-            //   dd($reservation->getRdv());
-              
+                }
+                $entityManager->persist($reservation);
+                $entityManager->flush();
+                
+                //   dd($reservation->getRdv());
+                // Assurez-vous que cette ligne est exécutée
+                // autres détails...
+                
               $request->attributes->set('reservationDetails', [
                   'pseudo' => $reservation->getUser()->getPseudo(),
                       'prestation' => $reservation->getPrestation()->getNom(),
-                    //   'rdv' => $reservation->getRdv()->format('Y-m-d H:i'), // Assurez-vous que cette ligne est exécutée
+                      'rdv' => $reservation->getRdv()->format('Y-m-d H:i'), 
                       'prix' => $reservation->getPrestation()->getPrix()
-                      // autres détails...
                   ]);
               return $this->redirectToRoute('app_reservation_valid');
-  
-          }
+        }
            else {
               return $this->json(['error' => 'La valeur pour le rendez-vous est manquante.'], Response::HTTP_BAD_REQUEST);
           }
       }
 
-    //   $session->set('reservationDetails', [
-    //     'pseudo' => $reservation->getUser()->getPseudo(),
-    // ]);
-    //   dd($session);
+
     
 
         

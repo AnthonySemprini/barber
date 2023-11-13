@@ -12,32 +12,27 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class PanierController extends AbstractController
 {
+    
     #[Route('/panier', name: 'app_panier')]
     public function index(SessionInterface $session, ProduitRepository $produitRepository): Response
     {
-        //Recupére le panier de la session
         $panier = $session->get('panier', []);
-
         $panierWithData = [];
         foreach ($panier as $id => $quantite) {
-            //Obtenir pour chaque élément du panier les details du produit
             $panierWithData[] = [
                 'produit' => $produitRepository->find($id),
                 'quantite' => $quantite
             ];
         }
-        //dd($panierWithData);
 
         $total = 0;
 
         foreach ($panierWithData as $article) {
-            //multiplie le nombres de produits par leur prix pour avoir le total prix par produit  
             $totalArticle = $article['produit']->getPrix() * $article['quantite'];
             $total += $totalArticle;
         }
         $totalArticle = array_sum($panier);
-
-        //redirige vers le panier
+              
         return $this->render('panier/index.html.twig', [
             'articles' => $panierWithData,
             'total' => $total,

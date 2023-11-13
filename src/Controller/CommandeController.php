@@ -25,7 +25,7 @@ class CommandeController extends AbstractController
     }
 
     #[Route('/commande/confirmation', name: 'app_commande_confirmation')]
-    public function createFormCommande(EntityManagerInterface $entityManager, Request $request,SessionInterface $session, ProduitRepository $produitRepository): Response
+    public function confirmationCommande(EntityManagerInterface $entityManager, Request $request,SessionInterface $session, ProduitRepository $produitRepository): Response
     {
         // Vérifie si l'utilisateur a le rôle 'USER'. Si ce n'est pas le cas, l'accès à cette fonction est refusé.
         $this->denyAccessUnlessGranted('ROLE_USER');
@@ -59,8 +59,8 @@ class CommandeController extends AbstractController
         
             // Parcourt chaque élément du panier.
             foreach($panier as $prod => $qtt){
+                // Crée une nouvelle instance de ProduitCommande.
             $produit = $produitRepository->find($prod);
-            // Crée une nouvelle instance de ProduitCommande.
             $produitCommande = new ProduitCommande();
             // Attribue le produit et la quantité à ProduitCommande.
             $produitCommande->setProduit($produit);
