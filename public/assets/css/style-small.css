@@ -1,0 +1,59 @@
+
+@media screen and (min-width: 790px) {
+
+    /********** NavBarBurger **********/
+
+    div.navbarBurger{
+        display: none;
+    }
+}
+@media screen and (max-width: 790px) {
+
+    /********** NavBarBurger **********/
+
+    div.navbar {
+        display: none;
+    }
+    .allNavbarBurger {
+        display: block;
+        cursor: pointer;
+    }
+    .navbarBurger{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        padding: 2%;
+        width: 100%;
+        height: 30vh;
+        
+    }
+    #openBtnBurger{
+        display: flex;
+        align-items: flex-start;
+    }
+    div.navbarBurger img{
+        height: auto;
+        width: 30%;
+    }
+    /*!!!!! section one !!!!!*/
+    h1 {
+        font-size: 2.5rem;
+    }
+    h2 {
+        font-size: 1.40rem;
+    }
+
+    /*!!!!! section two !!!!!*/
+    div.cardPresta a{
+        font-size: 1rem;
+    }
+    div.cardPresta{
+        width: 250px;
+    }
+    /*!!!!! section three !!!!!*/
+    /*!!!!! section four !!!!!*/
+    /*!!!!! section five !!!!!*/
+    /*!!!!! section six !!!!!*/
+    /*!!!!! section seven !!!!!*/
+}

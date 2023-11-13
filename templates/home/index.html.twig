@@ -23,18 +23,20 @@
 </section>
 
 <section class="two">
-    <h2 class="star">Les prestations star</h2>
-    <div class="cardStar">
-        {% for prestation in prestations %}
-        <div class="cardPresta">
-            <a href="#">{{prestation.nom}}</a>
-            <p>Prix : {{prestation.prix }}€</p>
-            <p>Durée : {{prestation.duree|date('H:i')}}</p>
-            <a href="#" class="buttonSmall">Reserver</a>
+    <div class="divTwo">
+        <h2 class="star">Les prestations star</h2>
+        <div class="cardStar">
+            {% for prestation in prestations %}
+            <div class="cardPresta">
+                <a href="#">{{prestation.nom}}</a>
+                <p>Prix : {{prestation.prix }}€</p>
+                <p>Durée : {{prestation.duree|date('H:i')}}</p>
+                <a href="#" class="buttonSmall">Reserver</a>
+            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
+        <a href="#" class="button">Voir le catalogue</a>
     </div>
-    <a href="#" class="button">Voir les autres prestation</a>
 </section>
 
 <section class="three">
@@ -52,10 +54,7 @@
         Accusamus et iure aspernatur dicta, tempora excepturi illum quis velit itaque aliquam, repellat totam ratione!
         Quae id molestias eligendi consequatur magnam? In molestiae quidem iste laudantium assumenda enim sapiente
         nostrum odit distinctio. Qui voluptas fuga vero ipsam consectetur explicabo, expedita aut optio magnam ducimus
-        fugiat perspiciatis, illum quae tenetur quia placeat, dicta unde nulla minus? Eum, provident officiis
-        repudiandae, reprehenderit, velit ratione quibusdam nam voluptatum nobis nemo nisi. Et doloremque animi
-        repellendus accusantium soluta officia necessitatibus corrupti, deleniti magni. Quidem corrupti explicabo animi
-        et nemo </p>
+        fugiat perspiciatis.</p>
 </section>
 
 <section class="four">

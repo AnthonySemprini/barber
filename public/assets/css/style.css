@@ -85,40 +85,7 @@ a{
    
 }
 
-/********** NavBarBurger **********/
 
-@media screen and (min-width: 790px) {
-    div.navbarBurger{
-        display: none;
-    }
-}
-@media screen and (max-width: 790px) {
-    div.navbar {
-        display: none;
-    }
-    .allNavbarBurger {
-        display: block;
-        cursor: pointer;
-    }
-    .navbarBurger{
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
-        padding: 2%;
-        width: 100%;
-        height: 30vh;
-        
-    }
-    #openBtnBurger{
-        display: flex;
-        align-items: flex-start;
-    }
-    div.navbarBurger img{
-        height: auto;
-        width: 30%;
-    }
-}
 /********** NavBar **********/
 
 .allNavBar{
@@ -243,7 +210,7 @@ div.profil a:hover{
 .divOne{
     display: flex;
     height: 100%;
-    padding: 0 1rem;
+    padding: 0 2rem;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
@@ -262,6 +229,7 @@ div.profil a:hover{
     color: var(--white-color);
     font-size: 20px;
     position: relative;
+    text-align: justify;
     z-index: 10;
 
 }
@@ -280,8 +248,16 @@ div.profil a:hover{
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    height: 80vh;
+    height: auto;
+    width: 100%;
     background-color: var(--white-color);
+    padding: 2rem;
+}
+.divTwo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
 }
 h2.star{
     color: var(--blue-color);
@@ -293,6 +269,7 @@ h2.star{
     justify-content: space-around;
     flex-wrap: wrap;
     width: 100%;
+    gap: 2rem;
     
 }
 div.cardPresta a{
@@ -312,8 +289,8 @@ div.cardPresta{
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: auto;
-    max-width: 27vw;
+    gap: 10px;
+    width: 300px;
     padding: 15px;
     background-color:rgba(128, 128, 128, 0);
     -webkit-box-shadow: -6px 4px 13px 3px rgba(127, 106, 106, 0.58); 
@@ -345,14 +322,12 @@ div.cardPresta a.buttonSmall:hover{
 .buttonSmall {
 	box-shadow: -6px 6px 8px -1px var(--blue-color);
 	background-color:var(--blue-color);
-    width:20vw;
+    min-width:20vw;
     color: var(--white-color);
 	border-radius:10px;
     border: solid 3px var(--red-color);
-	font-size:20px;
 	font-weight:bold;
 	padding:10px;
-    margin: 20px 0;
     text-align: center;
 }
 .buttonSmall:hover {
@@ -367,10 +342,8 @@ div.cardPresta a.buttonSmall:hover{
     width: 25vw;
 	border-radius:10px;
 	color:var(--white-color);
-	font-size:20px;
 	font-weight:bold;
 	padding:26px 16px;
-    margin: 4rem 0 30px 0;
     text-align: center;
 }
 .button:hover {
@@ -380,19 +353,20 @@ div.cardPresta a.buttonSmall:hover{
 	background-color: var(--white-color);
     transition: 0.3s;
 }
-/* section three */
+        /*!!!!! section three !!!!!*/
 .three{
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
-    height: 80vh;
-    padding: 1rem 5rem;
+    gap: 2rem;
+    height: auto;
+    width: 100%;
+    padding: 1rem;
     background-color: var(--gray-color);
 }
 div.icon-qui img{
     width: 10vw;
-    height: 10vh;
+    height: auto;
 }
 div.icon-qui{
     display: flex;
@@ -403,8 +377,9 @@ div.icon-qui{
 p.qui{
     color: var(--blue-color);
     padding: 2%;
+    text-align: justify;
 }
-/* section four */
+        /*!!!!! section four !!!!!*/
 
 .four{
     display: flex;
@@ -454,7 +429,7 @@ div.cardProd a:hover{
     text-decoration: underline var(--red-color);
 }
 
-/* section five */
+        /*!!!!!! section five !!!!!!*/
 
 .five{
     height: 80vh;
@@ -472,7 +447,7 @@ section.five p,section.five h2{
     position: relative;
     z-index: 10;
 }
-/* section six */
+        /*!!!!! section six !!!!!!*/
 
 .six{
 
@@ -488,7 +463,7 @@ section.five p,section.five h2{
     box-shadow: -6px 4px 13px 3px rgba(0,0,0,0.58);
     margin: 0 0 50px 0;
 }
-            /********** section seven **********/
+            /*!!!!!! section seven !!!!!!*/
 
 /* contact */
 
