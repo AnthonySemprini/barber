@@ -386,9 +386,15 @@ p.qui{
     flex-direction: column;
     align-items: center;
     background-color: var(--white-color);
+    padding: 1rem;
 }
 
-
+div.divFour{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
 div.cardProd{
     display: flex;
     flex-direction: column;
@@ -396,7 +402,7 @@ div.cardProd{
     border-radius: 10px;
     border: 5px solid var(--red-color);
     height: auto;
-    max-width: 27vw;
+    width: 300px;
     background-color: rgb(197, 198, 199);
     -webkit-box-shadow: -6px 4px 13px 3px rgba(0,0,0,0.58); 
     box-shadow: -6px 4px 13px 3px rgba(0,0,0,0.58);
@@ -404,8 +410,8 @@ div.cardProd{
 }
 
 div.cardProd img{
-    height: 19vh;
-    width: 19vw;
+    height: auto;
+    width: 90%;
     border-radius: 10%;
     -webkit-box-shadow: -6px 4px 13px 3px rgba(0,0,0,0.58); 
     box-shadow: -6px 4px 13px 3px rgba(0,0,0,0.58);
@@ -432,7 +438,7 @@ div.cardProd a:hover{
         /*!!!!!! section five !!!!!!*/
 
 .five{
-    height: 80vh;
+    height:80vh;
     width: 100%;
     position: relative;
     background-attachment: fixed; /* Fixe l'image pendant le scroll */
@@ -441,7 +447,13 @@ div.cardProd a:hover{
     background-repeat: no-repeat; /* Empêche l'image de se répéter en fonction de la taille d'écran */
     background-image:url(/assets/img/barberShop.jpg);
 }
-
+div.divFive{
+    display: flex;
+    padding: 1rem;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
 section.five p,section.five h2{
     color: var(--white-color);
     position: relative;
@@ -450,10 +462,13 @@ section.five p,section.five h2{
         /*!!!!! section six !!!!!!*/
 
 .six{
-
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
+    height: auto;
+    gap: 2rem;
+    padding: 2rem;
 }
 .map{
     height: 60vh;
@@ -461,7 +476,6 @@ section.five p,section.five h2{
     border-radius: 10px;
     -webkit-box-shadow: -6px 4px 13px 3px rgba(0,0,0,0.58); 
     box-shadow: -6px 4px 13px 3px rgba(0,0,0,0.58);
-    margin: 0 0 50px 0;
 }
             /*!!!!!! section seven !!!!!!*/
 
@@ -508,12 +522,15 @@ div.contact a{
 }
 /* social media */
 
-.socialMedia{
+div.social{
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
 }
-ul.socialMedia li{
+div.socialMedia{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+div.socialMedia li{
     padding-bottom: 20px;
     margin: 0 10px;
     border-radius: 50%;
@@ -740,7 +757,8 @@ div.pagination a:hover, div.pagination span:hover{
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    height: 38vh;
+    width: 100%;
+    height: auto;
     position: relative;
     z-index: 10;
 }

@@ -58,37 +58,33 @@
 </section>
 
 <section class="four">
-    <h2 class="star">Les nouveautés</h2>
-    <div class="cardStar">
-        {% for produit in produits %}
-        <div class="prodAll">
-            <div class="cardProd">
-                <a href="{{path('app_detail_produit', {'id': produit.id})}}"><img src="assets/img/{{produit.image}}"
-                        alt="img du produit"></a>
-                <p>{{produit}} {{produit.prix}}€</p>
-                <a href="{{path('app_panier_add', {'id': produit.id})}}" class="buttonSmall">Ajouter</a>
+    <div class="divFour">
+        <h2 class="star">Les nouveautés</h2>
+        <div class="cardStar">
+            {% for produit in produits %}
+            <div class="prodAll">
+                <div class="cardProd">
+                    <a href="{{path('app_detail_produit', {'id': produit.id})}}"><img src="assets/img/{{produit.image}}"
+                            alt="img du produit"></a>
+                    <p>{{produit}} {{produit.prix}}€</p>
+                    <a href="{{path('app_panier_add', {'id': produit.id})}}" class="buttonSmall">Ajouter</a>
+                </div>
             </div>
+            {% endfor %}
         </div>
-        {% endfor %}
+        <a href="#" class="button">Voir le Shop</a>
     </div>
-    <a href="#" class="button">Voir les autres prestation</a>
 </section>
 
 <section class="five">
     <div class="blackfilter"></div>
-    <h2>Notre <strong>salon de coiffeur barbier</strong></h2>
-    <p class="textHome">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat voluptatum nesciunt laudantium.
-        Fugiat quia magni a omnis odio saepe optio assumenda. Optio incidunt, magnam eius tempora culpa dignissimos
-        numquam deleniti accusantium quia facilis et ipsum similique doloremque distinctio nostrum voluptatem non
-        debitis unde sit perferendis! Molestias consequuntur veritatis adipisci quod, nam hic deserunt aliquam quae
-        minima voluptatibus mollitia quisquam animi pariatur placeat eligendi perspiciatis optio culpa modi voluptatem.
-        Accusamus et iure aspernatur dicta, tempora excepturi illum quis velit itaque aliquam, repellat totam ratione!
-        Quae id molestias eligendi consequatur magnam? In molestiae quidem iste laudantium assumenda enim sapiente
-        nostrum odit distinctio. Qui voluptas fuga vero ipsam consectetur explicabo, expedita aut optio magnam ducimus
-        fugiat perspiciatis, illum quae tenetur quia placeat, dicta unde nulla minus? Eum, provident officiis
-        repudiandae, reprehenderit, velit ratione quibusdam nam voluptatum nobis nemo nisi. Et doloremque animi
-        repellendus accusantium soluta officia necessitatibus corrupti, deleniti magni. Quidem corrupti explicabo animi
-        et nemo</p>
+    <div class="divFive">
+        <h2>Notre <strong>salon de coiffeur barbier</strong></h2>
+        <p class="textHome">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat voluptatum nesciunt
+            laudantium.Fugiat quia magni a omnis odio saepe optio assumenda. Optio incidunt, magnam eius tempora culpa dignissimos
+            numquam deleniti accusantium quia facilis et ipsum similique doloremque distinctio nostrum voluptatem non
+            debitis unde sit perferendis!</p>
+    </div>
 </section>
 
 <section class="six">
@@ -118,12 +114,12 @@
             </ul>
         </div>
         <div class="social">
-            <ul class="socialMedia">
+            <div class="socialMedia">
                 <li><i class="fa-brands fa-instagram"></i></li>
                 <li><i class="fa-brands fa-snapchat"></i></li>
                 <li><i class="fa-brands fa-linkedin"></i></li>
                 <li><i class="fa-brands fa-whatsapp"></i></li>
-            </ul>
+            </div>
         </div>
     </div>
 </section>
