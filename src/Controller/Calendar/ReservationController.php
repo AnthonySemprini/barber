@@ -101,6 +101,7 @@ class ReservationController extends AbstractController
             // dd($finalSlots);
         }
         //! Fin de la partie qui gere la recup de date et crenaux dispo
+        
               //! Récupérez la prestation et user sans passe par le formulaire et envoie en bdd
 
               $prestation = $prestationRepository->find($id);

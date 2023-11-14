@@ -5,124 +5,115 @@
 
 {% block body %}
 
-	<div class="reservationPage">
-		<h1>Créé votre réservation</h1>
-        {{ include('reservation/_form.html.twig') }}
-		<div >
-            <form action="{{ path('app_reservation_new', {'id': prestationId}) }}" method="post" class="allDatepicker">
-                
-                <input type="text" class="form-control datepicker" name="daySelect">
-				
-                <span class="input-group-addon">
-                    <i class="fa fa-calendar"></i>
-                </span>
-                
-				<button type="submit">Envoyer</button>
-				
-			</form>
-		</div>
-		{% if availableSlots is not empty %}
-        <div class="container mt-4">
-            <div class="row">
-                <div class="col-12">
-                    <div class="alert alert-success" role="alert">
-                        Sélectionnez un créneau disponible.
-                    </div>
-                    <div class="list-group" id="crenauxDispo">
-                        <div id="selectedSlot" class="selected-slot-display">
-                            <p>Aucun créneau sélectionné</p>
-                        </div>
-                        {% for slot in availableSlots %}
-						<button type="button" class="list-group-item list-group-item-action slot-button" data-start="{{ slot.start }}" data-end="{{ slot.end }}">
-                            {{ slot.start | date('H:i') }} - {{ slot.end | date('H:i') }}
-						</button>
-                        {% endfor %}
-					</div>
-                </div>
-                
-        </div>
-		
+<div class="reservationPage">
+    <h1>Créé votre réservation</h1>
+    <div class="dateForm">
+        <!--! formulaire choix de la date -->
+        <form action="{{ path('app_reservation_new', {'id': prestationId}) }}" method="post" class="allDatepicker">
+            <input type="text" class="form-control datepicker" name="daySelect">
+            <span class="input-group-addon">
+                <i class="fa fa-calendar"></i>
+            </span>
+            <button type="submit">Verifiez les disponibilitées</button>
+        </form>
     </div>
-{% else %}
+    <!--! verifie si il y a bien une date sectionner -->
+    {% if availableSlots is not empty %}
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-12">
+                <!--! Boutton pour select le créneau horraire -->
+                {% for slot in availableSlots %}
+                <button type="button" class="list-group-item list-group-item-action slot-button"
+                    data-start="{{ slot.start }}" data-end="{{ slot.end }}">
+                    {{ slot.start | date('H:i')}}
+                </button>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <!--! Renvoi un message si aucun créneau est dispo -->
     <div class="alert alert-warning" role="alert">
         Aucun créneau disponible.
     </div>
-{% endif %}
+    {% endif %}
+    {{ include('reservation/_form.html.twig') }}
+</div>
 
-	
-	</div>
-	
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-	<script>
 
-		document.querySelectorAll('.slot-button').forEach(item => {
-			item.addEventListener('click', event => {
-			
-				document.querySelector('input[name="daySelect"]').value = item.dataset.start;
-				
-			});
-		});
-		
 
-$(document).ready(function () {
-    // Initialisation du Datepicker
-    $('.datepicker').datepicker({
-        format: "dd/mm/yyyy",
-			language: "fr",
-			daysOfWeekDisabled: "0,1",
-			daysOfWeekHighlighted: "0,1",
-			autoclose: true,
-			orientation: "top auto",
-			todayHighlight: true
-    }).on('changeDate', function (e) {
-        window.selectedDate = moment(e.date).format('YYYY-MM-DD');
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script>
+
+    document.querySelectorAll('.slot-button').forEach(item => {
+        item.addEventListener('click', event => {
+
+            document.querySelector('input[name="daySelect"]').value = item.dataset.start;
+
+        });
     });
 
-    // Gestionnaire pour les boutons de créneau
-    $('.slot-button').on('click', function () {
-        var startTime = $(this).data('start');
-        var combinedDateTime = moment(window.selectedDate + ' ' + startTime).format("YYYY-MM-DDTHH:mm");
+    $(document).ready(function () {
+
+        // Initialisation du Datepicker
+        $('.datepicker').datepicker({
+            format: "dd/mm/yyyy",
+            language: "fr",
+            daysOfWeekDisabled: "0,1",
+            daysOfWeekHighlighted: "0,1",
+            autoclose: true,
+            orientation: "top auto",
+            todayHighlight: true
+        }).on('changeDate', function (e) {
+            window.selectedDate = moment(e.date).format('YYYY-MM-DD');
+            localStorage.setItem('selectedDate', window.selectedDate);
+            console.log(e.date)
+        });
+
+        var storedDate = localStorage.getItem('selectedDate');
+        //console.log(localStorage.getItem('selectedDate'));
+
+        if (storedDate) {
+            var formattedDate = moment(storedDate, "YYYY-MM-DD").format("DD/MM/YYYY");
+            $('.datepicker').datepicker('update', formattedDate);
+        }
+    });
+
+
+    //  inclus moment.js pour la manipulation de date
+    /* $('.slot-button').on('click', function() {
+        var startDate = $(this).data('start'); // récupère la valeur de l'attribut data-start
+        var endDate = $(this).data('end'); // récupère la valeur de l'attribut data-end
+    
+        //  format attendu par Symfony
+        var formattedDate = moment(startDate, "HH:mm").format("YYYY-MM-DD hh:mm");
+    }); 
+    */
+
+
+    $('.slot-button').on('click', function () { //lorsqu'un bouttton est
+        var startTime = $(this).data('start'); // Récup heure de début du créneau
+
+
+        // Combine  date sélectionnée avec l'heure de début
+        var combinedDateTime = moment(window.selectedDate + ' ' + startTime, "YYYY-MM-DD HH:mm").format("YYYY-MM-DD HH:mm:ss");
+
+
+        console.log(combinedDateTime);
+        console.log($('#selectedSlot'));
+        // Met à jour la valeur de l'input correspondant à 'reservation[rdv]'
+        $('input[name="reservation[rdv]"]').val(combinedDateTime);
+
+        // Affiche le créneau sélectionné
         $('#selectedSlot').val(combinedDateTime);
     });
-});
-
-$('.datepicker').change(function () { // Récupérer la date sélectionnée
-var selectedDate = $(this).val();
 
 
-
-});
-
-
-//  inclus moment.js pour la manipulation de date
-$('.slot-button').on('click', function() {
-    var startDate = $(this).data('start'); // récupère la valeur de l'attribut data-start
-    var endDate = $(this).data('end'); // récupère la valeur de l'attribut data-end
-
-    //  format attendu par Symfony
-    var formattedDate = moment(startDate, "HH:mm").format("YYYY-MM-DD hh:mm");
-
- 
-
-    
-    $('#selectedSlot').text(formattedDate); 
-    $('#selectedSlot').val(formattedDate); 
-});
-
-$('.slot-button').on('click', function() {
-    var startTime = $(this).data('start'); // Récup heure de début du créneau
-
-    // Combine  date sélectionnée avec l'heure de début
-    var combinedDateTime = moment(window.selectedDate + ' ' + startTime, "YYYY-MM-DD HH:mm").format("YYYY-MM-DD HH:mm:ss");
-
-    // Met à jour la valeur de l'input correspondant à 'reservation[rdv]'
-    $('input[name="reservation[rdv]"]').val(combinedDateTime);
-
-    // Affiche le créneau sélectionné
-    $('#selectedSlot').text(combinedDateTime); 
-});
-	
-	
-	</script>
+</script>
 
 {% endblock %}

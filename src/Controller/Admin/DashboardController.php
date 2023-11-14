@@ -8,6 +8,7 @@ use App\Entity\Commande;
 use App\Entity\Categorie;
 use App\Entity\Prestation;
 use App\Entity\Reservation;
+use App\Entity\ProduitCommande;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
@@ -72,18 +73,23 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('Créer préstation', 'fas fa-plus', Prestation::class)->setAction(Crud::PAGE_NEW),
             MenuItem::linkToCrud('Voir préstation', 'fas fa-eye', Prestation::class)
         ]);
-        yield MenuItem::section('Commande');
-        yield MenuItem::section('Commande');
-
-        yield MenuItem::subMenu('Actions', 'fas fa-bars')->setSubItems([
-            MenuItem::linkToCrud('Voir commande', 'fas fa-eye', Commande::class)
-        ]);
 
         yield MenuItem::section('Reservations');
         yield MenuItem::subMenu('Actions', 'fas fa-bars')->setSubItems([
             MenuItem::linkToCrud('Créer reservation', 'fas fa-plus', Reservation::class)->setAction(Crud::PAGE_NEW),
             MenuItem::linkToCrud('Voir reservation', 'fas fa-eye', Reservation::class)
         ]);
+
+        yield MenuItem::section('Commandes');
+        yield MenuItem::subMenu('Actions', 'fas fa-bars')->setSubItems([
+        MenuItem::linkToCrud('Ajouter commande', 'fas fa-plus', Commande::class)->setAction(Crud::PAGE_NEW),
+        MenuItem::linkToCrud('Voir commande', 'fas fa-eye', Commande::class)
+]);
+        yield MenuItem::section('ProduitCommandes');
+        yield MenuItem::subMenu('Actions', 'fas fa-bars')->setSubItems([
+        MenuItem::linkToCrud('Ajouter ProduitCommande', 'fas fa-plus', ProduitCommande::class)->setAction(Crud::PAGE_NEW),
+        MenuItem::linkToCrud('Voir ProduitCommande', 'fas fa-eye', ProduitCommande::class)
+]);
 
       
 

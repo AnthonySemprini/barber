@@ -734,8 +734,10 @@ div#reservation_rdv{
 .allDatepicker{
     display: flex;
     justify-content: space-around;
-    height: 20px;
+    height: 100px;
     width: 600px;
+    flex-direction: column;
+    align-items: center;
 }
 .dropdown-menu{
     display: flex;

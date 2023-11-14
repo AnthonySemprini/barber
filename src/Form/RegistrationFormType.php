@@ -21,10 +21,15 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email', EmailType::class)
-            ->add('pseudo', TextType::class)
+            ->add('email', EmailType::class,[
+                'label' => 'Votre email'
+            ])
+            ->add('pseudo', TextType::class, [
+                'label' => 'Votre pseudo'
+            ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
+                'label' => 'J\'accepte les conditions générales',
                 'constraints' => [
                     new IsTrue([
                         'message' => 'You should agree to our terms.',
@@ -37,8 +42,8 @@ class RegistrationFormType extends AbstractType
     'invalid_message' => 'The password fields must match.',
     'options' => ['attr' => ['class' => 'password-field']],
     'required' => true,
-    'first_options'  => ['label' => 'Password'],
-    'second_options' => ['label' => 'Repeat Password'],
+    'first_options'  => ['label' => 'Mot de passe'],
+    'second_options' => ['label' => 'Confirmation'],
     'constraints' => [
         new NotBlank([
             'message' => 'Veuillez saisir un mot de passe',
