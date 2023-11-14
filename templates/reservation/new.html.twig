@@ -6,39 +6,40 @@
 {% block body %}
 
 	<div class="reservationPage">
-		{{ include('reservation/_form.html.twig') }}
 		<h1>Créé votre réservation</h1>
+        {{ include('reservation/_form.html.twig') }}
 		<div >
-			<form action="{{ path('app_reservation_new', {'id': prestationId}) }}" method="post" class="allDatepicker">
-
-					<input type="text" class="form-control datepicker" name="daySelect">
+            <form action="{{ path('app_reservation_new', {'id': prestationId}) }}" method="post" class="allDatepicker">
+                
+                <input type="text" class="form-control datepicker" name="daySelect">
 				
-					<span class="input-group-addon">
-						<i class="fa fa-calendar"></i>
-					</span>
-
+                <span class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                </span>
+                
 				<button type="submit">Envoyer</button>
 				
 			</form>
 		</div>
 		{% if availableSlots is not empty %}
-    <div class="container mt-4">
-        <div class="row">
-            <div class="col-12">
-                <div class="alert alert-success" role="alert">
-                    Sélectionnez un créneau disponible.
-                </div>
-                <div class="list-group" id="crenauxDispo">
-					<div id="selectedSlot" class="selected-slot-display">
-						<p>Aucun créneau sélectionné</p>
-					</div>
-					{% for slot in availableSlots %}
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col-12">
+                    <div class="alert alert-success" role="alert">
+                        Sélectionnez un créneau disponible.
+                    </div>
+                    <div class="list-group" id="crenauxDispo">
+                        <div id="selectedSlot" class="selected-slot-display">
+                            <p>Aucun créneau sélectionné</p>
+                        </div>
+                        {% for slot in availableSlots %}
 						<button type="button" class="list-group-item list-group-item-action slot-button" data-start="{{ slot.start }}" data-end="{{ slot.end }}">
-							{{ slot.start | date('H:i') }} - {{ slot.end | date('H:i') }}
+                            {{ slot.start | date('H:i') }} - {{ slot.end | date('H:i') }}
 						</button>
-					{% endfor %}
+                        {% endfor %}
 					</div>
-            </div>
+                </div>
+                
         </div>
 		
     </div>

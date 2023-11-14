@@ -2,11 +2,12 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\User;
 use App\Entity\Produit;
+use App\Entity\Commande;
 use App\Entity\Categorie;
 use App\Entity\Prestation;
 use App\Entity\Reservation;
-use App\Entity\User;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
@@ -71,6 +72,12 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('Créer préstation', 'fas fa-plus', Prestation::class)->setAction(Crud::PAGE_NEW),
             MenuItem::linkToCrud('Voir préstation', 'fas fa-eye', Prestation::class)
         ]);
+        yield MenuItem::section('Commande');
+        yield MenuItem::section('Commande');
+
+        yield MenuItem::subMenu('Actions', 'fas fa-bars')->setSubItems([
+            MenuItem::linkToCrud('Voir commande', 'fas fa-eye', Commande::class)
+        ]);
 
         yield MenuItem::section('Reservations');
         yield MenuItem::subMenu('Actions', 'fas fa-bars')->setSubItems([
@@ -78,10 +85,7 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('Voir reservation', 'fas fa-eye', Reservation::class)
         ]);
 
-        yield MenuItem::section('Calendrier');
-        yield MenuItem::subMenu('Action', 'fas fa-bars')->setSubItems([
-            MenuItem::linkToCrud('Voir calendrier', 'fas fa-clendar', Reservation::class)
-        ]);
+      
 
     }
 }

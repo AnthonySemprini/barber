@@ -5,15 +5,16 @@
 {% block body %}
 <div class="container mt-5 validPage">
     <div class="blackfilter"></div>
+    <h1 style="color:white;">Confirmation de rdv</h1>
     {% set reservationDetails = app.session.get('reservationDetails') %}
     {% if reservationDetails %}
         <div class="text-center">
             <h1 class="display-4 h1Valid">C'est dans la poche {{ reservationDetails.pseudo }} !</h1>
-            <h3 class="lead mt-3 texteValid">Nous avons hâte de vous voir {{ reservationDetails.rdv|default('à une date très prochaine') }} pour votre prestation <strong>"{{ reservationDetails.prestation }}"</strong>  pour seulement <strong>{{ reservationDetails.prix }}€</strong> !</h3>
+            <h3 class="lead mt-3 texteValid">Nous avons hâte de vous voir DATE HEURE pour votre prestation <strong>"{{ reservationDetails.prestation }}"</strong>  pour seulement <strong>{{ reservationDetails.prix }}€</strong> !</h3>
         </div>
     {% else %}
         <div class="alert alert-warning" role="alert">
-            Oups ! Il semble que nous ayons un petit souci. Les détails de votre réservation ne sont pas disponibles pour le moment.
+            Pas de données
         </div>
     {% endif %}
 </div>

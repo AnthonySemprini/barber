@@ -1,19 +1,19 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	{{produit.nom}}
+{{produit.nom}}
 {% endblock %}
 
 {% block body %}
-
+<div class="allProduit">
 	<h1>Detail</h1>
 	<div class="produit">
 		<p>{{produit.categorie.nom}}</p>
 		<img src="assets/img/{{produit.image}}" alt="img produit">
 		<p>{{produit}}
 			{{produit.prix}}€</p>
-			 <td><a href="{{path('app_panier_add', {'id': produit.id})}}">Add</a></td>
+		<td><a href="{{path('app_panier_add', {'id': produit.id})}}">Add</a></td>
 		<p>{{produit.description|raw}}</p>
 	</div>
-
+</div>
 {% endblock %}

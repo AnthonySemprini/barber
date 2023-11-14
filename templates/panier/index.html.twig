@@ -4,6 +4,7 @@
 {% endblock %}
 
 {% block body %}
+<div class="panierPage">
 	<h1>Panier</h1>
 	{% if articles | length > 0 %}
 		<table class="panier">
@@ -63,5 +64,7 @@
 	</tfoot>
 </table>
 <button class="panierV">
-	<a class="textBtnP" href="{{path('app_commande_infoClient')}}">Valider le panier</a>
-</button>{% endblock %}
+	<a class="textBtnP" href="{{path('app_commande_confirmation')}}">Valider le panier</a>
+</button>
+</div>
+{% endblock %}

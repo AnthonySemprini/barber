@@ -719,7 +719,9 @@ div.pagination a:hover, div.pagination span:hover{
     text-decoration: underline 3px var(--blue-color);
 }
 /********** Reservation **********/
-
+div#reservation_rdv{
+    display: none;
+}
 .reservationPage{
     display: flex;
     flex-direction: column;
@@ -789,8 +791,8 @@ div.divFooter{
         flex-direction: column;
         line-height: 1.5rem;
     }
-.linkFooter a{
-    color: var(--white-color);
+ul.linkFooter a{
+    color: var(--blue-color);
     text-align: center;
 }
 .linkFooter a:hover{
@@ -817,7 +819,7 @@ div.iconFooter img{
     text-align: center;
 }
 .contactFooter li{
-    color: var(--white-color);
+    color: var(--blue-color);
     line-height: 1.5rem;
     text-align: center;
 }

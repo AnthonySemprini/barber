@@ -63,7 +63,7 @@ class ReservationController extends AbstractController
             $rdvs = []; 
         }
    
-        
+        // dd($rdvs);
         // Créez un tableau pour stocker les créneaux d'une journée
         
         $startTime = strtotime('08:00');
@@ -81,8 +81,10 @@ class ReservationController extends AbstractController
             // Convertissez le datetime de l'événement en une chaîne de créneau horaire pour la comparaison
             $eventStartString = $event->getRdv()->format('H:i');
             $eventEnd = clone $event->getRdv();
+            // Obtenez la durée
             $eventEnd->modify('+30 minutes'); //   RDV dure 30 minutes
             $eventEndString = $eventEnd->format('H:i');
+            // dd($eventEndString);
 
             // Filtrez $availableSlots pour enlever les créneaux occupés par cet événement
             $availableSlots = array_filter($availableSlots, function ($slot) use ($eventStartString, $eventEndString) {
@@ -96,11 +98,13 @@ class ReservationController extends AbstractController
         foreach ($availableSlots as $slot) {
             $slotEnd = \DateTime::createFromFormat('H:i', $slot)->modify('+30 minutes')->format('H:i');
             $finalSlots[] = ['start' => $slot, 'end' => $slotEnd];
+            // dd($finalSlots);
         }
         //! Fin de la partie qui gere la recup de date et crenaux dispo
               //! Récupérez la prestation et user sans passe par le formulaire et envoie en bdd
 
               $prestation = $prestationRepository->find($id);
+            //   dd($prestation);
               if (!$prestation) {
                   // Gérer l'erreur si la prestation n'existe pas
                   throw $this->createNotFoundException('La prestation demandée n\'existe pas.');
@@ -120,8 +124,7 @@ class ReservationController extends AbstractController
               // set l'utilisateur à la réservation
               $reservation->setUser($user);
               //! Fin
-              // Convertissez 'rdv' en DateTime 
-              //  conversion échoue envoi erreur
+              
   
       $form = $this->createForm(ReservationType::class, $reservation);
       $form->remove('prestation');
@@ -143,17 +146,15 @@ class ReservationController extends AbstractController
                 // Assurez-vous que cette ligne est exécutée
                 // autres détails...
                 
+                //affiche dans la vue reservation valid
               $request->attributes->set('reservationDetails', [
                   'pseudo' => $reservation->getUser()->getPseudo(),
-                      'prestation' => $reservation->getPrestation()->getNom(),
-                      'rdv' => $reservation->getRdv()->format('Y-m-d H:i'), 
+                      'prestation' => $reservation->getPrestation()->getNom(), 
                       'prix' => $reservation->getPrestation()->getPrix()
                   ]);
               return $this->redirectToRoute('app_reservation_valid');
         }
-           else {
-              return $this->json(['error' => 'La valeur pour le rendez-vous est manquante.'], Response::HTTP_BAD_REQUEST);
-          }
+         
       }
 
 
