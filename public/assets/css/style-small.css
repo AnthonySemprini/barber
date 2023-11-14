@@ -7,6 +7,10 @@
 }
 @media screen and (max-width: 790px) {
 
+    /********** Panier **********/
+    img.imgPanier, th.panier.imgPanier, td.panier.imgPanier, td.total.imgPanier{
+        display: none;
+    }
     /********** NavBarBurger **********/
     .allBurgerNav{
         display: block;

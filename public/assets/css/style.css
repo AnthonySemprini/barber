@@ -634,23 +634,30 @@ div.shop img{
 }
 
 /********** Panier **********/
+div.panierPage{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 table.panier{
-    margin: 20px;
+    width: 80%;
+    margin: 3rem;
 }
-table.panier, td.panier, tr.panier, th.panier{
-    border: 3px solid;
+table.panier, td.panier, tr.panier, th.panier, td.bord{
+    border-top: 1px solid;
     border-collapse: collapse;
     text-align: center;
+    padding: 20px;
 }
 a.plus{
-    background-color: var(--blue-color);
+    background-color: var(--gray-color);
     padding: 10%;
     border-radius: 5px;
     color: var(--white-color);
 }
 a.moins{
-    background-color: var(--red-color);
+    background-color: var(--gray-color);
     padding: 10%;
     border-radius: 5px;
     color: var(--white-color);
