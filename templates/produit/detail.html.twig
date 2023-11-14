@@ -5,15 +5,21 @@
 {% endblock %}
 
 {% block body %}
-<div class="allProduit">
-	<h1>Detail</h1>
-	<div class="produit">
-		<p>{{produit.categorie.nom}}</p>
-		<img src="assets/img/{{produit.image}}" alt="img produit">
-		<p>{{produit}}
-			{{produit.prix}}€</p>
-		<td><a href="{{path('app_panier_add', {'id': produit.id})}}">Add</a></td>
-		<p>{{produit.description|raw}}</p>
+<div class="detailProd">
+	<div class="produitDetail">
+		<h1>{{produit}} </h1>
+		<h2>Prix : {{produit.prix}} €</h2>
+		<div class="place">
+			<div class="left">
+				<img src="assets/img/{{produit.image}}" alt="img produit">
+			</div>
+			<div class="rigth">
+				<p>Categorie : {{produit.categorie.nom}}</p>
+				<p style="text-decoration:underline">Description{{produit.description|raw}}</p>
+				<a class="buttonSmall" href="{{path('app_panier_add', {'id': produit.id})}}">Ajouter au panier</a>
+			</div>
+		</div>
 	</div>
 </div>
+
 {% endblock %}

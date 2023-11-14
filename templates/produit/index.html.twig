@@ -2,21 +2,23 @@
 
 {% block title %}Shop{% endblock %}
 {% block head %}
-  <meta name="description" content="Découvrez notre gamme de produits de qualité pour les soins capillaires et de barbier. Des produits premium pour prendre soin de vos cheveux et de votre barbe. Trouvez les meilleurs shampooings, huiles, baumes et accessoires pour une apparence soignée. Transformez votre routine de beauté avec nos produits de barbier et de soins capillaires de premier choix." />
+<meta name="description"
+    content="Découvrez notre gamme de produits de qualité pour les soins capillaires et de barbier. Des produits premium pour prendre soin de vos cheveux et de votre barbe. Trouvez les meilleurs shampooings, huiles, baumes et accessoires pour une apparence soignée. Transformez votre routine de beauté avec nos produits de barbier et de soins capillaires de premier choix." />
 {% endblock %}
 {% block body %}
 <div class="shop">
-<h1>Produits</h1>
+    <h1>Produits</h1>
 
-<div class="prodAll">
-    {% for produit in pagination %}
+    <div class="prodAll">
+        {% for produit in pagination %}
         <div class="cardProd">
-            <a href="{{path('app_detail_produit', {'id': produit.id})}}"><img src="assets/img/{{produit.image}}" alt="image produit"></a>
+            <a href="{{path('app_detail_produit', {'id': produit.id})}}"><img src="assets/img/{{produit.image}}"
+                    alt="image produit"></a>
             <p>{{produit}} {{produit.prix}}€</p>
             <a href="{{path('app_panier_add', {'id': produit.id})}}" class="buttonSmall">Ajouter au panier</a>
         </div>
-    {% endfor %}
-</div>
+        {% endfor %}
+    </div>
     {{ knp_pagination_render(pagination)}}
 </div>
 {% endblock %}

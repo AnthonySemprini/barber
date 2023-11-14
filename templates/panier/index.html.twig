@@ -12,9 +12,9 @@
 				<th class="panier imgPanier">Image</th>
 				<th class="panier">Produit</th>
 				<th class="panier">Prix</th>
-				<th class="panier"></th>
+				
 				<th class="panier">Qtt</th>
-				<th class="panier"></th>
+				
 				<th class="panier">Sous-total</th>
 				<th class="panier">Suppr Qtt</th>
 			</tr>
@@ -28,9 +28,7 @@
 							<a class="plus" href="{{path ('app_panier_upQtt',{'id' : article.produit.id }) }}">
 								<i class="fas fa-plus"></i>
 							</a>
-						</td>
-						<td class="panier">{{article.quantite}}</td>
-						<td class="panier action">
+						{{article.quantite}}
 							<a class="moins" href="{{path ('app_panier_downQtt',{'id': article.produit.id}) }}">
 								<i class="fas fa-minus"></i>
 							</a>
@@ -51,11 +49,11 @@
 	</tbody>
 	<tfoot>
 		<tr>
-			<td class="total imgPanier" colspan=""></td>
-			<td class="total" colspan="1"></td>
+			<td class="total imgPanier" colspan="1"></td>
+			
 			<td class="total bord" colspan="2">Article(s) :
 				{{totalArticle}}</td>
-			<td class="total bord" colspan="1"></td>
+			
 			<td class="total bord" colspan="2">Total :
 				{{ total }}€</td>
 			<td class="total bord" colspan="1"><a class="vider" href="{{path('app_panier_removeAll')}}">Vider</a></td>
