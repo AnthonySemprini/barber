@@ -34,42 +34,38 @@ class ReservationController extends AbstractController
             'reservations' => $reservationRepository->findAll(),
         ]);
     }
-    
-    
+
+
     #[Route('/new/{id}', name: 'app_reservation_new', methods: ['GET', 'POST'])]
     public function newResrvation($id, EntityManagerInterface $entityManager, PrestationRepository $prestationRepository, SessionInterface $session, ReservationRepository $reservationRepository, Request $request): Response
     {
         //! Partie qui recup la date selectionner et qui renvoi les crenaux dispo de la date en question
 
-        $selectedDate = $request->request->get('daySelect');//recup la date via entre dans datePicker
-     
+        $selectedDate = $request->request->get('daySelect'); //recup la date via entre dans datePicker
+
         $availableSlots = [];
         $isoDate = null;
 
         if ($selectedDate) {
-         
+
             $isoDate = $selectedDate;
-            // Récupérez les réservations pour la date sélectionnée
-            $dql = "SELECT r
-                FROM App\Entity\Reservation r
-                WHERE SUBSTRING(r.rdv, 1, 10) = :isoDate";
-            $query = $entityManager->createQuery($dql);
-            $query->setParameter('isoDate', $isoDate);
-            $rdvs = $query->getResult();
+
+            $rdvs = $reservationRepository->findReservationBooked($isoDate);
+
         } else {
-            $rdvs = []; 
+            $rdvs = [];
         }
-   
-    
+
+
         // Créez un tableau pour stocker les créneaux d'une journée
-        
+
         $startTime = strtotime('08:00');
         $endTime = strtotime('18:00');
         $interval = 30 * 60;
         $slots = [];
         while ($startTime < $endTime) {
             $slotStart = date('H:i', $startTime);
-            $slots[] = $slotStart; 
+            $slots[] = $slotStart;
             $startTime += $interval;
         }
         $availableSlots = $slots;
@@ -97,105 +93,106 @@ class ReservationController extends AbstractController
             $finalSlots[] = ['start' => $slot, 'end' => $slotEnd];
             // dd($finalSlots);
         }
-        //! Fin de la partie qui gere la recup de date et crenaux dispo
-        
-              //! Récupérez la prestation et user sans passe par le formulaire et envoie en bdd
+        //! Fin
 
-              $prestation = $prestationRepository->find($id);
-            //   dd($prestation);
-              if (!$prestation) {
-                  // Gérer l'erreur si la prestation n'existe pas
-                  throw $this->createNotFoundException('La prestation demandée n\'existe pas.');
-              }
-              // dd($finalSlots);
-              $reservation = new Reservation();
-              $reservation->setPrestation($prestation);
-              // Récupérez l'utilisateur connecté
-              $user = $this->security->getUser();
-              
-              if (!$user) {
-                  // aucun utilisateur n'est connecté 
-                  throw $this->createAccessDeniedException('Vous devez être connecté pour effectuer cette action.');
-                  
-                  return $this->redirectToRoute('app_login');
-              }
-              // set l'utilisateur à la réservation
-              $reservation->setUser($user);
-              //! Fin
-              
-  
-      $form = $this->createForm(ReservationType::class, $reservation);
-      $form->remove('prestation');
-      $form->handleRequest($request);
-    
-  
-      if ($form->isSubmitted() && $form->isValid()) {
-          $rdv = $request->request->get('rdv');
-          if ($rdv) {
-              try {
-                  $reservation->setRdv(new \DateTime($rdv));
-              } catch (\Exception $e) {
-                  return $this->json(['error' => 'Format de date invalide.'], Response::HTTP_BAD_REQUEST);
+        //! Récupérez la prestation et user 
+
+        $prestation = $prestationRepository->find($id);
+        //   dd($prestation);
+        if (!$prestation) {
+            // Gérer l'erreur si la prestation n'existe pas
+            throw $this->createNotFoundException('La prestation demandée n\'existe pas.');
+        }
+        // dd($finalSlots);
+        $reservation = new Reservation();
+        $reservation->setPrestation($prestation);
+        // Récupérez l'utilisateur connecté
+        $user = $this->getUser();
+
+        if (!$user) {
+            // aucun utilisateur n'est connecté 
+            throw $this->createAccessDeniedException('Vous devez être connecté pour effectuer cette action.');
+
+            return $this->redirectToRoute('app_login');
+        }
+        // set l'utilisateur à la réservation
+        $reservation->setUser($user);
+
+        //! Fin
+
+        // cree tableau 
+        $form = $this->createForm(ReservationType::class, $reservation);
+        $form->remove('prestation');
+        $form->handleRequest($request);
+
+        //verifie si il est soumis et valid
+        if ($form->isSubmitted() && $form->isValid()) {
+            $rdv = $request->request->get('rdv');
+            if ($rdv) {
+                try {
+                    $reservation->setRdv(new \DateTime($rdv));
+                } catch (\Exception $e) {
+                    return $this->json(['error' => 'Format de date invalide.'], Response::HTTP_BAD_REQUEST);
                 }
                 $entityManager->persist($reservation);
                 $entityManager->flush();
-                
+
                 return $this->redirectToRoute('app_reservation_valid', [
                     'pseudo' => $reservation->getUser()->getPseudo(),
-                    'prestation' => $reservation->getPrestation()->getNom(), 
+                    'prestation' => $reservation->getPrestation()->getNom(),
                     'prix' => $reservation->getPrestation()->getPrix(),
-                   // 'rdv' => $reservation->getReservation()->getRdv()
+                    // 'rdv' => $reservation->getReservation()->getRdv()
                 ]);
                 //dd($reservation);
             }
         }
-return $this->render('reservation/new.html.twig', [
-    
-    'selectedDate' => $selectedDate,
-    'rdvs' => $rdvs,
-    'availableSlots' => $finalSlots,
-    'form' => $form->createView(),
-    'prestationId' => $id,
-    ]);
-}  
+        return $this->render('reservation/new.html.twig', [
 
-   
+            'selectedDate' => $selectedDate,
+            'rdvs' => $rdvs,
+            'availableSlots' => $finalSlots,
+            'form' => $form->createView(),
+            'prestationId' => $id,
+        ]);
+    }
+
+
     #[Route('/valid', name: 'app_reservation_valid')]
     public function validResa(Request $request)
     {
         $pseudo = $request->query->get('pseudo');
         $prestation = $request->query->get('prestation');
         $prix = $request->query->get('prix');
-       // $rdv = $request->query->get('rdv');
-      //  dd($request->query);
+        // $rdv = $request->query->get('rdv');
+        //  dd($request->query);
 
         return $this->render('reservation/validResa.html.twig', [
             'reservationDetails' => [
                 'pseudo' => $pseudo,
                 'prestation' => $prestation,
                 'prix' => $prix,
-               // 'rdv' => $rdv
+                // 'rdv' => $rdv
             ]
         ]);
     }
 
-        
+
     #[Route('/clean', name: 'app_reservation_clean', methods: ['GET'])]
     public function cleanOldReservations(EntityManagerInterface $entityManager): Response
     {
 
-    $today = new \DateTime();
+        $today = new \DateTime();
 
-    // Créer la requête DQL pour sélectionner les réservations antérieures à aujourd'hui
-    $dql = "DELETE FROM App\Entity\Reservation r WHERE r.rdv < :today";
-    $query = $entityManager->createQuery($dql);
-    $query->setParameter('today', $today);
+        // Créer la requête DQL pour sélectionner les réservations antérieures à aujourd'hui
+        $dql = "DELETE FROM App\Entity\Reservation r WHERE r.rdv < :today";
+        $query = $entityManager->createQuery($dql);
+        $query->setParameter('today', $today);
 
-    // Exécuter la requête
-    $numDeleted = $query->execute();
+        // Exécuter la requête
+        $numDeleted = $query->execute();
 
-    // Vous pouvez retourner une réponse indiquant le nombre de réservations supprimées
-    return new Response("Nombre de réservations supprimées : " . $numDeleted);
+        // Vous pouvez retourner une réponse indiquant le nombre de réservations supprimées
+        return new Response("Nombre de réservations supprimées : " . $numDeleted);
 
 
     }
@@ -203,7 +200,7 @@ return $this->render('reservation/new.html.twig', [
     #[Route('/{id}', name: 'app_reservation_show', methods: ['GET'])]
     public function show(Reservation $reservation): Response
     {
-        
+
         return $this->render('reservation/show.html.twig', [
             'reservation' => $reservation,
         ]);
@@ -234,7 +231,7 @@ return $this->render('reservation/new.html.twig', [
     public function delete(Request $request, Reservation $reservation, EntityManagerInterface $entityManager): Response
     {
         // Vérifie si le jeton CSRF (Cross-Site Request Forgery) est valide
-        if ($this->isCsrfTokenValid('delete'.$reservation->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $reservation->getId(), $request->request->get('_token'))) {
             //supprime la reservattion en BDD
             $entityManager->remove($reservation);
             $entityManager->flush();
@@ -262,6 +259,6 @@ return $this->render('reservation/new.html.twig', [
     //     return new JsonResponse($creneauxHoraires);
     // }
 
-} 
+}
 
 

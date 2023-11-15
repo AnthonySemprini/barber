@@ -21,7 +21,9 @@
     {{ form_row(registrationForm.agreeTerms) }}
    
 
-    <button type="submit" class="btn">Valider</button>
+    <button type="submit" class="btn " data-sitekey="reCAPTCHA_site_key" 
+    data-callback='onSubmit' 
+    data-action='submit'>Valider</button>
     {{ form_end(registrationForm) }}
 </div>
 {% endblock %}

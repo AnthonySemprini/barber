@@ -21,6 +21,15 @@ class ReservationRepository extends ServiceEntityRepository
         parent::__construct($registry, Reservation::class);
     }
 
+    public function findReservationBooked($isoDate)
+    {
+        return $this->createQueryBuilder('r')
+        ->andwhere('SUBSTRING(r.rdv, 1, 10) = :isoDate')
+        ->setParameter('isoDate', $isoDate)
+        ->getQuery()
+        ->getResult();
+        
+    }
 //    /**
 //     * @return Reservation[] Returns an array of Reservation objects
 //     */

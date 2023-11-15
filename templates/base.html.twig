@@ -57,6 +57,7 @@
        
         <script src="https://kit.fontawesome.com/ef55713c5a.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js" integrity="sha256-8EcfIJRWyvnu/U0OsfCk05x1JGVmeC2a7sJQHrbWYSA=" crossorigin="anonymous"></script>
+        <script src="https://www.google.com/recaptcha/api.js"></script>
 
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -80,20 +81,7 @@
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script src="{{asset('assets/js/bootstrap-datepicker.min.js')}}"></script>
-        <script>function adjustMargin() {
-            // Récupère l'élément avec la classe 'navbar' et stocke sa hauteur dans 'navbarHeight'
-            var navbarHeight = document.querySelector('.navbar').offsetHeight;
-              // Définit la marge supérieure de l'élément avec la classe 'one' 
-            // pour être égale à la hauteur de la navbar (en pixels)
-            document.querySelector('.one,.shop,.divPresta,.detailProd,.reservationPage,.validPage,.panierPage,.formCommandePage,.validCommandePage,.loginPage,.registerPage,.editProfil,.profil').style.marginTop = navbarHeight + 'px';
-          }
-          
-          // Ajuster au chargement de la page
-          window.onload = adjustMargin;
-          
-          // Ajuster lors du redimensionnement de la fenêtre
-          window.onresize = adjustMargin;
-          </script>
+        <script src="{{asset('assets/js/script.js')}}"></script>
     </head>
     <body>
             {% include "_partials/_nav.html.twig" %}
