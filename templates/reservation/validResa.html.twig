@@ -1,16 +1,13 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Réservation Confirmée{% endblock %}
-
 {% block body %}
 <div class="container mt-5 validPage">
     <div class="blackfilter"></div>
     <h1 style="color:white;">Confirmation de rdv</h1>
-    {% set reservationDetails = app.session.get('reservationDetails') %}
+    {# {{ dump(reservationDetails) }} #}
     {% if reservationDetails %}
         <div class="text-center">
-            <h1 class="display-4 h1Valid">C'est dans la poche {{ reservationDetails.pseudo }} !</h1>
-            <h3 class="lead mt-3 texteValid">Nous avons hâte de vous voir DATE HEURE pour votre prestation <strong>"{{ reservationDetails.prestation }}"</strong>  pour seulement <strong>{{ reservationDetails.prix }}€</strong> !</h3>
+            <h5 style="color:white;">C'est dans la poche {{ reservationDetails.pseudo }} !</h5>
+            <h5 style="color:white;" >Nous avons hâte de vous voir pour votre prestation <strong>"{{ reservationDetails.prestation }}"</strong> pour seulement <strong>{{ reservationDetails.prix }}€</strong> !</h5>
         </div>
     {% else %}
         <div class="alert alert-warning" role="alert">

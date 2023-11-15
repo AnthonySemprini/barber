@@ -7,7 +7,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-
+use Symfony\Component\Validator\Constraints\GreaterThanOrEqual;
+use Symfony\Component\Validator\Constraints\DateTime;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -24,7 +25,6 @@ class ReservationType extends AbstractType
             ->add('prenom', TextType::class)
             ->add('numTel', TextType::class) 
             ->add('rdv', DateTimeType::class)
-          
             ->add('submit', SubmitType::class, ['label' => 'Confirmer la réservation'])
             ;
     }

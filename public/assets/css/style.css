@@ -765,12 +765,12 @@ div.pagination a:hover, div.pagination span:hover{
 div#reservation_rdv{
     display: none;
 }
-.reservationPage{
+div.reservationPage{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-   height: 60vh;
+   height: 110vh;
     background-color: var(--white-color);
    
 }

@@ -10,7 +10,8 @@
     <div class="dateForm">
         <!--! formulaire choix de la date -->
         <form action="{{ path('app_reservation_new', {'id': prestationId}) }}" method="post" class="allDatepicker">
-            <input type="text" class="form-control datepicker" name="daySelect">
+            {# <input type="text" class="form-control datepicker" name="daySelect"> #}
+            <input type="date" name="daySelect" id="daySelect">
             <span class="input-group-addon">
                 <i class="fa fa-calendar"></i>
             </span>
@@ -50,70 +51,28 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 <script>
 
-    document.querySelectorAll('.slot-button').forEach(item => {
-        item.addEventListener('click', event => {
-
-            document.querySelector('input[name="daySelect"]').value = item.dataset.start;
-
-        });
-    });
-
-    $(document).ready(function () {
-
-        // Initialisation du Datepicker
-        $('.datepicker').datepicker({
-            format: "dd/mm/yyyy",
-            language: "fr",
-            daysOfWeekDisabled: "0,1",
-            daysOfWeekHighlighted: "0,1",
-            autoclose: true,
-            orientation: "top auto",
-            todayHighlight: true
-        }).on('changeDate', function (e) {
-            window.selectedDate = moment(e.date).format('YYYY-MM-DD');
-            localStorage.setItem('selectedDate', window.selectedDate);
-            console.log(e.date)
-        });
-
-        var storedDate = localStorage.getItem('selectedDate');
-        //console.log(localStorage.getItem('selectedDate'));
-
-        if (storedDate) {
-            var formattedDate = moment(storedDate, "YYYY-MM-DD").format("DD/MM/YYYY");
-            $('.datepicker').datepicker('update', formattedDate);
-        }
-    });
-
-
-    //  inclus moment.js pour la manipulation de date
-    /* $('.slot-button').on('click', function() {
-        var startDate = $(this).data('start'); // récupère la valeur de l'attribut data-start
-        var endDate = $(this).data('end'); // récupère la valeur de l'attribut data-end
+    let selectedDate;
+    const selectedSlot = document.querySelector("#selectedSlot");
+    const daySelect = document.querySelector("#daySelect");
     
-        //  format attendu par Symfony
-        var formattedDate = moment(startDate, "HH:mm").format("YYYY-MM-DD hh:mm");
-    }); 
-    */
 
+    daySelect.addEventListener("change", (item) => {
+        selectedDate = item.target.value
+        localStorage.setItem("selectedDate", selectedDate)
+    })
 
-    $('.slot-button').on('click', function () { //lorsqu'un bouttton est
-        var startTime = $(this).data('start'); // Récup heure de début du créneau
+    document.querySelectorAll('.slot-button').forEach(item => {
+        item.addEventListener('click', (event) => {
+            event.preventDefault()
+            //console.log(item.dataset.start)
+            let dateFormatted = moment(localStorage.getItem("selectedDate"), "YYYY-MM-DD").format("YYYY-MM-DD")
+            var formattedSlot = moment(item.dataset.start, "HH:mm").format("HH:mm")
 
+            selectedSlot.value = dateFormatted + "T" + formattedSlot;
 
-        // Combine  date sélectionnée avec l'heure de début
-        var combinedDateTime = moment(window.selectedDate + ' ' + startTime, "YYYY-MM-DD HH:mm").format("YYYY-MM-DD HH:mm:ss");
-
-
-        console.log(combinedDateTime);
-        console.log($('#selectedSlot'));
-        // Met à jour la valeur de l'input correspondant à 'reservation[rdv]'
-        $('input[name="reservation[rdv]"]').val(combinedDateTime);
-
-        // Affiche le créneau sélectionné
-        $('#selectedSlot').val(combinedDateTime);
+        });
     });
 
-
-</script>
+ </script>
 
 {% endblock %}

@@ -47,11 +47,8 @@ class ReservationController extends AbstractController
         $isoDate = null;
 
         if ($selectedDate) {
-            // Convertissez la date  au format 'Y-m-d' 
-            $dateTime = \DateTime::createFromFormat('d/m/Y', $selectedDate);
-            // dd($dateTime);
-            $isoDate = $dateTime->format('Y-m-d');
-
+         
+            $isoDate = $selectedDate;
             // Récupérez les réservations pour la date sélectionnée
             $dql = "SELECT r
                 FROM App\Entity\Reservation r
@@ -63,7 +60,7 @@ class ReservationController extends AbstractController
             $rdvs = []; 
         }
    
-        // dd($rdvs);
+    
         // Créez un tableau pour stocker les créneaux d'une journée
         
         $startTime = strtotime('08:00');
@@ -143,26 +140,15 @@ class ReservationController extends AbstractController
                 $entityManager->persist($reservation);
                 $entityManager->flush();
                 
-                //   dd($reservation->getRdv());
-                // Assurez-vous que cette ligne est exécutée
-                // autres détails...
-                
-                //affiche dans la vue reservation valid
-              $request->attributes->set('reservationDetails', [
-                  'pseudo' => $reservation->getUser()->getPseudo(),
-                      'prestation' => $reservation->getPrestation()->getNom(), 
-                      'prix' => $reservation->getPrestation()->getPrix()
-                  ]);
-              return $this->redirectToRoute('app_reservation_valid');
+                return $this->redirectToRoute('app_reservation_valid', [
+                    'pseudo' => $reservation->getUser()->getPseudo(),
+                    'prestation' => $reservation->getPrestation()->getNom(), 
+                    'prix' => $reservation->getPrestation()->getPrix(),
+                   // 'rdv' => $reservation->getReservation()->getRdv()
+                ]);
+                //dd($reservation);
+            }
         }
-         
-      }
-
-
-    
-
-        
-  
 return $this->render('reservation/new.html.twig', [
     
     'selectedDate' => $selectedDate,
@@ -175,12 +161,23 @@ return $this->render('reservation/new.html.twig', [
 
    
     #[Route('/valid', name: 'app_reservation_valid')]
-    public function success(): Response
+    public function validResa(Request $request)
     {
-        
+        $pseudo = $request->query->get('pseudo');
+        $prestation = $request->query->get('prestation');
+        $prix = $request->query->get('prix');
+       // $rdv = $request->query->get('rdv');
+      //  dd($request->query);
 
-        return $this->render('reservation/validResa.html.twig');
-    } 
+        return $this->render('reservation/validResa.html.twig', [
+            'reservationDetails' => [
+                'pseudo' => $pseudo,
+                'prestation' => $prestation,
+                'prix' => $prix,
+               // 'rdv' => $rdv
+            ]
+        ]);
+    }
 
         
     #[Route('/clean', name: 'app_reservation_clean', methods: ['GET'])]
