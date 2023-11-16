@@ -20,7 +20,13 @@
 @media screen and (max-width: 790px) {
 
     /********** Reservation  **********/
-   
+    div.reservationPage{
+       
+        padding: 50px 10px;
+    }
+    .dateForm{
+        min-width: 250px; 
+    }
     /********** login incription  **********/
     div.imgForm{
         flex-wrap: wrap;

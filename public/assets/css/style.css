@@ -869,26 +869,30 @@ div.reservationPage{
 .formSlot{
     display: flex;
     flex-direction: row;
-  
-    flex-wrap: wrap;
+  flex-wrap: wrap;
     justify-content: center;
+    border: 2px solid var(--blue-color);
+    border-radius: 20px;
+    padding: 20px;
 }
+
+input#daySelect{
+    margin-bottom: 20px;
+} 
 .dateForm{
-    
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    height: 60vh;
-    width: 50vw;
-    max-width: 400px;
+    justify-content: flex-start;
+    min-width: 400px;
+    gap: 20px;
 }
 .slot{
     display: flex;
-    margin-top: 30px;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    max-width: 500px;
 }
 div.formInfo p{
     text-align: center;
@@ -897,10 +901,9 @@ div.formInfo p{
 .creneau{
     display: flex;
     flex-wrap: wrap;
-    height: 60vh;
-    width: 50vw;
-  
+    align-items: center;
     justify-content: center;
+    flex-direction: column;
 }
 button.slot-button{
     margin: 2%;
@@ -910,8 +913,7 @@ button.slot-button{
 .allDatepicker{
     display: flex;
     justify-content: space-around;
-    height: 100px;
-    margin-bottom: 50px;
+ 
     flex-direction: column;
     align-items: center;
 }
@@ -919,6 +921,9 @@ button.slot-button{
     display: flex;
     justify-content: center; 
 } 
+.btnFindSlot{
+    margin-bottom: 30px;
+}
 .datepicker{
     display: flex;
     position: absolute;

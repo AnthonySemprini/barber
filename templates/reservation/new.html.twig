@@ -14,12 +14,9 @@
             <form action="{{ path('app_reservation_new', {'id': prestationId}) }}" method="post" class="allDatepicker">
                 {# <input type="text" class="form-control datepicker" name="daySelect"> #}
                 <input class="" type="date" name="daySelect" id="daySelect">
-                <button class="buttonSmall" type="submit">Verifiez les disponibilitées</button>
+                <button class="buttonSmall btnFindSlot" type="submit">Verifiez les disponibilitées</button>
             </form>
-            <div class="formInfo">
-                <p>3 Compléter vos informations</p>
-                {{ include('reservation/_form.html.twig') }}
-            </div>
+
         </div>
         <!--! verifie si il y a bien une date sectionner -->
         {% if pagination is not empty %}
@@ -33,6 +30,7 @@
                     {{ slot.start | date('H:i')}}
                 </button>
                 {% endfor %}
+                {{ knp_pagination_render(pagination)}}
             </div>
         </div>
         {% else %}
@@ -42,7 +40,10 @@
         </div>
         {% endif %}
     </div>
-    {{ knp_pagination_render(pagination)}}
+    <div class="formInfo">
+        <p>3 Compléter vos informations</p>
+        {{ include('reservation/_form.html.twig') }}
+    </div>
 </div>
 
 
