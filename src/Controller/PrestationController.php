@@ -18,7 +18,7 @@ class PrestationController extends AbstractController
         $pagination = $paginator->paginate(
             $prestationRepository->paginationQuery(),
             $request->query->get('page', 1),
-            8 //Nombre d'elements par page
+            5 //Nombre d'elements par page
         );
 
             return $this->render('prestation/index.html.twig', [

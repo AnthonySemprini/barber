@@ -48,7 +48,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::section('Users');
 
         yield MenuItem::subMenu('Actions', 'fas fa-bars')->setSubItems([
-            MenuItem::linkToCrud('Ajouter user', 'fas fa-plus', User::class)->setAction(Crud::PAGE_NEW),
             MenuItem::linkToCrud('Voir user', 'fas fa-eye', User::class)
         ]);
         yield MenuItem::section('E-commerce');
@@ -66,9 +65,9 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('Voir produit', 'fas fa-eye', Categorie::class)
         ]);
 
-        yield MenuItem::section('RDV');
+        yield MenuItem::section('Rervation et prestation');
+        
         yield MenuItem::section('Prestations');
-
         yield MenuItem::subMenu('Actions', 'fas fa-bars')->setSubItems([
             MenuItem::linkToCrud('Créer préstation', 'fas fa-plus', Prestation::class)->setAction(Crud::PAGE_NEW),
             MenuItem::linkToCrud('Voir préstation', 'fas fa-eye', Prestation::class)
@@ -82,12 +81,10 @@ class DashboardController extends AbstractDashboardController
 
         yield MenuItem::section('Commandes');
         yield MenuItem::subMenu('Actions', 'fas fa-bars')->setSubItems([
-        MenuItem::linkToCrud('Ajouter commande', 'fas fa-plus', Commande::class)->setAction(Crud::PAGE_NEW),
         MenuItem::linkToCrud('Voir commande', 'fas fa-eye', Commande::class)
 ]);
         yield MenuItem::section('ProduitCommandes');
         yield MenuItem::subMenu('Actions', 'fas fa-bars')->setSubItems([
-        MenuItem::linkToCrud('Ajouter ProduitCommande', 'fas fa-plus', ProduitCommande::class)->setAction(Crud::PAGE_NEW),
         MenuItem::linkToCrud('Voir ProduitCommande', 'fas fa-eye', ProduitCommande::class)
 ]);
 
