@@ -12,7 +12,10 @@
     {{ form_errors(registrationForm) }}
 
     {{ form_start(registrationForm) }}
-
+    <div class="imgForm">
+    <div class="imgRegister">
+        <img src="assets/img/registerBarber.png" alt="barbier a cote de son fauteuil">
+    </div>
     <div class="registerForm">
         {{ form_row(registrationForm.email) }}
         {{ form_row(registrationForm.pseudo) }}
@@ -29,6 +32,7 @@
         <button type="submit" class="btn buttonSmall" data-sitekey="reCAPTCHA_site_key" data-callback='onSubmit'
             data-action='submit'>Valider</button>
     </div>
+</div>
     {{ form_end(registrationForm) }}
 </div>
 {% endblock %}

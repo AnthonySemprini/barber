@@ -18,6 +18,14 @@
 
 @media screen and (max-width: 790px) {
 
+    /********** login incription  **********/
+    div.imgForm{
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    div.imgRegister img{
+        margin-bottom: 50px;
+    }
     /********** Panier **********/
     img.imgPanier, th.panier.imgPanier, td.panier.imgPanier, td.total.imgPanier{
         display: none;

@@ -81,16 +81,41 @@ a{
 
 
 /********** Login et register **********/
-
-.registerForm{
-   display: flex;
-   flex-direction: column;
-   align-items: center;
+div.imgForm{
+    display: flex;
+    width: 100%;
     height: auto;
-    width: 50vw;
+    align-items: center;
+    
+}
+div.imgRegister img{
+    width: 100%;
+    height: auto;
+    min-width: 300px;
+}
+div.imgRegister {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    height: auto;
+}
+.registerForm{
+    min-width: 315px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 40vh;
+    margin: 0 5vw;
+    padding: 20px ;
+    width: 45vw;
+    background-color: #00000030;
+    -webkit-box-shadow: -6px 4px 13px 3px rgba(127, 106, 106, 0.58); 
+    box-shadow: -6px 4px 13px 3px rgba(0,0,0,0.58);
+    border-radius: 20px;
 }
 .registerForm > div {
-    margin-bottom: 15px; /* Espacement entre les éléments de formulaire */
+    margin-bottom: 15px; 
 }
 div.registerPage{
     display: flex;
