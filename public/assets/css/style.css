@@ -863,7 +863,7 @@ div.reservationPage{
     align-items: center;
     background-color: var(--white-color);
     width: 100%;
-    height: 135vh;
+    height: auto;
     padding: 50px;
 }
 .formSlot{
@@ -899,12 +899,13 @@ div.formInfo p{
     flex-wrap: wrap;
     height: 60vh;
     width: 50vw;
-    min-width: 400px;
+  
     justify-content: center;
 }
 button.slot-button{
     margin: 2%;
     font-size: 1.1rem;
+    min-width: 130px;
 }
 .allDatepicker{
     display: flex;

@@ -8,6 +8,7 @@ use App\Form\ReservationType;
 use App\Repository\PrestationRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\ReservationRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -37,7 +38,7 @@ class ReservationController extends AbstractController
 
 
     #[Route('/new/{id}', name: 'app_reservation_new', methods: ['GET', 'POST'])]
-    public function newResrvation($id, EntityManagerInterface $entityManager, PrestationRepository $prestationRepository, SessionInterface $session, ReservationRepository $reservationRepository, Request $request): Response
+    public function newResrvation($id, EntityManagerInterface $entityManager, PrestationRepository $prestationRepository, SessionInterface $session, ReservationRepository $reservationRepository, Request $request,PaginatorInterface $paginator): Response
     {
         //! Partie qui recup la date selectionner et qui renvoi les crenaux dispo de la date en question
 
@@ -146,8 +147,13 @@ class ReservationController extends AbstractController
                 //dd($reservation);
             }
         }
+        $pagination = $paginator->paginate(
+            $finalSlots, // Le tableau à paginer
+            $request->query->get('page', 1), // Le numéro de la page actuelle, 1 par défaut
+            6// Le nombre de créneaux par page
+        );
         return $this->render('reservation/new.html.twig', [
-
+            'pagination' => $pagination,
             'selectedDate' => $selectedDate,
             'rdvs' => $rdvs,
             'availableSlots' => $finalSlots,

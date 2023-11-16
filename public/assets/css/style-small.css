@@ -16,16 +16,11 @@
 }
 
 
-@media screen and (max-width: 1000px) {
 
-    div.reservationPage{
-        height: 200vh;  
-    }
-}
 @media screen and (max-width: 790px) {
 
     /********** Reservation  **********/
- 
+   
     /********** login incription  **********/
     div.imgForm{
         flex-wrap: wrap;

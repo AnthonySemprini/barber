@@ -22,12 +22,12 @@
             </div>
         </div>
         <!--! verifie si il y a bien une date sectionner -->
-        {% if availableSlots is not empty %}
+        {% if pagination is not empty %}
         <div class="creneau">
             <p> 2 Choisir votre crénau horaire</p>
             <!--! Boutton pour select le créneau horraire -->
             <div class="slot">
-                {% for slot in availableSlots %}
+                {% for slot in pagination %}
                 <button type="button" class="list-group-item list-group-item-action slot-button buttonSmall"
                     data-start="{{ slot.start }}" data-end="{{ slot.end }}">
                     {{ slot.start | date('H:i')}}
@@ -42,6 +42,7 @@
         </div>
         {% endif %}
     </div>
+    {{ knp_pagination_render(pagination)}}
 </div>
 
 
