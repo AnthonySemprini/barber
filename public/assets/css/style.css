@@ -86,7 +86,12 @@ div.imgForm{
     width: 100%;
     height: auto;
     align-items: center;
-    
+}
+.loginPage{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px;
 }
 div.imgRegister img{
     width: 100%;
