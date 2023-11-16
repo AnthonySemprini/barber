@@ -32,6 +32,17 @@ class ProduitRepository extends ServiceEntityRepository
            ;
        }
     
+       public function findByCategory($category = null)
+       {
+           $qb = $this->createQueryBuilder('p');
+       
+           if ($category) {
+               $qb->andWhere('p.Categorie = :category')
+                  ->setParameter('category', $category);
+           }
+       
+           return $qb->getQuery();
+       }
     
         public function findLastThreeProd()
         {
