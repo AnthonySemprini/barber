@@ -22,10 +22,10 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class,[
-                'label' => 'Votre email'
+                'label' => 'Votre email : '
             ])
             ->add('pseudo', TextType::class, [
-                'label' => 'Votre pseudo'
+                'label' => 'Votre pseudo : '
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
@@ -42,8 +42,8 @@ class RegistrationFormType extends AbstractType
     'invalid_message' => 'Les champs du mot de passe doivent correspondre.',
     'options' => ['attr' => ['class' => 'password-field']],
     'required' => true,
-    'first_options'  => ['label' => 'Mot de passe'],
-    'second_options' => ['label' => 'Confirmation'],
+    'first_options'  => ['label' => 'Mot de passe : '],
+    'second_options' => ['label' => 'Confirmation : '],
     'constraints' => [
         new NotBlank([
             'message' => 'Veuillez saisir un mot de passe',
