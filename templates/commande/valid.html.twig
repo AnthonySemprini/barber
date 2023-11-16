@@ -1,11 +1,50 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Paiement{% endblock %}
+{% block title %}Confirmation de commande {% endblock %}
 
 {% block body %}
 <div class="validCommandePage">
-    <h1>Votre commande est validé</h1>
-    <h3>Veuillez suivre les insctruction de paiement</h3>
+    <div class="recap">
+        <h2>Votre  récapitulatif de commande</h2>
+        <h3>Facture Commande #{{ commande.id }}</h3>
+        <p class="dateCom">Date de commande: {{ commande.dateCommande|date('d/m/Y') }}</p>
+
+        <h4>Vos informations</h4>
+        <p>Nom: {{ commande.nom }}</p>
+        <p>Prénom: {{ commande.prenom }}</p>
+        <p class="dateCom">Adresse: {{ commande.adresse }}, {{ commande.codePostal }} {{ commande.ville }}</p>
+
+        <h4>Détails de la Commande</h4>
+        <table class="facture">
+            <thead>
+                <tr>
+                    <th>Produit</th>
+                    <th>Quantité</th>
+                    <th>Prix</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if commande.produitCommandes is not empty %}
+                {% for produitCommande in commande.produitCommandes %}
+                    <tr>
+                        <td>{{ produitCommande.produit.nom }}</td>
+                        <td>{{ produitCommande.quantite }}</td>
+                        <td>{{ produitCommande.produit.prix * produitCommande.quantite }} €</td>
+                    </tr>  
+                {% endfor %} 
+                {% else %}
+                    <tr>
+                        <td colspan="3">Aucun produit associé à cette commande.</td>
+                    </tr>
+                {% endif %} 
+            </tbody>
+        </table>
+        <div class="total">
+            <p>Montant total : {{ total }} €</p>
+        </div>
+        <a class="buttonSmall" href="{{path('app_commande_pdf', {'id': commande.id}) }}">Pdf de la facture</a>
+    </div>
+    
 </div>
  
 {% endblock %}

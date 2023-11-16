@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Facture</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .facture {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .facture th, .facture td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .facture th {
+            background-color: #f2f2f2;
+        }
+        .total {
+            font-weight: bold;
+            text-align: right;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Facture Commande #{{ commande.id }}</h1>
+        <p>Date de commande: {{ commande.dateCommande|date('d/m/Y') }}</p>
+
+        <h2>Informations du Client</h2>
+        <p>Nom: {{ commande.nom }}</p>
+        <p>Prénom: {{ commande.prenom }}</p>
+        <p>Adresse: {{ commande.adresse }}, {{ commande.codePostal }} {{ commande.ville }}</p>
+
+        <h2>Détails de la Commande</h2>
+        <table class="facture">
+            <thead>
+                <tr>
+                    <th>Produit</th>
+                    <th>Quantité</th>
+                    <th>Prix</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if commande.produitCommandes is not empty %}
+                {% for produitCommande in commande.produitCommandes %}
+                    <tr>
+                        <td>{{ produitCommande.produit.nom }}</td>
+                        <td>{{ produitCommande.quantite }}</td>
+                        <td>{{ produitCommande.produit.prix * produitCommande.quantite }} €</td>
+                    </tr>  
+                {% endfor %} 
+                {% else %}
+                    <tr>
+                        <td colspan="3">Aucun produit associé à cette commande.</td>
+                    </tr>
+                {% endif %} 
+            </tbody>
+        </table>
+        <div class="total">
+            <p>Montant total : {{ total }} €</p>
+        </div>
+    </div>
+</body>
+</html>

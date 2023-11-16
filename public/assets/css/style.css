@@ -676,6 +676,38 @@ div.rigth{
     gap: 10px;
 }
 /********** Panier **********/
+/**! Facture **/
+.recap {
+    width: 80%;
+    height: auto;
+    margin: 0 auto;
+    padding: 50px;
+}
+div.recap h3, div.recap h2{
+    color: var(--blue-color);
+}
+div.recap p.dateCom{
+    margin-bottom: 30px;
+}
+table.facture {
+    width: 100%;
+    border-collapse: collapse;
+}
+table.facture th, .facture td {
+    border: 1px solid #000000;
+    padding: 8px;
+    text-align: left;
+}
+table.facture th {
+    background-color: #636161;
+}
+.total {
+    font-weight: bold;
+    text-align: right;
+    margin-top: 20px;
+}
+/**! Fin **/
+
 div.panierPage{
     display: flex;
     flex-direction: column;
