@@ -7,40 +7,45 @@
 
 <div class="reservationPage">
     <h1>Créé votre réservation</h1>
-    <div class="dateForm">
-        <!--! formulaire choix de la date -->
-        <form action="{{ path('app_reservation_new', {'id': prestationId}) }}" method="post" class="allDatepicker">
-            {# <input type="text" class="form-control datepicker" name="daySelect"> #}
-            <input type="date" name="daySelect" id="daySelect">
-            <span class="input-group-addon">
-                <i class="fa fa-calendar"></i>
-            </span>
-            <button type="submit">Verifiez les disponibilitées</button>
-        </form>
-    </div>
-    <!--! verifie si il y a bien une date sectionner -->
-    {% if availableSlots is not empty %}
-    <div class="container mt-4">
-        <div class="row">
-            <div class="col-12">
-                <!--! Boutton pour select le créneau horraire -->
+    <div class="formSlot">
+        <div class="dateForm">
+            <!--! formulaire choix de la date -->
+            <p> 1 Choisir votre date</p>
+            <form action="{{ path('app_reservation_new', {'id': prestationId}) }}" method="post" class="allDatepicker">
+                {# <input type="text" class="form-control datepicker" name="daySelect"> #}
+                <input class="" type="date" name="daySelect" id="daySelect">
+                <button class="buttonSmall" type="submit">Verifiez les disponibilitées</button>
+            </form>
+            <div class="formInfo">
+                <p>3 Compléter vos informations</p>
+                {{ include('reservation/_form.html.twig') }}
+            </div>
+        </div>
+        <!--! verifie si il y a bien une date sectionner -->
+        {% if availableSlots is not empty %}
+        <div class="creneau">
+            <p> 2 Choisir votre crénau horaire</p>
+            <!--! Boutton pour select le créneau horraire -->
+            <div class="slot">
                 {% for slot in availableSlots %}
-                <button type="button" class="list-group-item list-group-item-action slot-button"
+                <button type="button" class="list-group-item list-group-item-action slot-button buttonSmall"
                     data-start="{{ slot.start }}" data-end="{{ slot.end }}">
                     {{ slot.start | date('H:i')}}
                 </button>
                 {% endfor %}
             </div>
         </div>
+        {% else %}
+        <!--! Renvoi un message si aucun créneau est dispo -->
+        <div class="alert alert-warning" role="alert">
+            Aucun créneau disponible.
+        </div>
+        {% endif %}
     </div>
-    {% else %}
-    <!--! Renvoi un message si aucun créneau est dispo -->
-    <div class="alert alert-warning" role="alert">
-        Aucun créneau disponible.
-    </div>
-    {% endif %}
-    {{ include('reservation/_form.html.twig') }}
 </div>
+
+
+
 
 
 
@@ -54,7 +59,7 @@
     let selectedDate;
     const selectedSlot = document.querySelector("#selectedSlot");
     const daySelect = document.querySelector("#daySelect");
-    
+
 
     daySelect.addEventListener("change", (item) => {
         selectedDate = item.target.value
@@ -73,6 +78,6 @@
         });
     });
 
- </script>
+</script>
 
 {% endblock %}

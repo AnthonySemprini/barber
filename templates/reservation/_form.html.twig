@@ -1,16 +1,13 @@
+
 {{ form_start(form) }}
+<div class="formReservation">
 {{ form_label(form.nom, 'Votre nom') }}
 {{ form_widget(form.nom) }}
-
 {{ form_label(form.prenom, 'Votre prénom') }}
 {{ form_widget(form.prenom) }}
-
 {{ form_label(form.numTel, 'Numéro de téléphone') }}
 {{ form_widget(form.numTel) }}
-
 <input type="datetime-local" name="rdv" id="selectedSlot">
-
-
-
 {{ form_row(form.submit) }}
+</div>
 {{ form_end(form) }}
