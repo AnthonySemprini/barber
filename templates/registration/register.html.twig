@@ -18,7 +18,13 @@
     {{ form_row(registrationForm.plainPassword, {
     label: 'Password'
     }) }}
-    {{ form_row(registrationForm.agreeTerms) }}
+    {# {{ form_row(registrationForm.agreeTerms) }} #}
+    <div>
+        {{ form_label(registrationForm.agreeTerms) }}
+        {{ form_widget(registrationForm.agreeTerms) }}
+        <br><a href="{{ path('app_condition_footer') }}">(Lire les conditions générales</a>  <i class="fa-regular fa-file-lines"> )</i>
+        {{ form_errors(registrationForm.agreeTerms) }}
+    </div>
    
 
     <button type="submit" class="btn " data-sitekey="reCAPTCHA_site_key" 
