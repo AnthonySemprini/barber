@@ -724,7 +724,7 @@ div.rigth{
     gap: 10px;
 }
 /********** Panier **********/
-/**! Facture **/
+/**! fiche **/
 .recap {
     width: 80%;
     height: auto;
@@ -737,16 +737,16 @@ div.recap h3, div.recap h2{
 div.recap p.dateCom{
     margin-bottom: 30px;
 }
-table.facture {
+table.fiche {
     width: 100%;
     border-collapse: collapse;
 }
-table.facture th, .facture td {
+table.fiche th, .fiche td {
     border: 1px solid #000000;
     padding: 8px;
     text-align: left;
 }
-table.facture th {
+table.fiche th {
     background-color: #636161;
 }
 .total {
@@ -842,7 +842,12 @@ div.pagination a:hover, div.pagination span:hover{
     text-decoration: underline 3px var(--blue-color);
 }
 /********** Reservation **********/
-
+.formElement{
+    border-radius: 10px;
+    height: 30px;
+    border: 2px solid var(--blue-color);
+    margin: 10px;
+}
 div#reservation_rdv{
     display: none;
 }
@@ -864,7 +869,7 @@ div.reservationPage{
     background-color: var(--white-color);
     width: 100%;
     height: auto;
-    padding: 50px;
+    
 }
 .formSlot{
     display: flex;
@@ -874,6 +879,7 @@ div.reservationPage{
     border: 2px solid var(--blue-color);
     border-radius: 20px;
     padding: 20px;
+    margin: 20px;
 }
 
 input#daySelect{

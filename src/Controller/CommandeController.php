@@ -128,7 +128,7 @@ class CommandeController extends AbstractController
         }
         // dd($total);
         // Récupérez le HTML généré par votre template Symfony
-        $html = $this->renderView('commande/facturePdf.html.twig', [
+        $html = $this->renderView('commande/fichePdf.html.twig', [
             'commande' => $commande, // données à passer au template
             'total' => $total,
         ]);

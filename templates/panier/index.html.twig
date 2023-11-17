@@ -25,12 +25,12 @@
 						<td class="panier">{{article.produit.nom}}</td>
 						<td class="panier">{{article.produit.prix }}€</td>
 						<td class="panier action">
-							<a class="plus" href="{{path ('app_panier_upQtt',{'id' : article.produit.id }) }}">
-								<i class="fas fa-plus"></i>
-							</a>
-						{{article.quantite}}
 							<a class="moins" href="{{path ('app_panier_downQtt',{'id': article.produit.id}) }}">
 								<i class="fas fa-minus"></i>
+							</a>
+							{{article.quantite}}
+							<a class="plus" href="{{path ('app_panier_upQtt',{'id' : article.produit.id }) }}">
+								<i class="fas fa-plus"></i>
 							</a>
 						</td>
 						<td class="panier ssTotal">{{article.produit.prix * article.quantite }}€</td>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Facture</title>
+    <title>Récapitulatif de la commande</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -18,16 +18,16 @@
         h1, h2 {
             color: #333;
         }
-        .facture {
+        .fiche {
             width: 100%;
             border-collapse: collapse;
         }
-        .facture th, .facture td {
+        .fiche th, .fiche td {
             border: 1px solid #ddd;
             padding: 8px;
             text-align: left;
         }
-        .facture th {
+        .fiche th {
             background-color: #f2f2f2;
         }
         .total {
@@ -39,7 +39,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Facture Commande #{{ commande.id }}</h1>
+        <h1>Commande #{{ commande.id }}</h1>
         <p>Date de commande: {{ commande.dateCommande|date('d/m/Y') }}</p>
 
         <h2>Informations du Client</h2>
@@ -48,7 +48,7 @@
         <p>Adresse: {{ commande.adresse }}, {{ commande.codePostal }} {{ commande.ville }}</p>
 
         <h2>Détails de la Commande</h2>
-        <table class="facture">
+        <table class="fiche">
             <thead>
                 <tr>
                     <th>Produit</th>

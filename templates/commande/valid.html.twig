@@ -6,7 +6,7 @@
 <div class="validCommandePage">
     <div class="recap">
         <h2>Votre  récapitulatif de commande</h2>
-        <h3>Facture Commande #{{ commande.id }}</h3>
+        <h3>Commande #{{ commande.id }}</h3>
         <p class="dateCom">Date de commande: {{ commande.dateCommande|date('d/m/Y') }}</p>
 
         <h4>Vos informations</h4>
@@ -15,7 +15,7 @@
         <p class="dateCom">Adresse: {{ commande.adresse }}, {{ commande.codePostal }} {{ commande.ville }}</p>
 
         <h4>Détails de la Commande</h4>
-        <table class="facture">
+        <table class="fiche">
             <thead>
                 <tr>
                     <th>Produit</th>
@@ -42,7 +42,7 @@
         <div class="total">
             <p>Montant total : {{ total }} €</p>
         </div>
-        <a class="buttonSmall" href="{{path('app_commande_pdf', {'id': commande.id}) }}">Pdf de la facture</a>
+        <a class="buttonSmall" href="{{path('app_commande_pdf', {'id': commande.id}) }}">Pdf de la fiche</a>
     </div>
     
 </div>
