@@ -5,7 +5,7 @@
 
         <script type="text/javascript">
         tarteaucitron.init({
-    	  "privacyUrl": "", /* url de la page politique de vie privée */
+    	  "privacyUrl": "http://127.0.0.1:8003/footer/mention", /* url de la page politique de vie privée */
           "bodyPosition": "bottom", /* or top to bring it as first element for accessibility */
 
     	  "hashtag": "#tarteaucitron", /* ouvrir le panneau contenant ce hastag*/
@@ -52,7 +52,9 @@
 
         
             (tarteaucitron.job = tarteaucitron.job || []).push('googlemapssearch');
-       
+            tarteaucitron.user.recaptchaapi = 'XXXXX';         
+            (tarteaucitron.job = tarteaucitron.job || []).push('recaptcha');
+                
         </script>
        
         <script src="https://kit.fontawesome.com/ef55713c5a.js" crossorigin="anonymous"></script>

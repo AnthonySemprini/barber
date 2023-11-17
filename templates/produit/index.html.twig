@@ -9,7 +9,7 @@
 <div class="shop">
     <h1>Produits</h1>
     <form action="{{ path('app_produit') }}" method="get">
-        <select name="category" onchange="this.form.submit()">
+        <select name="category" class="formElement" onchange="this.form.submit()">
             <option value="">Toutes les catégories</option>
             {% for categorie in categories %}
             <option value="{{ categorie.id }}" {% if currentCategory == categorie.id %}selected{% endif %}>

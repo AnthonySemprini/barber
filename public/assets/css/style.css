@@ -135,7 +135,10 @@ div.registerPage{
 
 /********** NavBar **********/
 
-.allBurgerNav{
+.burgerNav{
+    display: none;
+}
+div.menu{
     display: none;
 }
 .allNavBar{
@@ -207,7 +210,7 @@ padding-top: 30px;
 }
 div.navbar > a,
 div.log >a{
-    font-size: 22px;
+    font-size: 1.8rem;
     font-weight: 600;
     color: var(--blue-color);
     text-decoration: underline var(--red-color);
@@ -847,6 +850,7 @@ div.pagination a:hover, div.pagination span:hover{
     height: 30px;
     border: 2px solid var(--blue-color);
     margin: 10px;
+    
 }
 div#reservation_rdv{
     display: none;
@@ -990,7 +994,7 @@ ul.linkFooter a{
 
 div.logoFooter img{    
         height: auto;
-        width: 200px;
+        width: 22vw;
 }
 .logoFooter{
     display: flex;

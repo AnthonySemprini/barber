@@ -14,9 +14,12 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
 
 class CommandeController extends AbstractController
 {
@@ -91,7 +94,7 @@ class CommandeController extends AbstractController
     }
 
     #[Route('/commande/confirm/{id}', name: 'app_commande_confirm')]
-    public function confirm($id, EntityManagerInterface $entityManager): Response
+    public function confirm($id, EntityManagerInterface $entityManager, MailerInterface $mailer): Response
     {
         $commande = $entityManager->getRepository(Commande::class)->find($id);
 
@@ -103,19 +106,45 @@ class CommandeController extends AbstractController
         foreach ($commande->getProduitCommandes() as $panier) {
             $total += $panier->getProduit()->getPrix() * $panier->getQuantite();
         }
+
+         // Envoyer l'email de confirmation ici
+         $this->sendOrderConfirmationEmail($mailer, $commande);
+
         return $this->render('commande/valid.html.twig', [
             'commande' => $commande, // données à passer au template
             'total' => $total
         ]);
     }
 
+    private function sendOrderConfirmationEmail(MailerInterface $mailer, Commande $commande): void
+    {
+        $total = 0;
+        foreach ($commande->getProduitCommandes() as $panier) {
+            $total += $panier->getProduit()->getPrix() * $panier->getQuantite();
+        } 
+
+        $email = (new Email())
+            ->from('theBarberShop@gmail.com') // Remplacez par votre adresse email
+            ->to($commande->getUser()->getEmail())// Supposons que la commande a une relation avec l'utilisateur
+            ->subject('Confirmation de votre commande')
+            ->html($this->renderView(
+                'commande/emailConfirmation.html.twig',[
+                    'commande' => $commande,
+                    'total' => $total
+                ]
+            ));
+
+        // dd($email);
+
+        $mailer->send($email);
+    }
+
     #[Route('/commande/pdf/{id}', name: 'app_commande_pdf')]
     public function generatePdf($id, EntityManagerInterface $entityManager): Response
     {
-       // $entityManager = $this->managerRegistry->getManager();
+       
         $commande = $entityManager->getRepository(Commande::class)->find($id);
-        // Force le chargement de la collection
-        // $commande->getProduitCommandes()->initialize();
+      
 
 // DD($commande);
         if (!$commande) {
