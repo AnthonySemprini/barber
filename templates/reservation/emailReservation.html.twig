@@ -1,0 +1,46 @@
+{# templates/reservation/emailReservation.html.twig #}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmation de Réservation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Confirmation de Votre Réservation</h2>
+        <p>Bonjour {{ reservation.user.pseudo }},</p>
+
+        <p>Nous sommes heureux de confirmer votre réservation chez [Nom de votre entreprise/service]. Voici les détails de votre réservation :</p>
+
+        <ul>
+            <li><strong>Prestation :</strong> {{ reservation.prestation.nom }}</li>
+            <li><strong>Date et Heure :</strong> {{ reservation.rdv|date("d/m/Y H:i") }}</li>
+            <li><strong>Prix :</strong> {{ reservation.prestation.prix }} €</li>
+            
+        </ul>
+
+        <p>Nous vous attendons à l'adresse suivante : [Adresse de votre entreprise/service].</p>
+
+        <p>Si vous avez des questions ou si vous devez modifier votre réservation, n'hésitez pas à nous contacter.</p>
+
+        <p>Merci d'avoir choisi notre service.</p>
+
+        <p>Cordialement,</p>
+        <p>[Votre Nom ou le nom de votre entreprise/service]</p>
+    </div>
+</body>
+</html>

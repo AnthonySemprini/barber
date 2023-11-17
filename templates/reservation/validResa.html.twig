@@ -6,8 +6,9 @@
     {# {{ dump(reservationDetails) }} #}
     {% if reservationDetails %}
         <div class="text-center">
+            {# {{dump(reservationDetails.rdv)}} #}
             <h5 style="color:white;">C'est dans la poche {{ reservationDetails.pseudo }} !</h5>
-            <h5 style="color:white;" >Nous avons hâte de vous voir pour votre prestation <strong>"{{ reservationDetails.prestation }}"</strong> pour seulement <strong>{{ reservationDetails.prix }}€</strong> !</h5>
+            <h5 style="color:white;" >Nous avons hâte de vous voir le {{ reservationDetails.rdv|date('d/m/Y à H:i') }} pour votre prestation <strong>"{{ reservationDetails.prestation }}"</strong> pour seulement <strong>{{ reservationDetails.prix }}€</strong> !</h5>
         </div>
     {% else %}
         <div class="alert alert-warning" role="alert">

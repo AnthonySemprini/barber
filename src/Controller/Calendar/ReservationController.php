@@ -9,8 +9,11 @@ use App\Repository\PrestationRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\ReservationRepository;
 use Knp\Component\Pager\PaginatorInterface;
-use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
+
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -38,7 +41,7 @@ class ReservationController extends AbstractController
 
 
     #[Route('/new/{id}', name: 'app_reservation_new', methods: ['GET', 'POST'])]
-    public function newResrvation($id, EntityManagerInterface $entityManager, PrestationRepository $prestationRepository, SessionInterface $session, ReservationRepository $reservationRepository, Request $request,PaginatorInterface $paginator): Response
+    public function newResrvation($id, EntityManagerInterface $entityManager, PrestationRepository $prestationRepository, SessionInterface $session, ReservationRepository $reservationRepository, Request $request,PaginatorInterface $paginator, MailerInterface $mailer): Response
     {
         //! Partie qui recup la date selectionner et qui renvoi les crenaux dispo de la date en question
 
@@ -129,6 +132,7 @@ class ReservationController extends AbstractController
         //verifie si il est soumis et valid
         if ($form->isSubmitted() && $form->isValid()) {
             $rdv = $request->request->get('rdv');
+            // dd($rdv);
             if ($rdv) {
                 try {
                     $reservation->setRdv(new \DateTime($rdv));
@@ -138,13 +142,15 @@ class ReservationController extends AbstractController
                 $entityManager->persist($reservation);
                 $entityManager->flush();
 
+                 // Envoyer l'email de confirmation
+            $this->sendReservationConfirmationEmail($mailer, $reservation);
+
                 return $this->redirectToRoute('app_reservation_valid', [
                     'pseudo' => $reservation->getUser()->getPseudo(),
                     'prestation' => $reservation->getPrestation()->getNom(),
                     'prix' => $reservation->getPrestation()->getPrix(),
-                    // 'rdv' => $reservation->getReservation()->getRdv()
+                    'rdv' => $request->request->get('rdv')
                 ]);
-                //dd($reservation);
             }
         }
         $pagination = $paginator->paginate(
@@ -152,6 +158,10 @@ class ReservationController extends AbstractController
             $request->query->get('page', 1), // Le numéro de la page actuelle, 1 par défaut
             6// Le nombre de créneaux par page
         );
+
+        // Envoyer l'email de confirmation ici
+       
+        // dd($rdvs);
         return $this->render('reservation/new.html.twig', [
             'pagination' => $pagination,
             'selectedDate' => $selectedDate,
@@ -163,45 +173,44 @@ class ReservationController extends AbstractController
     }
 
 
+    private function sendReservationConfirmationEmail(MailerInterface $mailer, Reservation $reservation): void
+    {
+        // dd($reservation);
+        $email = (new Email())
+            ->from('your-email@example.com') // Remplacez par votre adresse email
+            ->to($reservation->getUser()->getEmail()) // Adresse email de l'utilisateur ayant fait la réservation
+            ->subject('Confirmation de votre réservation')
+            ->html($this->renderView(
+                'reservation/emailReservation.html.twig',
+                ['reservation' => $reservation]
+            ));
+
+        $mailer->send($email);
+    }
+
+    // ... autres méthodes ...
+
+
+
     #[Route('/valid', name: 'app_reservation_valid')]
     public function validResa(Request $request)
     {
         $pseudo = $request->query->get('pseudo');
         $prestation = $request->query->get('prestation');
         $prix = $request->query->get('prix');
-        // $rdv = $request->query->get('rdv');
-        //  dd($request->query);
+        $rdv = $request->query->get('rdv');
+        //  dd($rdv);
 
         return $this->render('reservation/validResa.html.twig', [
             'reservationDetails' => [
                 'pseudo' => $pseudo,
                 'prestation' => $prestation,
                 'prix' => $prix,
-                // 'rdv' => $rdv
+                'rdv' => $rdv
             ]
         ]);
     }
 
-
-    #[Route('/clean', name: 'app_reservation_clean', methods: ['GET'])]
-    public function cleanOldReservations(EntityManagerInterface $entityManager): Response
-    {
-
-        $today = new \DateTime();
-
-        // Créer la requête DQL pour sélectionner les réservations antérieures à aujourd'hui
-        $dql = "DELETE FROM App\Entity\Reservation r WHERE r.rdv < :today";
-        $query = $entityManager->createQuery($dql);
-        $query->setParameter('today', $today);
-
-        // Exécuter la requête
-        $numDeleted = $query->execute();
-
-        // Vous pouvez retourner une réponse indiquant le nombre de réservations supprimées
-        return new Response("Nombre de réservations supprimées : " . $numDeleted);
-
-
-    }
 
     #[Route('/{id}', name: 'app_reservation_show', methods: ['GET'])]
     public function show(Reservation $reservation): Response
