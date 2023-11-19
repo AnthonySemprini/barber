@@ -25,6 +25,7 @@ class PrestationCrudController extends AbstractCrudController
         return [
             IdField::new('id')->hideOnForm(),
             TextField::new('nom'),
+            TextField::new('description'),
             BooleanField::new('star'),
             NumberField::new('prix')
                 ->setLabel('prix')
@@ -33,7 +34,7 @@ class PrestationCrudController extends AbstractCrudController
                     'html5' => true, // Activer le support HTML5
                     'attr' => ['step' => 0.01], // Définir le nombre de décimales
             ]),
-            TimeField::new('duree')->setFormat("HH'h'mm'min'")
+            
         ];
     }
     

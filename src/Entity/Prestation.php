@@ -22,8 +22,8 @@ class Prestation
     #[ORM\Column(type: Types::DECIMAL, precision: 5.3)]
     private ?float $prix = null;
 
-    #[ORM\Column(type: Types::TIME_MUTABLE)]
-    private ?\DateTimeInterface $duree = null;
+    #[ORM\Column(length: 255)]
+    private ?string $description = null;
 
     #[ORM\OneToMany(mappedBy: 'prestation', targetEntity: Reservation::class)]
     private Collection $reservation;
@@ -52,6 +52,17 @@ class Prestation
 
         return $this;
     }
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): static
+    {
+        $this->description = $description;
+
+        return $this;
+    }
 
     public function getPrix(): ?float
     {
@@ -65,17 +76,7 @@ class Prestation
         return $this;
     }
 
-    public function getDuree(): ?\DateTimeInterface
-    {
-        return $this->duree;
-    }
-
-    public function setDuree(\DateTimeInterface $duree): static
-    {
-        $this->duree = $duree;
-
-        return $this;
-    }
+ 
 
     /**
      * @return Collection<int, reservation>
