@@ -22,6 +22,14 @@ class ProduitCommande
     #[ORM\ManyToOne(inversedBy: 'produitCommandes', cascade: ["persist"])]
     private ?Commande $commande = null;
 
+
+    public function __toString()
+    {
+        // Retourne une représentation sous forme de chaîne de l'entité.
+        // Modifiez cette ligne pour refléter les informations pertinentes de votre entité.
+        return $this->produit->getNom() . ' (Quantité : ' . $this->quantite . ')';
+    }
+    
     public function getId(): ?int
     {
         return $this->id;
