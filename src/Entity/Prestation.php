@@ -22,7 +22,7 @@ class Prestation
     #[ORM\Column(type: Types::DECIMAL, precision: 5.3)]
     private ?float $prix = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
     #[ORM\OneToMany(mappedBy: 'prestation', targetEntity: Reservation::class)]
