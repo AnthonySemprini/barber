@@ -34,9 +34,6 @@ class Produit
     #[ORM\ManyToOne(inversedBy: 'produits')]
     private ?Categorie $Categorie = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE,nullable: true, options:['default'=>'CURRENT_TIMESTAMP'])]
-    private ?\DateTimeInterface $dateCreation = null;
-
 
    
     
@@ -144,19 +141,4 @@ class Produit
     {
         return $this->nom;
     }
-
-    public function getDateCreation(): ?\DateTimeImmutable
-    {
-        return $this->dateCreation;
-    }
-
-    public function setDateCreation(?\DateTimeImmutable $dateCreation): static
-    {
-        $this->dateCreation = $dateCreation;
-
-        return $this;
-    }
-
-
-
 }

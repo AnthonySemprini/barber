@@ -34,7 +34,8 @@ class Commande
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $dateCommande = null;
 
-   
+    #[ORM\Column(type: Types::BOOLEAN)]
+    private ?bool $recupCommande = null;
 
     #[ORM\OneToMany(mappedBy: 'commande', targetEntity: ProduitCommande::class, cascade: ['persist', 'remove'])]
     private Collection $produitCommandes;
@@ -165,6 +166,17 @@ class Commande
     {
         $this->User = $User;
 
+        return $this;
+    }
+
+    public function isRecupCommande(): ?bool
+    {
+        return $this->recupCommande;
+    }
+
+    public function setRecupCommande(bool $recupCommande): self
+    {
+        $this->recupCommande = $recupCommande;
         return $this;
     }
 }
