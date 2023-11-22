@@ -6,6 +6,7 @@ namespace App\Controller\Admin;
 use App\Entity\Commande;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
@@ -33,22 +34,27 @@ class CommandeCrudController extends AbstractCrudController
             TextField::new('ville'),
             DateTimeField::new('dateCommande'),
             BooleanField::new('recupCommande'),
-        //     AssociationField::new('produitCommandes', 'Produits Commandés')
-        //     ->onlyOnForms() // ou onlyOnDetail() en fonction de l'utilisation
-        //     ->formatValue(function ($value, $entity) {
-        //         return implode(', ', $entity->getProduitCommandes()->map(function($produitCommande) {
-        //             return $produitCommande->getProduit()->getNom();
-        //         })->toArray());
-        //     })
-            
+            AssociationField::new('produitCommandes')
+            ->setCrudController(ProduitCommandeCrudController::class)
+            ->formatValue(function ($value, $entity) {
+                // Itérer sur chaque ProduitCommande et récupérer les produits
+                $produits = $entity->getProduitCommandes();
+                if (!$produits) {
+                    return 'N/A';
+                }
+
+                return implode(', ', array_map(function ($produitCommande) {
+                    $produit = $produitCommande->getProduit();
+                    $nomProduit = $produit->getNom(); // Assurez-vous que getNom() est la méthode correcte
+                    $prix = $produit->getPrix(); // Assurez-vous que getPrix() est la méthode correcte
+                    $quantite = $produitCommande->getQuantite(); // Assurez-vous que getQuantite() est la méthode correcte
+                    $total = $prix * $quantite;
+                    return "$nomProduit (Quantité: $quantite, Prix: $prix €) Total: $total €";
+                }, $produits->toArray()));
+            }),
         ];
 
-        // if ($pageName == Crud::PAGE_DETAIL) {
-        //     $fields[] = ArrayField::new('produitCommandes')
-        //         ->setTemplatePath('admin/commande_detail.html.twig');
-        // }
-    
-        // return $fields;
+
     }
     
 }
