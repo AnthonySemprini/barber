@@ -79,7 +79,20 @@
 
         });
     });
+    
+    //empeche la selection du dimanche et lundi
+    document.getElementById('daySelect').addEventListener('input', function (e) {
+        var day = new Date(this.value).getDay();
+        if ([0, 1].includes(day)) {
+          e.preventDefault();
+          this.value = '';
+          alert('Impossible de réserver les lundi et les dimanche notre salon est fermé!!!');
+        }
+      });
 
+      //empeche de click sur une date antérieur a celle du jour
+      var today = new Date().toISOString().split('T')[0];
+    document.getElementById('daySelect').setAttribute('min', today);
 </script>
 
 {% endblock %}

@@ -45,7 +45,7 @@ class ReservationController extends AbstractController
     {
         //! Partie qui recup la date selectionner et qui renvoi les crenaux dispo de la date en question
 
-        $selectedDate = $request->request->get('daySelect'); //recup la date via entre dans datePicker
+        $selectedDate = $request->request->get('daySelect'); 
 
         $availableSlots = [];
         $isoDate = null;
@@ -159,9 +159,6 @@ class ReservationController extends AbstractController
             6// Le nombre de créneaux par page
         );
 
-        // Envoyer l'email de confirmation ici
-       
-        // dd($rdvs);
         return $this->render('reservation/new.html.twig', [
             'pagination' => $pagination,
             'selectedDate' => $selectedDate,

@@ -17,7 +17,7 @@ class CommandeFormType extends AbstractType
             ->add('nom',TextType::class)
             ->add('prenom',TextType::class)
             ->add('adresse',TextType::class)
-            ->add('codePostal',NumberType::class)
+            ->add('codePostal',TextType::class)
             ->add('ville',TextType::class)
         ;
     }
