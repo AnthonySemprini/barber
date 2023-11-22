@@ -125,7 +125,8 @@ class CommandeController extends AbstractController
 
         $email = (new Email())
             ->from('theBarberShop@gmail.com') // Remplacez par votre adresse email
-            ->to($commande->getUser()->getEmail())// Supposons que la commande a une relation avec l'utilisateur
+            ->to($commande->getUser()->getEmail())
+            ->addTo('semprini.anthony@gmail.com')
             ->subject('Confirmation de votre commande')
             ->html($this->renderView(
                 'commande/emailConfirmation.html.twig',[
@@ -134,7 +135,6 @@ class CommandeController extends AbstractController
                 ]
             ));
 
-        // dd($email);
 
         $mailer->send($email);
     }
