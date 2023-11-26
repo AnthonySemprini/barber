@@ -278,6 +278,7 @@ div.profil a:hover{
     font-size: 20px;
     position: relative;
     text-align: justify;
+    margin: 0 8%;
     z-index: 10;
 
 }
@@ -424,7 +425,7 @@ div.icon-qui{
 }
 p.qui{
     color: var(--blue-color);
-    padding: 2%;
+    padding: 2% 10%;
     text-align: justify;
 }
         /*!!!!! section four !!!!!*/

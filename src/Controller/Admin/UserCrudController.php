@@ -24,7 +24,7 @@ class UserCrudController extends AbstractCrudController
         return [
             IdField::new('id')->hideOnform(), //masque l'ID
             TextField::new('pseudo'),
-            TextField::new('password'),
+            // TextField::new('password'),
             Field::new( 'password', 'New password' )->onlyWhenCreating()->setRequired( true )
                    ->setFormType( RepeatedType::class )
                    ->setFormTypeOptions( [

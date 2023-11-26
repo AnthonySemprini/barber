@@ -27,9 +27,10 @@
         flex-wrap: wrap;
         justify-content: center;
     }
-    div.imgRegister img{’
+    div.imgRegister img{
         margin-bottom: 50px;
     }
+    
     /********** Panier **********/
     img.imgPanier, th.panier.imgPanier, td.panier.imgPanier, td.total.imgPanier{
         display: none;
@@ -153,7 +154,11 @@
   
     /*!!!!! section one !!!!!*/
     h1 {
+     
         font-size: 2.5rem;
+    }
+    h1.titleHome{
+        margin-top: 50px;
     }
     h2 {
         font-size: 1.40rem;

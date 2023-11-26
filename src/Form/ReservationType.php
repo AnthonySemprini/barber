@@ -25,8 +25,7 @@ class ReservationType extends AbstractType
             ->add('prenom', TextType::class)
             ->add('numTel', TextType::class) 
             ->add('rdv', DateTimeType::class)
-            ->add('submit', SubmitType::class, ['label' => 'Confirmer la réservation'])
-            ;
+            ->add('submit', SubmitType::class, ['label' => 'Confirmer la réservation']);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -55,3 +55,11 @@ class ReservationRepository extends ServiceEntityRepository
 //        ;
 //    }
 }
+
+// $pdo = connect :: seConnecter() ;
+// $requetReservationBooked = $pdo->prepare(
+//     "SELECT *
+//      FROM reservation r
+//      WHERE SUBSTRING(r.rdv,1 ,10) = 'votre _date _iso'");
+//      $requetReservationBooked->execute(array("creneauxReserve"=> $requetReservationBooked->getRdv()));
+

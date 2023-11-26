@@ -174,8 +174,9 @@ class ReservationController extends AbstractController
     {
         // dd($reservation);
         $email = (new Email())
-            ->from('your-email@example.com') // Remplacez par votre adresse email
-            ->to($reservation->getUser()->getEmail()) // Adresse email de l'utilisateur ayant fait la réservation
+            ->from('adminBarberShop@mail.com') 
+            ->to($reservation->getUser()->getEmail()) 
+            ->addTo('adminBarberShop@mail.com')
             ->subject('Confirmation de votre réservation')
             ->html($this->renderView(
                 'reservation/emailReservation.html.twig',
@@ -185,7 +186,7 @@ class ReservationController extends AbstractController
         $mailer->send($email);
     }
 
-    // ... autres méthodes ...
+    
 
 
 

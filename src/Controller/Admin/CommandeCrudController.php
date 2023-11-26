@@ -49,7 +49,7 @@ class CommandeCrudController extends AbstractCrudController
                     $prix = $produit->getPrix(); // Assurez-vous que getPrix() est la méthode correcte
                     $quantite = $produitCommande->getQuantite(); // Assurez-vous que getQuantite() est la méthode correcte
                     $total = $prix * $quantite;
-                    return "$nomProduit (Quantité: $quantite, Prix: $prix €) Total: $total €";
+                    return "$nomProduit (Quantité: $quantite, Prix: $prix €)";
                 }, $produits->toArray()));
             }),
         ];
