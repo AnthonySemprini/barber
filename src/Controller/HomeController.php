@@ -2,13 +2,14 @@
 
 namespace App\Controller;
 
+use App\Entity\Commande;
 use App\Repository\ProduitRepository;
 use App\Repository\PrestationRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomeController extends AbstractController
 {
@@ -38,5 +39,16 @@ class HomeController extends AbstractController
         //redirige page profil user
         return $this->render('home/profil.html.twig');
     }
-    
+    #[Route('/historiqueCommande', name: 'app_historique_commandes')]
+    public function historiqueCommandes(EntityManagerInterface $entityManager): Response
+    {
+        $this->denyAccessUnlessGranted('ROLE_USER');
+        $user = $this->getUser(); // Récupère l'utilisateur connecté
+
+        $commandes = $entityManager->getRepository(Commande::class)->findBy(['User' => $user]);
+
+        return $this->render('home/historiqueCommande.html.twig', [
+            'commandes' => $commandes,
+        ]);
+    }
 }

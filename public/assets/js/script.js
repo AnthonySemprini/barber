@@ -3,7 +3,7 @@ function adjustMargin() {
     var navbarHeight = document.querySelector('.navbar').offsetHeight;
       // Définit la marge supérieure de l'élément avec la classe 'one' 
     // pour être égale à la hauteur de la navbar (en pixels)
-    document.querySelector('.one,.shop,.divPresta,.detailProd,.reservationPage,.validPage,.panierPage,.formCommandePage,.validCommandePage,.loginPage,.registerPage,.editProfil,.profil').style.marginTop = navbarHeight + 'px';
+    document.querySelector('.historiquePage, .one,.shop,.divPresta,.detailProd,.reservationPage,.validPage,.panierPage,.formCommandePage,.validCommandePage,.loginPage,.registerPage,.editProfil,.profil').style.marginTop = navbarHeight + 'px';
   }
   // Ajuster au chargement de la page
   window.onload = adjustMargin;

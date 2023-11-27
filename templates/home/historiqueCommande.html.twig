@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<style>
+
+</style>
+
+<div class="historiquePage">
+    <h1 class="histo">Historique des Commandes</h1>
+
+    {% for commande in commandes %}
+        <div class="commande">
+            <h3 class="histo" >Commande ID: {{ commande.id }}</h3>
+            <p>Date: {{ commande.dateCommande|date('Y-m-d H:i') }}</p>
+            <table class="fiche">
+                <thead>
+                    <tr>
+                        <th>Produit</th>
+                        <th>Quantité</th>
+                        <th>Prix Unitaire</th>
+                        <th>Prix Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% set totalCommande = 0 %}
+                    {% for produitCommande in commande.produitCommandes %}
+                        {% set totalLigne = produitCommande.produit.prix * produitCommande.quantite %}
+                        {% set totalCommande = totalCommande + totalLigne %}
+                        <tr>
+                            <td>{{ produitCommande.produit.nom }}</td>
+                            <td>{{ produitCommande.quantite }}</td>
+                            <td>{{ produitCommande.produit.prix }} €</td>
+                            <td>{{ totalLigne }} €</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <p><strong>Total de la commande : {{ totalCommande }} €</strong></p>
+        </div>
+    {% else %}
+        <p>Aucune commande trouvée.</p>
+    {% endfor %}
+</div>
+
+{% endblock %}

@@ -813,6 +813,28 @@ a.textBtnP{
     font-weight: bold;
     font-size: 16px;
 }
+/********** Historique commande **********/
+.historiquePage {
+    height: 100vh;
+}
+h1.histo{
+    margin-top: 50px;
+}
+h3.histo{
+    font-family: var(--Para-font);
+}
+.fiche {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px; /* Ajoute un peu d'espace entre les tableaux */
+}
+.fiche th, .fiche td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+.fiche th {
+    background-color: #f2f2f2;
+}
 /********** Prestation **********/
 div.divPresta{
     display: flex;
