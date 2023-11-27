@@ -5,17 +5,24 @@
 {% block body %}
 <div class="formCommandePage">
     <h1>Information client</h1>
-       {{ form_errors(commandeForm) }}
+    <div class="infoAll">
+        <div class="infoCli">
+            {{ form_errors(commandeForm) }}
 
-    {{ form_start(commandeForm) }}
-        {{ form_row(commandeForm.nom) }}
-        {{ form_row(commandeForm.prenom) }}
-        {{ form_row(commandeForm.adresse) }}
-        {{ form_row(commandeForm.codePostal) }}
-        {{ form_row(commandeForm.ville) }}
-    
-        <button type="submit" class="btn">Valider</button>
-    {{ form_end(commandeForm) }}
+            {{ form_start(commandeForm) }}
+            {{ form_row(commandeForm.nom) }}
+            {{ form_row(commandeForm.prenom) }}
+            {{ form_row(commandeForm.adresse) }}
+            {{ form_row(commandeForm.codePostal) }}
+            {{ form_row(commandeForm.ville) }}
+
+            <button type="submit" class="btn infoClient buttonSmall">Valider</button>
+            {{ form_end(commandeForm) }}
+        </div>
+        <div class="illustr">
+            <img class="infoImg" src="/assets/img/barberTeam.png" alt="Dessin barbier et chaise">
+        </div>
+    </div>
 </div>
 
 {% endblock %}

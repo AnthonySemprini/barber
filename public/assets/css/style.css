@@ -727,6 +727,47 @@ div.rigth{
     margin:15px;
     gap: 10px;
 }
+/********** Commande confirme **********/
+div.formCommandePage form div label{
+display: flex;
+}
+div.formCommandePage form div{
+    margin-bottom: 15px;
+}
+.infoImg{
+    width: 100%;
+    height: auto;
+    min-width: 300px;
+}
+.formCommandePage{
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px;
+}
+div.infoAll{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+div.illustr{
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    min-width: 300px;
+}
+div.infoCli{
+    display: flex;
+    justify-content: center;
+   align-items: center;
+    width: 50%;
+    min-width: 300px;
+}
+button.btn.infoClient.buttonSmall{
+    margin-top: 50px;
+}
 /********** Panier **********/
 /**! fiche **/
 .recap {
@@ -812,6 +853,10 @@ a.textBtnP{
     color: var(--white-color);
     font-weight: bold;
     font-size: 16px;
+}
+/********** Profile **********/
+.profil, .editProfil{
+    height: 70vh;
 }
 /********** Reset password **********/
 .reset{
