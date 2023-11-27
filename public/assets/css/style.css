@@ -813,6 +813,20 @@ a.textBtnP{
     font-weight: bold;
     font-size: 16px;
 }
+/********** Reset password **********/
+.reset{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 70vh;
+    justify-content: space-around;
+}
+p.resetText{
+    padding: 0 10%;
+}
+button.btn.btn-primary.buttonSmall{
+    margin-top: 50px;
+}
 /********** Historique commande **********/
 .historiquePage {
     height: 100vh;
