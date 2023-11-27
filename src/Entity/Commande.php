@@ -35,7 +35,7 @@ class Commande
     private ?\DateTimeInterface $dateCommande = null;
 
     #[ORM\Column(type: Types::BOOLEAN)]
-    private ?bool $recupCommande = null;
+    private ?bool $recupCommande = false;
 
     #[ORM\OneToMany(mappedBy: 'commande', targetEntity: ProduitCommande::class, cascade: ['persist', 'remove'])]
     private Collection $produitCommandes;
