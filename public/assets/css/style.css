@@ -546,7 +546,7 @@ div.allContact{
     display: flex;
     flex-direction: column;
     align-items: center;
-    z-index: 20;
+    z-index: 10;
 }
 .contact{
     display: flex;
@@ -748,11 +748,12 @@ width: 100%;
 .infoImg{
     width: 100%;
     height: auto;
+    max-width: 900px;
     min-width: 300px;
 }
 .formCommandePage{
     display: flex;
-    height: 100vh;
+    height: 80vh;
     flex-direction: column;
     align-items: center;
     padding: 50px;
@@ -762,12 +763,14 @@ div.infoAll{
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    width: 100%;
 }
 div.illustr{
     display: flex;
     justify-content: center;
     width: 50%;
     min-width: 300px;
+    max-width: 500px;
 }
 div.infoCli{
     display: flex;
@@ -776,9 +779,7 @@ div.infoCli{
     width: 50%;
     min-width: 300px;
 }
-button.btn.infoClient.buttonSmall{
-    margin-top: 50px;
-}
+
 /********** Panier **********/
 /**! fiche **/
 .recap {
@@ -1040,18 +1041,22 @@ button.slot-button{
     height: 65vh;
     z-index: 1;
 }
+.texteValidBig{
+    padding: 3rem;
+    color: var(--white-color);
+    z-index: 10;
+    position: relative;
+    font-size: 30px;
+    text-align: center;
+}
 .texteValid{
     padding: 3rem;
     color: var(--white-color);
-    z-index: 99999;
+    z-index: 10;
     position: relative;
-}
-.h1Valid{
     text-align: center;
-    color: var(--white-color);
-    z-index: 99999;
-    position: relative;
 }
+
 /********** Footer **********/
 
 .footer{

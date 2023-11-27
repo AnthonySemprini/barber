@@ -50,7 +50,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::subMenu('Actions', 'fas fa-bars')->setSubItems([
             MenuItem::linkToCrud('Voir user', 'fas fa-eye', User::class)
         ]);
-        yield MenuItem::section('E-commerce');
+        yield MenuItem::section('Click & collect');
 
         yield MenuItem::section('Produits');
 
@@ -82,13 +82,10 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::section('Commandes');
         yield MenuItem::subMenu('Actions', 'fas fa-bars')->setSubItems([
         MenuItem::linkToCrud('Voir commande', 'fas fa-eye', Commande::class)
-]);
-        yield MenuItem::section('ProduitCommandes');
-        yield MenuItem::subMenu('Actions', 'fas fa-bars')->setSubItems([
-        MenuItem::linkToCrud('Voir ProduitCommande', 'fas fa-eye', ProduitCommande::class)
-]);
+        ]);
+    }
+}
+
 
       
 
-    }
-}

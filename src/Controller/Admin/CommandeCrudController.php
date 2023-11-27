@@ -37,7 +37,6 @@ class CommandeCrudController extends AbstractCrudController
             AssociationField::new('produitCommandes')
             ->setCrudController(ProduitCommandeCrudController::class)
             ->formatValue(function ($value, $entity) {
-                // Itérer sur chaque ProduitCommande et récupérer les produits
                 $produits = $entity->getProduitCommandes();
                 if (!$produits) {
                     return 'N/A';
@@ -45,9 +44,9 @@ class CommandeCrudController extends AbstractCrudController
 
                 return implode(', ', array_map(function ($produitCommande) {
                     $produit = $produitCommande->getProduit();
-                    $nomProduit = $produit->getNom(); // Assurez-vous que getNom() est la méthode correcte
-                    $prix = $produit->getPrix(); // Assurez-vous que getPrix() est la méthode correcte
-                    $quantite = $produitCommande->getQuantite(); // Assurez-vous que getQuantite() est la méthode correcte
+                    $nomProduit = $produit->getNom(); 
+                    $prix = $produit->getPrix(); 
+                    $quantite = $produitCommande->getQuantite(); 
                     $total = $prix * $quantite;
                     return "$nomProduit (Quantité: $quantite, Prix: $prix €)";
                 }, $produits->toArray()));
