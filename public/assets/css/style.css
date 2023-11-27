@@ -728,12 +728,23 @@ div.rigth{
     gap: 10px;
 }
 /********** Commande confirme **********/
+div.formCommandePage form div input{
+    border-radius: 10px;
+    height: 30px;
+    border: 2px solid var(--blue-color);
+    margin: 10px 0;
+    width: 100%;
+}
+button.btn.infoClient.buttonSmall{
+    width: 100%;
+}
 div.formCommandePage form div label{
+    margin: 0 10px;
 display: flex;
+justify-content: center;
+width: 100%;
 }
-div.formCommandePage form div{
-    margin-bottom: 15px;
-}
+
 .infoImg{
     width: 100%;
     height: auto;
