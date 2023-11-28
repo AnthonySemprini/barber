@@ -38,7 +38,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 50)]
     private ?string $pseudo = null;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Reservation::class)]
+
+
+        #[ORM\OneToMany(mappedBy: 'user', targetEntity: Reservation::class)]
     private Collection $Reservation;
 
     #[ORM\OneToMany(mappedBy: 'User', targetEntity: Commande::class)]
@@ -206,6 +208,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+    public function anonymizeRelations(): void
+{
+    foreach ($this->Reservation as $reservation) {
+        $reservation->setUser(null); // ou set un utilisateur anonyme
+    }
+    foreach ($this->commandes as $commande) {
+        $commande->setUser(null); // ou set un utilisateur anonyme
+    }
+}
 
     public function __toString()
     {

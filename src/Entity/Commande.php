@@ -134,6 +134,7 @@ class Commande
     {
         return $this->produitCommandes;
     }
+    
 
     public function addProduitCommande(ProduitCommande $produitCommande): static
     {

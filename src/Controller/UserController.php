@@ -15,8 +15,9 @@ class UserController extends AbstractController
 {
     
     #[Route('/user/{id}/delete', name:'app_user_delete')]
-    public function delete(Request $request, $id, ManagerRegistry $managerRegistry):Response
+    public function delete(User $user,Request $request, $id, ManagerRegistry $managerRegistry):Response
     {
+        $user->anonymizeRelations();
         $entityManager = $managerRegistry->getManager();
         $user = $entityManager->getRepository(User::class)->find($id);
 
