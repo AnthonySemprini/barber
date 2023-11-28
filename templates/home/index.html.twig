@@ -1,5 +1,8 @@
 {% extends 'base.html.twig' %}
-
+{% block head %}
+<meta name="description"
+  content="Découvrez nos prestations de pointe en taille de barbe et coiffure. Nos experts en coiffure vous offrent des services de coupe et de stylisme de barbe de qualité supérieure, adaptés à vos besoins. Obtenez la coiffure parfaite et la barbe élégante dont vous rêvez. Réservez votre rendez-vous dès aujourd'hui pour une expérience de coiffure exceptionnelle." />
+{% endblock %}
 {% block title %}Home{% endblock %}
 
 {% block body %}
@@ -31,7 +34,7 @@
                 <a href="#">{{prestation.nom}}</a>
                 <p>Prix : {{prestation.prix }}€</p>
                 <p>Description : {{prestation.description}}</p>
-                <a href="#" class="buttonSmall">Reserver</a>
+                <a href="{{path('app_prestation', {'id': prestation.id})}}" class="buttonSmall">Reserver</a>
             </div>
             {% endfor %}
         </div>
@@ -41,9 +44,9 @@
 
 <section class="three">
     <div class="icon-qui">
-        <img src="assets/img/blue/bz (8).png" alt="coupe-choux">
-        <img src="assets/img/blue/col18.png" alt="lampe barbier">
-        <img src="assets/img/blue/col13.png" alt="homme barbu">
+        <img src="assets/img/blue/coupeChoux.webp" alt="coupe-choux">
+        <img src="assets/img/blue/ciseaux.webp" alt="ciseaux">
+        <img src="assets/img/blue/hommeBarbe.webp" alt="homme barbu">
     </div>
     <h2 class="star">Qui sommes nous ?</h2>
     <p class="qui">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat voluptatum nesciunt laudantium.
@@ -115,10 +118,10 @@
         </div>
         <div class="social">
             <div class="socialMedia">
-                <li><i class="fa-brands fa-instagram"></i></li>
-                <li><i class="fa-brands fa-snapchat"></i></li>
-                <li><i class="fa-brands fa-linkedin"></i></li>
-                <li><i class="fa-brands fa-whatsapp"></i></li>
+                <li><a href="instagram.com"><i class="fa-brands fa-instagram"></i></a></li>
+                <li><a href="snapchat.com"><i class="fa-brands fa-snapchat"></i></a></li>
+                <li><a href="linkedin.com"><i class="fa-brands fa-linkedin"></i></a></li>
+                <li><a href="whatsapp.com"><i class="fa-brands fa-whatsapp"></i></a></li>
             </div>
         </div>
     </div>

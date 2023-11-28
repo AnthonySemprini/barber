@@ -252,7 +252,7 @@ div.profil a:hover{
     background-size: cover; /* L'image prendra 100% de l'espace */
     background-position: center; /* Centre la position de l'image */
     background-repeat: no-repeat; /* Empêche l'image de se répéter en fonction de la taille d'écran */
-    background-image:url(/assets/img/haircut.jpg);
+    background-image:url(/assets/img/image.webp);
     z-index: 1;
 }
 .divOne{
@@ -494,7 +494,7 @@ div.cardProd a:hover{
     background-size: cover; /* L'image prendra 100% de l'espace */
     background-position: center; /* Centre la position de l'image */
     background-repeat: no-repeat; /* Empêche l'image de se répéter en fonction de la taille d'écran */
-    background-image:url(/assets/img/barberShop.jpg);
+    background-image:url(/assets/img/salon.webp);
 }
 div.divFive{
     display: flex;
