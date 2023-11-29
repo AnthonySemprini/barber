@@ -28,7 +28,6 @@ class ReservationRepository extends ServiceEntityRepository
         ->setParameter('isoDate', $isoDate)
         ->getQuery()
         ->getResult();
-        
     }
 //    /**
 //     * @return Reservation[] Returns an array of Reservation objects
@@ -61,5 +60,6 @@ class ReservationRepository extends ServiceEntityRepository
 //     "SELECT *
 //      FROM reservation r
 //      WHERE SUBSTRING(r.rdv,1 ,10) = 'votre _date _iso'");
-//      $requetReservationBooked->execute(array("creneauxReserve"=> $requetReservationBooked->getRdv()));
+//      $requetReservationBooked->execute(array("creneauxReserve"
+//      => $requetReservationBooked->getRdv()));
 
