@@ -32,6 +32,7 @@ class UserController extends AbstractController
         //Redirigez vers une page de confirmation
         return $this->redirectToRoute('app_home');
     }
+    
     #[Route('/user/{id}/edit', name: 'app_user_edit')]
     public function edit(Request $request, $id, UserRepository $userRepository, ManagerRegistry $managerRegistry):Response
     {

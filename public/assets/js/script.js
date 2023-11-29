@@ -1,6 +1,6 @@
 function adjustMargin() {
     // Récupère l'élément avec la classe 'navbar' et stocke sa hauteur dans 'navbarHeight'
-    var navbarHeight = document.querySelector('.navbar').offsetHeight;
+    let navbarHeight = document.querySelector('.navbar').offsetHeight;
       // Définit la marge supérieure de l'élément avec la classe 'one' 
     // pour être égale à la hauteur de la navbar (en pixels)
     document.querySelector('.reset, .historiquePage, .one,.shop,.divPresta,.detailProd,.reservationPage,.validPage,.panierPage,.formCommandePage,.validCommandePage,.loginPage,.registerPage,.editProfil,.profil').style.marginTop = navbarHeight + 'px';

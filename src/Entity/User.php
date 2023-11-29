@@ -211,10 +211,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function anonymizeRelations(): void
 {
     foreach ($this->Reservation as $reservation) {
-        $reservation->setUser(null); // ou set un utilisateur anonyme
+        $reservation->setUser(null); 
     }
     foreach ($this->commandes as $commande) {
-        $commande->setUser(null); // ou set un utilisateur anonyme
+        $commande->setUser(null); 
     }
 }
 
