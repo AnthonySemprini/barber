@@ -939,6 +939,23 @@ div.pagination a:hover, div.pagination span:hover{
     text-decoration: underline 3px var(--blue-color);
 }
 /********** Reservation **********/
+
+.buttonResa{
+	box-shadow: -6px 6px 8px -1px var(--blue-color);
+	background-color:var(--blue-color);
+    min-width:20vw;
+    color: var(--white-color);
+	border-radius:10px;
+    border: solid 3px var(--red-color);
+	font-weight:bold;
+	padding:10px;
+    text-align: center;
+}
+.selected {
+    background-color: grey;
+    color: white;
+    pointer-events: none; /* Désactive les événements de souris pour empêcher d'autres clics */
+}
 .formElement{
     border-radius: 10px;
     height: 30px;
