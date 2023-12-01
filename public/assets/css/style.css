@@ -188,7 +188,7 @@ div.navbar img{
 .log a{
     padding: 8px 8px 8px 32px;
     font-size: 25px;
-    color: var(--white-color);
+    color: var(--blue-color);
     display: block;
     transition: 0.3s;
 }
@@ -539,7 +539,7 @@ section.five p,section.five h2{
     background-size: cover; /* L'image prendra 100% de l'espace */
     background-position: center; /* Centre la position de l'image */
     background-repeat: no-repeat; /* Empêche l'image de se répéter en fonction de la taille d'écran */
-    background-image: url(/assets/img/outils.jpg);
+    background-image: url(/assets/img/outils.webp);
     z-index: 1;
 }
 div.allContact{

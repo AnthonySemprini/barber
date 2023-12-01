@@ -14,6 +14,7 @@
                     {% if app.user %}
                     <li><a href="{{ path('app_logout')}}">Se déconnecter</a></li>
                     <li><a href="{{ path('app_profil')}}">Mon profil</a></li>
+                    <li><a href="{{ path('app_historique_commandes')}}">Historique des commandes</a></li>
                     <li><a class="panier" href="{{path('app_panier')}}">Panier </a></li>
                     {% if is_granted('ROLE_ADMIN') %}
                     <div class="admin">
