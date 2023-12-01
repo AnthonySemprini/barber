@@ -34,7 +34,7 @@
                 <a href="#">{{prestation.nom}}</a>
                 <p>Prix : {{prestation.prix }}€</p>
                 <p>Description : {{prestation.description}}</p>
-                <a href="{{path('app_prestation', {'id': prestation.id})}}" class="buttonSmall">Reserver</a>
+                <a href="{{path('app_reservation_new', {'id': prestation.id})}}" class="buttonSmall">Réserver</a>
             </div>
             {% endfor %}
         </div>
