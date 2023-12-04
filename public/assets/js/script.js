@@ -1,16 +1,19 @@
 function adjustMargin() {
-  // Récupère l'élément avec la classe 'navbar' et stocke sa hauteur dans 'navbarHeight'
-  let navbarHeight = document.querySelector('.navbar').offsetHeight;
-  // console.log(navbarHeight)
-  // Définit la marge supérieure de l'élément avec la classe 'one' 
-  // pour être égale à la hauteur de la navbar (en pixels)
-  document.querySelector('.reset, .historiquePage, .one,.shop,.divPresta,.detailProd,.reservationPage,.validPage,.panierPage,.formCommandePage,.validCommandePage,.loginPage,.registerPage,.editProfil,.profil').style.marginTop = navbarHeight + 'px';
-}
-// Ajuster au chargement de la page
-// window.onload = adjustMargin();
+  // Vérifie si la navbar existe et est visible
+  let navbar = document.querySelector('.navbar');
+  let navbarHeight = navbar ? navbar.offsetHeight : 0;
 
-// Ajuster lors du redimensionnement de la fenêtre
-window.onresize = adjustMargin();
+  // Définit la marge supérieure pour les éléments spécifiés
+  document.querySelectorAll('.reset, .historiquePage, .one, .shop, .divPresta, .detailProd, .reservationPage, .validPage, .panierPage, .formCommandePage, .validCommandePage, .loginPage, .registerPage, .editProfil, .profil')
+    .forEach(el => {
+      el.style.marginTop = navbarHeight + 'px';
+    });
+}
+
+// Ajuster au chargement de la page et lors du redimensionnement de la fenêtre
+// window.onload = adjustMargin;
+window.onresize = adjustMargin;
+
 
 
 function onSubmit(token) {

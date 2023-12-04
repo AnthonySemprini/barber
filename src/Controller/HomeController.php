@@ -16,19 +16,14 @@ class HomeController extends AbstractController
     #[Route('/', name: 'app_home')]
     public function index(ProduitRepository $produitRepository, PrestationRepository $prestationRepository):Response
     {
-    
-        $prestations = $prestationRepository->findWithStar();
+        $prestations = $prestationRepository->findWithStar();// Récupére les prestations star
 
+        $produits = $produitRepository->findLastThreeProd(); // Recupére les 3 derniers produits ajoute en bdd
         
-        $produits = $produitRepository->findLastThreeProd();
-        
-        //dd($prestations);
-
             return $this->render('home/index.html.twig', [
                 'controller_name' => 'HomeController',
                 'prestations' => $prestations,
                 'produits' => $produits,
-
             ]);
     }
 
