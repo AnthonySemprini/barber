@@ -82,15 +82,16 @@
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script src="{{asset('assets/js/bootstrap-datepicker.min.js')}}"></script>
-        <script src="{{asset('assets/js/script.js')}}"></script>
     </head>
     <body>
-            {% include "_partials/_nav.html.twig" %}
-            {% block body %}
-            
-            {% endblock %}
-            {% include "_partials/_footer.html.twig" %}
-    
+        {% include "_partials/_nav.html.twig" %}
+        {% block body %}
+        
+        {% endblock %}
+        {% include "_partials/_footer.html.twig" %}
+        
+        
+        <script src="{{asset('assets/js/script.js')}}"></script>
     </body>
 </html>
         

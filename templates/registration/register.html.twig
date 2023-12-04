@@ -11,7 +11,7 @@
     <h1>Inscription</h1>
     {{ form_errors(registrationForm) }}
 
-    {{ form_start(registrationForm) }}
+    {{ form_start(registrationForm, {'attr': {'id': 'register-form'}}) }},
     <div class="imgForm">
     <div class="imgRegister">
         <img src="assets/img/registerBarber.png" alt="barbier a cote de son fauteuil">
@@ -29,10 +29,10 @@
             {{ form_errors(registrationForm.agreeTerms) }}
         </div>
     
-        <button type="submit" class=" register-form btn buttonSmall" data-sitekey="reCAPTCHA_site_key" data-callback='onSubmit'
-            data-action='submit'>Valider</button>’
+        <button type="submit" class=" register-form btn buttonSmall" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" data-callback='onSubmit'
+            data-action='submit'>Valider</button>
     </div>
 </div>
     {{ form_end(registrationForm) }}
 </div>
-{% endblock %}
+{% endblock %}’
