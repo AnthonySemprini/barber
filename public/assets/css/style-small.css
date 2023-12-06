@@ -12,9 +12,12 @@
 
 
 
-@media screen and (max-width: 790px) {
+@media screen and (max-width: 890px) {
 
     /********** Reservation  **********/
+    div.validPage h1{
+       padding-top: 50px;
+    }
     div.reservationPage h1{
        margin-top: 50px;
     }

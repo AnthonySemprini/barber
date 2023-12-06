@@ -13,7 +13,7 @@
   <div class="cardAll">
     {% for prestation in pagination %}
     <div class="cardPresta">
-      <a href="#">{{prestation.nom}}</a>
+      <h3>{{prestation.nom}}</h3>
       <p>Prix : {{prestation.prix }}€</p>
       <p>Description : {{prestation.description}}</p>
       <a href="{{path('app_reservation_new', {'id': prestation.id})}}" class="buttonSmall">Réserver</a>
