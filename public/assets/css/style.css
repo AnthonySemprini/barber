@@ -13,9 +13,7 @@
     --Para-font:'Poppins', sans-serif;
 
 }
-div#reservation_rdv_date  label{
-    color: red;
-}
+
     /********** General **********/
 @font-face{
     font-family:'brookshire';
@@ -340,8 +338,10 @@ div.cardPresta{
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-around;
     gap: 10px;
     width: 300px;
+    height: 300px;
     padding: 15px;
     background-color:rgba(128, 128, 128, 0);
     -webkit-box-shadow: -6px 4px 13px 3px rgba(127, 106, 106, 0.58); 
