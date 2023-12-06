@@ -13,7 +13,9 @@
     --Para-font:'Poppins', sans-serif;
 
 }
-   
+div#reservation_rdv_date  label{
+    color: red;
+}
     /********** General **********/
 @font-face{
     font-family:'brookshire';

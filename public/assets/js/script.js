@@ -63,3 +63,10 @@ if (section) {
 
   });
 }
+//Supprime le label Rdv dans mon reserve preta
+
+document.querySelectorAll('label.required').forEach(function(label) {
+  if (label.textContent.trim() === 'Rdv') {
+      label.style.display = 'none';
+  }
+});
