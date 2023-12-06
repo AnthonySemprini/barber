@@ -9,7 +9,7 @@
     <h1 class="histo">Historique des Commandes</h1>
 
     {% for commande in commandes %}
-        <div class="commande">
+        <div class="histoCommande">
             <h3 class="histo" >Commande ID: {{ commande.id }}</h3>
             <p>Date: {{ commande.dateCommande|date('Y-m-d H:i') }}</p>
             <table class="fiche">
@@ -24,18 +24,19 @@
                 <tbody>
                     {% set totalCommande = 0 %}
                     {% for produitCommande in commande.produitCommandes %}
-                        {% set totalLigne = produitCommande.produit.prix * produitCommande.quantite %}
-                        {% set totalCommande = totalCommande + totalLigne %}
-                        <tr>
-                            <td>{{ produitCommande.produit.nom }}</td>
-                            <td>{{ produitCommande.quantite }}</td>
-                            <td>{{ produitCommande.produit.prix }} €</td>
-                            <td>{{ totalLigne }} €</td>
-                        </tr>
+                    {% set totalLigne = produitCommande.produit.prix * produitCommande.quantite %}
+                    {% set totalCommande = totalCommande + totalLigne %}
+                    <tr>
+                        <td>{{ produitCommande.produit.nom }}</td>
+                        <td>{{ produitCommande.quantite }}</td>
+                        <td>{{ produitCommande.produit.prix }} €</td>
+                        <td>{{ totalLigne }} €</td>
+                    </tr>
                     {% endfor %}
                 </tbody>
             </table>
             <p><strong>Total de la commande : {{ totalCommande }} €</strong></p>
+            <a class="histo buttonSmall" href="{{ path('app_commande_pdf', {'id': commande.id}) }}" class="btn btn-primary">Télécharger en PDF</a>
         </div>
     {% else %}
         <p>Aucune commande trouvée.</p>
