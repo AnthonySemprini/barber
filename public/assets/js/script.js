@@ -4,7 +4,7 @@ function adjustMargin() {
   let navbarHeight = navbar ? navbar.offsetHeight : 0;
 
   // Définit la marge supérieure pour les éléments spécifiés
-  document.querySelectorAll('.reset, .historiquePage, .one, .shop, .divPresta, .detailProd, .reservationPage, .validPage, .panierPage, .formCommandePage, .validCommandePage, .loginPage, .registerPage, .editProfil, .profil')
+  document.querySelectorAll('.reset, .condi, .legal, .historiquePage, .one, .shop, .divPresta, .detailProd, .reservationPage, .validPage, .panierPage, .formCommandePage, .validCommandePage, .loginPage, .registerPage, .editProfil, .profil')
     .forEach(el => {
       el.style.marginTop = navbarHeight + 'px';
     });

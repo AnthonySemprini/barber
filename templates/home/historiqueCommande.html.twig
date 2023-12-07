@@ -36,7 +36,7 @@
                 </tbody>
             </table>
             <p><strong>Total de la commande : {{ totalCommande }} €</strong></p>
-            <a class="histo buttonSmall" href="{{ path('app_commande_pdf', {'id': commande.id}) }}" class="btn btn-primary">Télécharger en PDF</a>
+            <a class="histo buttonSmall" href="{{ path('app_commande_pdf', {'id': commande.id}) }}">Télécharger en PDF</a>
         </div>
     {% else %}
         <p>Aucune commande trouvée.</p>

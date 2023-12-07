@@ -34,7 +34,9 @@ html {
     font-size: 100%;/*16px*/
 } 
 
-
+strong{
+    font-weight: normal;
+}
 p, h5 {
     font-family:var(--Para-font);
 }
@@ -894,6 +896,7 @@ button.btn.btn-primary.buttonSmall{
 div.histoCommande{
     display: flex;
     flex-direction: column;
+    padding: 30px;
 }
 a.histo.buttonSmall{
     margin: 20px;
@@ -903,6 +906,7 @@ a.histo.buttonSmall{
     min-height: 70vh;
 }
 h1.histo{
+    text-align: center;
     margin-top: 50px;
 }
 h3.histo{
@@ -1089,7 +1093,20 @@ button.slot-button{
 }
 
 /********** Footer **********/
-
+div.legal h2{
+    text-align: justify;
+    margin: 50px 0;
+}
+div.legal h1{
+    text-align: center;
+    margin: 50px 0;
+}
+div.legal{
+    padding: 30px;
+}
+div.condi{
+    padding: 30px;
+}
 .footer{
     bottom: 0;
     background-color:var(--gray-color);
