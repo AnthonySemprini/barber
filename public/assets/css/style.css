@@ -1096,6 +1096,7 @@ button.slot-button{
 div.legal h2{
     text-align: justify;
     margin: 50px 0;
+    
 }
 div.legal h1{
     text-align: center;
@@ -1106,6 +1107,10 @@ div.legal{
 }
 div.condi{
     padding: 30px;
+}
+a.mail{
+    text-decoration: none;
+    color: var(--blue-color);
 }
 .footer{
     bottom: 0;

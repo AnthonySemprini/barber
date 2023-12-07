@@ -77,6 +77,10 @@ class CommandeController extends AbstractController
                 $entityManager->persist($produitCommande);
                 $entityManager->flush();
             }
+            
+            // Vider le panier de la session
+            $session->set('panier', []);
+
             // Redirige l'utilisateur vers la page de paiement de la commande.
             return $this->redirectToRoute('app_commande_confirm', ['id' => $commande->getId()]);
         }
