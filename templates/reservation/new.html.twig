@@ -7,10 +7,11 @@
 
 <div class="reservationPage">
     <h1>Créer votre réservation</h1>
+    <h3 class="resaPresta" >Pour la prestation de {{ prestation }} d'un montant de {{ prix }} €</h3>
     <div class="formSlot">
         <div class="dateForm">
             <!--! formulaire choix de la date -->
-            <p> 1 Choisir votre date</p>
+            <p class="resaP"> 1 Choisir votre date</p>
             <form action="{{ path('app_reservation_new', {'id': prestationId}) }}" method="post" class="allDatepicker">
                 {# <input type="text" class="form-control datepicker" name="daySelect"> #}
                 <input class="" type="date" name="daySelect" id="daySelect">
@@ -21,7 +22,7 @@
         <!--! verifie si il y a bien une date sectionner -->
         {% if pagination is not empty %}
         <div class="creneau">
-            <p> 2 Choisir votre crénau horaire</p>
+            <p class="resaP"> 2 Choisir votre crénau horaire</p>
             <!--! Boutton pour select le créneau horraire -->
             <div class="slot">
                 {% for slot in pagination %}
@@ -41,7 +42,7 @@
         {% endif %}
     </div>
     <div class="formInfo">
-        <p>3 Compléter vos informations</p>
+        <p class="resaP">3 Compléter vos informations</p>
         {{ include('reservation/_form.html.twig') }}
     </div>
 </div>

@@ -957,7 +957,17 @@ div.pagination a:hover, div.pagination span:hover{
     text-decoration: underline 3px var(--blue-color);
 }
 /********** Reservation **********/
-
+h2.resaPresta{
+    color: var(--blue-color);
+}
+p.resaP{
+    color: var(--blue-color);
+    font-weight: 800;
+}
+label.required{
+    color: var(--blue-color);
+    font-weight: 800;
+}
 .buttonResa{
 	box-shadow: -6px 6px 8px -1px var(--blue-color);
 	background-color:var(--blue-color);
@@ -1096,7 +1106,7 @@ button.slot-button{
 div.legal h2{
     text-align: justify;
     margin: 50px 0;
-    
+
 }
 div.legal h1{
     text-align: center;

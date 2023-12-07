@@ -142,6 +142,7 @@ class ReservationController extends AbstractController
                 $entityManager->persist($reservation);
                 $entityManager->flush();
 
+                // dd($rdvs);
                  // Envoyer l'email de confirmation
             $this->sendReservationConfirmationEmail($mailer, $reservation);
 
@@ -158,10 +159,11 @@ class ReservationController extends AbstractController
             $request->query->get('page', 1), // Le numéro de la page actuelle, 1 par défaut
             6// Le nombre de créneaux par page
         );
-
         return $this->render('reservation/new.html.twig', [
             'pagination' => $pagination,
             'selectedDate' => $selectedDate,
+            'prestation' => $reservation->getPrestation()->getNom(),
+            'prix' => $reservation->getPrestation()->getPrix(),
             'rdvs' => $rdvs,
             'availableSlots' => $finalSlots,
             'form' => $form->createView(),
