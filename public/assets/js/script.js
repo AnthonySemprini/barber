@@ -57,7 +57,7 @@ if (section) {
 
     window.scrollTo({
 
-      top: topPos - getOffset(), // ici tu mets + ou - en fonction de si t'es trop haut ou pas
+      top: topPos - getOffset(), 
 
     });
 

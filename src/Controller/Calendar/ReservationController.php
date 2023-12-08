@@ -75,7 +75,7 @@ class ReservationController extends AbstractController
         $availableSlots = $slots;
 
         foreach ($rdvs as $event) {
-            // Convertissez le datetime de l'événement en une chaîne de créneau horaire pour la comparaison
+            // Convertir le datetime de l'événement en une chaîne de créneau horaire pour la comparaison
             $eventStartString = $event->getRdv()->format('H:i');
             $eventEnd = clone $event->getRdv();
             // Obtenez la durée
@@ -83,7 +83,7 @@ class ReservationController extends AbstractController
             $eventEndString = $eventEnd->format('H:i');
             // dd($eventEndString);
 
-            // Filtrez $availableSlots pour enlever les créneaux occupés par cet événement
+            // Filtre $availableSlots pour enlever les créneaux occupés par cet événement
             $availableSlots = array_filter($availableSlots, function ($slot) use ($eventStartString, $eventEndString) {
                 $slotEnd = \DateTime::createFromFormat('H:i', $slot)->modify('+30 minutes')->format('H:i');
                 return $slot != $eventStartString && $slotEnd != $eventEndString;

@@ -980,7 +980,7 @@ label.required{
     text-align: center;
 }
 .selected {
-    background-color: grey;
+    background-color: green;
     color: white;
     pointer-events: none; /* Désactive les événements de souris pour empêcher d'autres clics */
 }
