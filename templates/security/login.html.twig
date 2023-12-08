@@ -5,6 +5,11 @@
 {% block body %}
 <div class="loginPage">
     <h1>Connexion</h1>
+    {% for message in app.flashes('error')%}
+    <div>
+        {{ message }}
+    {% endfor %}
+    </div>
     <div class="imgForm">
         <div class="imgRegister">
             <img src="assets/img/loginBarber.png" alt="barbier a cote de son fauteuil">
