@@ -1,4 +1,11 @@
-# 💈 Site de Réservation en Ligne pour Coiffeurs-Barbiers 💈
+<p align="center">
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=git,php,symfony,css,html,js,mysql" />
+  </a>
+</p>
+
+
+# 💈 Site de Réservation en Ligne pour Coiffeurs-Barbiers
 
 ## 👋: Bienvenue dans mon nouveau projet !
 
