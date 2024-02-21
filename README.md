@@ -29,7 +29,7 @@ Le principal objectif de ce projet est de fournir aux coiffeurs-barbiers un outi
 
 1. Clonez le dépôt sur votre machine locale.
 2. Ouvrez un terminal et naviguez vers le répertoire du projet.
-3. Exécutez `composer require` pour installer les dépendances back-end via Composer.
+3. Exécutez `composer install` pour installer les dépendances back-end via Composer.
 5. Une base de données de test, incluant des articles de démonstration, est disponible dans le dépôt. Importez-la dans votre système MySQL pour une mise en place rapide de l'environnement de test.
 6. Configurez votre base de données en modifiant le fichier `.env` pour correspondre à vos paramètres MySQL.
 7. Lancez le serveur de développement Symfony avec `symfony serve -d`.
